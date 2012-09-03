@@ -27,3 +27,4 @@ function clearGameRadioBtn(btn)
 	rad2.checked = false;
 }
 
+$('[rel=tooltip]').tooltip();

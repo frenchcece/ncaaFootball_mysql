@@ -98,7 +98,7 @@
 						    		<tr>
 										<th colspan="4">Games Of The Week</th>
 										<th colspan="4" align="right">
-											<cfif DateDiff('n',now(),qryGetLastGameDate.lastGameDate) GT 0>
+											<cfif DateDiff('n',session.today,qryGetLastGameDate.lastGameDate) GT 0>
 												<button type="submit" class="btn btn-primary pull-right span2" name="submitBtn" id="submitBtn">Submit Pick</button>
 											</cfif>
 										</th>										
@@ -124,7 +124,7 @@
 												</tr>
 											</thead>
 										</cfif>
-										<tr <cfif variables.qryGetGamesOfTheWeek.team2Spread EQ 0>class="error"</cfif>>
+										<tr <cfif variables.qryGetGamesOfTheWeek.team2Spread EQ 0 OR variables.qryGetGamesOfTheWeek.teamID1 EQ "" OR variables.qryGetGamesOfTheWeek.teamID2 EQ "">class="error"</cfif>>
 											<td>#timeFormat(variables.qryGetGamesOfTheWeek.gameDate,"hh:mm tt")# (CT)</td>
 											<cfif variables.qryGetGamesOfTheWeek.team2Spread EQ 0>
 												<td>#variables.qryGetGamesOfTheWeek.team1Name#</td>
@@ -150,8 +150,10 @@
 												<td>
 													<cfif variables.qryGetGamesOfTheWeek.team1FinalScore GTE 0>
 														<span class="label">#variables.qryGetGamesOfTheWeek.team1FinalScore#</span>
-													<cfelseif DateDiff('n',now(),variables.qryGetGamesOfTheWeek.gameDate) LTE 0>
+													<cfelseif DateDiff('n',session.today,variables.qryGetGamesOfTheWeek.gameDate) LTE 0>
 														<span class="label badge-info">&nbsp;0&nbsp;</span>	
+													<cfelseif variables.qryGetGamesOfTheWeek.teamID1 EQ "" OR variables.qryGetGamesOfTheWeek.teamID2 EQ "">
+														<span class="label badge-error">ERROR</span>
 													<cfelse>
 														<label class="radio"><input type="radio" name="team_#variables.qryGetGamesOfTheWeek.gameID#" id="team1_#variables.qryGetGamesOfTheWeek.gameID#" value="#variables.qryGetGamesOfTheWeek.teamID1#"<cfif qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID1> checked</cfif>></label>
 													</cfif>	
@@ -160,8 +162,10 @@
 												<td>
 													<cfif variables.qryGetGamesOfTheWeek.team2FinalScore GTE 0>
 														<span class="label">#variables.qryGetGamesOfTheWeek.team2FinalScore#</span>
-													<cfelseif DateDiff('n',now(),variables.qryGetGamesOfTheWeek.gameDate) LTE 0>
+													<cfelseif DateDiff('n',session.today,variables.qryGetGamesOfTheWeek.gameDate) LTE 0>
 														<span class="label badge-info">&nbsp;0&nbsp;</span>
+													<cfelseif variables.qryGetGamesOfTheWeek.teamID1 EQ "" OR variables.qryGetGamesOfTheWeek.teamID2 EQ "">
+														<span class="label badge-error">ERROR</span>
 													<cfelse>
 														<label class="radio"><input type="radio" name="team_#variables.qryGetGamesOfTheWeek.gameID#" id="team2_#variables.qryGetGamesOfTheWeek.gameID#" value="#variables.qryGetGamesOfTheWeek.teamID2#"<cfif qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID2> checked</cfif>></label>
 													</cfif>	
@@ -172,8 +176,10 @@
 													#numberFormat(variables.qryGetGamesOfTheWeek.team2Spread,"999.9")#
 												</td>
 												<td align="right">
-													<cfif DateDiff('n',now(),variables.qryGetGamesOfTheWeek.gameDate) GT 0>
+													<cfif DateDiff('n',session.today,variables.qryGetGamesOfTheWeek.gameDate) GT 0 AND variables.qryGetGamesOfTheWeek.teamID1 GT "" AND variables.qryGetGamesOfTheWeek.teamID2 GT "">
 														<button class="btn btn-small" type="button" name="delete" id="delete" value="#variables.qryGetGamesOfTheWeek.gameID#" onclick="clearGameRadioBtn(this);">Clear</button>
+													<cfelseif variables.qryGetGamesOfTheWeek.teamID1 EQ "" OR variables.qryGetGamesOfTheWeek.teamID2 EQ "">
+														<cfif variables.qryGetGamesOfTheWeek.teamID1 EQ "">team1 NULL<cfelseif variables.qryGetGamesOfTheWeek.teamID2 EQ "">team2 NULL</cfif><i class="icon-exclamation-sign"></i>
 													<cfelse>
 														<i class="icon-lock"></i>
 														<cfif qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID1 OR qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID2>
@@ -198,7 +204,7 @@
 						</table>
 					</div>
 					
-					<cfif DateDiff('n',now(),qryGetLastGameDate.lastGameDate) GT 0>
+					<cfif DateDiff('n',session.today,qryGetLastGameDate.lastGameDate) GT 0>
 					<div class="control-group">
 						<div class="controls">
 							<button type="submit" class="btn btn-primary offset4 span2" name="submitBtn" id="submitBtn">Submit Pick</button>

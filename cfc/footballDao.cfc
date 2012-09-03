@@ -118,6 +118,30 @@
 				<cfqueryparam cfsqltype="cf_sql_date" value="#arguments.gameDate#"> BETWEEN startdate AND enddate
 		</cfquery>
 		
+		<!--- if the input date is not in the date range, then pick the next week --->
+		<cfif qryGetCurrentWeek.recordCount EQ 0>
+			<cfquery name="qryGetCurrentWeek" datasource="#application.dsn#">
+				SELECT
+					[weekNumber]
+				  , [startDate]
+				  , [endDate]
+				  , [weekType]
+				FROM
+				FootballSeason AS fs
+				WHERE
+				weekNumber = (
+							   SELECT TOP 1
+								[weekNumber] + 1 AS [weekNumber]
+							   FROM
+								[FootballSeason]
+							   WHERE
+								<cfqueryparam cfsqltype="cf_sql_date" value="#arguments.gameDate#"> > endDate
+							   ORDER BY
+								weekNumber DESC
+							 )			 		
+			</cfquery>
+		</cfif>
+				 
 		<cfreturn qryGetCurrentWeek>
 	</cffunction>
 

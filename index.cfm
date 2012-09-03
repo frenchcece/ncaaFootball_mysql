@@ -41,7 +41,7 @@
 		
 		<!--- get the current week information --->  
   		<cfinvoke component="cfc.footballDao" method="getCurrentWeekNumber" returnvariable="variables.qryGetCurrentWeek">
-			<cfinvokeargument name="gameDate" value="#now()#">
+			<cfinvokeargument name="gameDate" value="#session.today#">
 		</cfinvoke>
 		<!--- get the games of the current week --->
 		<cfinvoke component="cfc.footballDao" method="getGamesOfTheWeek" returnvariable="variables.qryGetGamesOfTheWeek">

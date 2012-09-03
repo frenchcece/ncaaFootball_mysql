@@ -268,7 +268,7 @@ ESPN Headlines: http://sports.espn.go.com/espn/bottomline/news
 			           ,<cfqueryparam cfsqltype="cf_sql_integer" value="#matchInfoArray[i].teamOneScore#">
 			           ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#matchInfoArray[i].teamTwo#">
 			           ,<cfqueryparam cfsqltype="cf_sql_integer" value="#matchInfoArray[i].teamTwoScore#">
-					   ,<cfqueryparam cfsqltype="cf_sql_date"  value="#now()#">)
+					   ,<cfqueryparam cfsqltype="cf_sql_date"  value="#session.today#">)
 			END	   
 		</cfquery>
 		
