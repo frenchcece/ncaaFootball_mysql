@@ -1,0 +1,8 @@
+
+;INSERT INTO `ncaa_football`.`Users` (userID,userName,userFullName,userPassword,userEmail,isAdmin,isActive)
+	VALUES ('1','cedric.dupuy','Cedric Dupuy','celia40','frenchcece@gmail.com','1','1')
+;INSERT INTO `ncaa_football`.`Users` (userID,userName,userFullName,userPassword,userEmail,isAdmin,isActive)
+	VALUES ('2','steve.campbell','Steve Campbell','gohorns','slctex@hotmail.com','0','1')
+;INSERT INTO `ncaa_football`.`Users` (userID,userName,userFullName,userPassword,userEmail,isAdmin,isActive)
+	VALUES ('3','bobby.slotkin','Bobby Slotkin','ourules','bobby@slotkinlawfirm.com','0','1')
+;

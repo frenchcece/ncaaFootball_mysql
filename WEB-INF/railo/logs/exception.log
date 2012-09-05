@@ -1,0 +1,1604 @@
+"Severity","ThreadID","Date","Time","Application","Message"
+"ERROR","web-0","09/03/2012","17:32:13","","datasource [ncaaFootball] doesn't exist
+	at railo.runtime.config.ConfigImpl.getDataSource(ConfigImpl.java:2561):2561
+	at railo.runtime.tag.Query.setDatasource(Query.java:214):214
+	at cfc.footballdao_cfc$cf.udfCall(/var/www/ncaaFootball/cfc/footballDao.cfc:109):109
+	at railo.runtime.type.UDFImpl.implementation(UDFImpl.java:215):215
+	at railo.runtime.type.UDFImpl._call(UDFImpl.java:434):434
+	at railo.runtime.type.UDFImpl.callWithNamedValues(UDFImpl.java:377):377
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:616):616
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:502):502
+	at railo.runtime.ComponentImpl.callWithNamedValues(ComponentImpl.java:1830):1830
+	at railo.runtime.tag.Invoke.doComponent(Invoke.java:210):210
+	at railo.runtime.tag.Invoke.doEndTag(Invoke.java:183):183
+	at application_cfm$cf.call(/var/www/ncaaFootball/Application.cfm:42):42
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:32):32
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","17:32:22","","datasource [ncaaFootball] doesn't exist
+	at railo.runtime.config.ConfigImpl.getDataSource(ConfigImpl.java:2561):2561
+	at railo.runtime.tag.Query.setDatasource(Query.java:214):214
+	at cfc.footballdao_cfc$cf.udfCall(/var/www/ncaaFootball/cfc/footballDao.cfc:109):109
+	at railo.runtime.type.UDFImpl.implementation(UDFImpl.java:215):215
+	at railo.runtime.type.UDFImpl._call(UDFImpl.java:434):434
+	at railo.runtime.type.UDFImpl.callWithNamedValues(UDFImpl.java:377):377
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:616):616
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:502):502
+	at railo.runtime.ComponentImpl.callWithNamedValues(ComponentImpl.java:1830):1830
+	at railo.runtime.tag.Invoke.doComponent(Invoke.java:210):210
+	at railo.runtime.tag.Invoke.doEndTag(Invoke.java:183):183
+	at application_cfm$cf.call(/var/www/ncaaFootball/Application.cfm:42):42
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:32):32
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","17:33:14","","datasource [ncaaFootball] doesn't exist
+	at railo.runtime.config.ConfigImpl.getDataSource(ConfigImpl.java:2561):2561
+	at railo.runtime.tag.Query.setDatasource(Query.java:214):214
+	at cfc.footballdao_cfc$cf.udfCall(/var/www/ncaaFootball/cfc/footballDao.cfc:109):109
+	at railo.runtime.type.UDFImpl.implementation(UDFImpl.java:215):215
+	at railo.runtime.type.UDFImpl._call(UDFImpl.java:434):434
+	at railo.runtime.type.UDFImpl.callWithNamedValues(UDFImpl.java:377):377
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:616):616
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:502):502
+	at railo.runtime.ComponentImpl.callWithNamedValues(ComponentImpl.java:1830):1830
+	at railo.runtime.tag.Invoke.doComponent(Invoke.java:210):210
+	at railo.runtime.tag.Invoke.doEndTag(Invoke.java:183):183
+	at application_cfm$cf.call(/var/www/ncaaFootball/Application.cfm:42):42
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:32):32
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","17:33:18","","datasource [ncaaFootball] doesn't exist
+	at railo.runtime.config.ConfigImpl.getDataSource(ConfigImpl.java:2561):2561
+	at railo.runtime.tag.Query.setDatasource(Query.java:214):214
+	at cfc.footballdao_cfc$cf.udfCall(/var/www/ncaaFootball/cfc/footballDao.cfc:109):109
+	at railo.runtime.type.UDFImpl.implementation(UDFImpl.java:215):215
+	at railo.runtime.type.UDFImpl._call(UDFImpl.java:434):434
+	at railo.runtime.type.UDFImpl.callWithNamedValues(UDFImpl.java:377):377
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:616):616
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:502):502
+	at railo.runtime.ComponentImpl.callWithNamedValues(ComponentImpl.java:1830):1830
+	at railo.runtime.tag.Invoke.doComponent(Invoke.java:210):210
+	at railo.runtime.tag.Invoke.doEndTag(Invoke.java:183):183
+	at application_cfm$cf.call(/var/www/ncaaFootball/Application.cfm:42):42
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:32):32
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","17:37:53","","datasource [ncaafootball] doesn't exist
+	at railo.runtime.config.ConfigImpl.getDataSource(ConfigImpl.java:2561):2561
+	at railo.runtime.tag.Query.setDatasource(Query.java:214):214
+	at cfc.footballdao_cfc$cf.udfCall(/var/www/ncaaFootball/cfc/footballDao.cfc:109):109
+	at railo.runtime.type.UDFImpl.implementation(UDFImpl.java:215):215
+	at railo.runtime.type.UDFImpl._call(UDFImpl.java:434):434
+	at railo.runtime.type.UDFImpl.callWithNamedValues(UDFImpl.java:377):377
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:616):616
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:502):502
+	at railo.runtime.ComponentImpl.callWithNamedValues(ComponentImpl.java:1830):1830
+	at railo.runtime.tag.Invoke.doComponent(Invoke.java:210):210
+	at railo.runtime.tag.Invoke.doEndTag(Invoke.java:183):183
+	at application_cfm$cf.call(/var/www/ncaaFootball/Application.cfm:42):42
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:32):32
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","17:40:19","","You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[weekNumber]
+			  , [startDate]
+			  , [endDate]
+			  , [weekType]
+			FROM
+' at line 2
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3255):3255
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1293):1293
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:867):867
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:231):231
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at cfc.footballdao_cfc$cf.udfCall(/var/www/ncaaFootball/cfc/footballDao.cfc:118):118
+	at railo.runtime.type.UDFImpl.implementation(UDFImpl.java:215):215
+	at railo.runtime.type.UDFImpl._call(UDFImpl.java:434):434
+	at railo.runtime.type.UDFImpl.callWithNamedValues(UDFImpl.java:377):377
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:616):616
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:502):502
+	at railo.runtime.ComponentImpl.callWithNamedValues(ComponentImpl.java:1830):1830
+	at railo.runtime.tag.Invoke.doComponent(Invoke.java:210):210
+	at railo.runtime.tag.Invoke.doEndTag(Invoke.java:183):183
+	at application_cfm$cf.call(/var/www/ncaaFootball/Application.cfm:42):42
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:32):32
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","17:42:51","","You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[weekNumber]
+			  , [startDate]
+			  , [endDate]
+			  , [weekType]
+			FROM
+' at line 2
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3255):3255
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1293):1293
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:867):867
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:231):231
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at cfc.footballdao_cfc$cf.udfCall(/var/www/ncaaFootball/cfc/footballDao.cfc:118):118
+	at railo.runtime.type.UDFImpl.implementation(UDFImpl.java:215):215
+	at railo.runtime.type.UDFImpl._call(UDFImpl.java:434):434
+	at railo.runtime.type.UDFImpl.callWithNamedValues(UDFImpl.java:377):377
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:616):616
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:502):502
+	at railo.runtime.ComponentImpl.callWithNamedValues(ComponentImpl.java:1830):1830
+	at railo.runtime.tag.Invoke.doComponent(Invoke.java:210):210
+	at railo.runtime.tag.Invoke.doEndTag(Invoke.java:183):183
+	at application_cfm$cf.call(/var/www/ncaaFootball/Application.cfm:42):42
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:32):32
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","17:59:48","","invalid component definition, can't find /ncaaFootball.cfc.footballDao
+	at railo.runtime.component.ComponentLoader.load(ComponentLoader.java:278):278
+	at railo.runtime.component.ComponentLoader.loadComponent(ComponentLoader.java:43):43
+	at railo.runtime.PageContextImpl.loadComponent(PageContextImpl.java:2731):2731
+	at railo.runtime.tag.Invoke.doComponent(Invoke.java:207):207
+	at railo.runtime.tag.Invoke.doEndTag(Invoke.java:183):183
+	at rss.gamesodds_cfm$cf.call(/var/www/ncaaFootball/rss/gamesOdds.cfm:24):24
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","18:00:39","","Page /ncaaFootball/login/checkLogin.cfm [/var/www/ncaaFootball/ncaaFootball/login/checkLogin.cfm] not found
+	at railo.runtime.PageSourceImpl.loadPage(PageSourceImpl.java:846):846
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:795):795
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:746):746
+	at index_cfm$cf.call(/var/www/ncaaFootball/index.cfm:7):7
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","18:00:57","","Page /ncaaFootball/login/checkLogin.cfm [/var/www/ncaaFootball/ncaaFootball/login/checkLogin.cfm] not found
+	at railo.runtime.PageSourceImpl.loadPage(PageSourceImpl.java:846):846
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:795):795
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:746):746
+	at index_cfm$cf.call(/var/www/ncaaFootball/index.cfm:7):7
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","18:01:49","","Page /ncaaFootball/login/checkLogin.cfm [/var/www/ncaaFootball/ncaaFootball/login/checkLogin.cfm] not found
+	at railo.runtime.PageSourceImpl.loadPage(PageSourceImpl.java:846):846
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:795):795
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:746):746
+	at index_cfm$cf.call(/var/www/ncaaFootball/index.cfm:7):7
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","18:02:51","","You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[userID]
+		      ,[userName]
+		      ,[userFullName]
+		      ,[userPassword]
+		 ' at line 2
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3255):3255
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1293):1293
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:867):867
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:231):231
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at cfc.login_cfc$cf.udfCall(/var/www/ncaaFootball/cfc/login.cfc:21):21
+	at railo.runtime.type.UDFImpl.implementation(UDFImpl.java:215):215
+	at railo.runtime.type.UDFImpl._call(UDFImpl.java:434):434
+	at railo.runtime.type.UDFImpl.callWithNamedValues(UDFImpl.java:377):377
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:616):616
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:502):502
+	at railo.runtime.ComponentImpl.callWithNamedValues(ComponentImpl.java:1830):1830
+	at railo.runtime.tag.Invoke.doComponent(Invoke.java:210):210
+	at railo.runtime.tag.Invoke.doEndTag(Invoke.java:183):183
+	at login.checklogin_cfm$cf.call(/var/www/ncaaFootball/login/checkLogin.cfm:13):13
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:746):746
+	at index_cfm$cf.call(/var/www/ncaaFootball/index.cfm:7):7
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","18:03:35","","Incorrect parameter count in the call to native function 'ISNULL'
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3255):3255
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1293):1293
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:867):867
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:231):231
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at cfc.footballdao_cfc$cf.udfCall(/var/www/ncaaFootball/cfc/footballDao.cfc:58):58
+	at railo.runtime.type.UDFImpl.implementation(UDFImpl.java:215):215
+	at railo.runtime.type.UDFImpl._call(UDFImpl.java:434):434
+	at railo.runtime.type.UDFImpl.callWithNamedValues(UDFImpl.java:377):377
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:616):616
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:502):502
+	at railo.runtime.ComponentImpl.callWithNamedValues(ComponentImpl.java:1830):1830
+	at railo.runtime.tag.Invoke.doComponent(Invoke.java:210):210
+	at railo.runtime.tag.Invoke.doEndTag(Invoke.java:183):183
+	at index_cfm$cf.call(/var/www/ncaaFootball/index.cfm:53):53
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","18:09:01","","You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM
+				UserPicks
+			WHERE
+				1 = 1
+				
+				AND userid = 1
+				
+				
+' at line 8
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3249):3249
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3178):3178
+	at com.mysql.jdbc.Statement.execute(Statement.java:711):711
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:222):222
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at cfc.footballdao_cfc$cf.udfCall(/var/www/ncaaFootball/cfc/footballDao.cfc:238):238
+	at railo.runtime.type.UDFImpl.implementation(UDFImpl.java:215):215
+	at railo.runtime.type.UDFImpl._call(UDFImpl.java:434):434
+	at railo.runtime.type.UDFImpl.callWithNamedValues(UDFImpl.java:377):377
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:616):616
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:502):502
+	at railo.runtime.ComponentImpl.callWithNamedValues(ComponentImpl.java:1830):1830
+	at railo.runtime.tag.Invoke.doComponent(Invoke.java:210):210
+	at railo.runtime.tag.Invoke.doEndTag(Invoke.java:183):183
+	at index_cfm$cf.call(/var/www/ncaaFootball/index.cfm:118):118
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","18:33:07","","You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[weekNumber]
+	  , [startDate]
+	  , [endDate]
+	  , [weekType]
+	FROM
+		[Footb' at line 2
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3249):3249
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3178):3178
+	at com.mysql.jdbc.Statement.execute(Statement.java:711):711
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:222):222
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at myseason_cfm$cf.call(/var/www/ncaaFootball/mySeason.cfm:24):24
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","18:33:14","","Column count doesn't match value count at row 1
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:946):946
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:870):870
+	at com.mysql.jdbc.MysqlIO.readAllResults(MysqlIO.java:1462):1462
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1770):1770
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3249):3249
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3178):3178
+	at com.mysql.jdbc.Statement.execute(Statement.java:711):711
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:222):222
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at cfc.footballdao_cfc$cf.udfCall(/var/www/ncaaFootball/cfc/footballDao.cfc:354):354
+	at railo.runtime.type.UDFImpl.implementation(UDFImpl.java:215):215
+	at railo.runtime.type.UDFImpl._call(UDFImpl.java:434):434
+	at railo.runtime.type.UDFImpl.callWithNamedValues(UDFImpl.java:377):377
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:616):616
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:502):502
+	at railo.runtime.ComponentImpl.callWithNamedValues(ComponentImpl.java:1830):1830
+	at railo.runtime.tag.Invoke.doComponent(Invoke.java:210):210
+	at railo.runtime.tag.Invoke.doEndTag(Invoke.java:183):183
+	at mystandings_cfm$cf.call(/var/www/ncaaFootball/myStandings.cfm:24):24
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","18:33:16","","You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[weekNumber]
+	  , [startDate]
+	  , [endDate]
+	  , [weekType]
+	FROM
+		[Footb' at line 2
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3249):3249
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3178):3178
+	at com.mysql.jdbc.Statement.execute(Statement.java:711):711
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:222):222
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at myseason_cfm$cf.call(/var/www/ncaaFootball/mySeason.cfm:24):24
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","18:44:44","","Column count doesn't match value count at row 1
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:946):946
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:870):870
+	at com.mysql.jdbc.MysqlIO.readAllResults(MysqlIO.java:1462):1462
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1770):1770
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3249):3249
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3178):3178
+	at com.mysql.jdbc.Statement.execute(Statement.java:711):711
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:222):222
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at cfc.footballdao_cfc$cf.udfCall(/var/www/ncaaFootball/cfc/footballDao.cfc:354):354
+	at railo.runtime.type.UDFImpl.implementation(UDFImpl.java:215):215
+	at railo.runtime.type.UDFImpl._call(UDFImpl.java:434):434
+	at railo.runtime.type.UDFImpl.callWithNamedValues(UDFImpl.java:377):377
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:616):616
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:502):502
+	at railo.runtime.ComponentImpl.callWithNamedValues(ComponentImpl.java:1830):1830
+	at railo.runtime.tag.Invoke.doComponent(Invoke.java:210):210
+	at railo.runtime.tag.Invoke.doEndTag(Invoke.java:183):183
+	at mystandings_cfm$cf.call(/var/www/ncaaFootball/myStandings.cfm:24):24
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","18:54:01","","Page /ncaaFootball/login/checkLogin.cfm [/var/www/ncaaFootball/ncaaFootball/login/checkLogin.cfm] not found
+	at railo.runtime.PageSourceImpl.loadPage(PageSourceImpl.java:846):846
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:795):795
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:746):746
+	at index_cfm$cf.call(/var/www/ncaaFootball/index.cfm:7):7
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","18:58:02","","You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--check team1name
+					IF NOT EXISTS (SELECT [teamID]
+								  FROM [Football' at line 1
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3255):3255
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1293):1293
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:867):867
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:231):231
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at rss.gamesodds_cfm$cf.call(/var/www/ncaaFootball/rss/gamesOdds.cfm:99):99
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","19:01:02","","key [GAMESARRAYI] doesn't exist in struct (keys:i,WEEKNUMBER,GAMESARRAY,XMLFEED)
+	at railo.runtime.type.util.StructSupport.invalidKey(StructSupport.java:30):30
+	at railo.runtime.type.StructImpl.get(StructImpl.java:78):78
+	at rss.gamesodds_cfm$cf.call(/var/www/ncaaFootball/rss/gamesOdds.cfm:24):24
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","19:10:16","","You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--check team1name
+					IF NOT EXISTS (SELECT teamID
+								  FROM FootballTea' at line 1
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3255):3255
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1293):1293
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:867):867
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:231):231
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at rss.gamesodds_cfm$cf.call(/var/www/ncaaFootball/rss/gamesOdds.cfm:99):99
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","19:55:06","","You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IF EXISTS (SELECT * 
+								FROM footballgames 
+								WHERE team1Name = 'Ge' at line 1
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3255):3255
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1293):1293
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:867):867
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:231):231
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at rss.gamesodds_cfm$cf.call(/var/www/ncaaFootball/rss/gamesOdds.cfm:163):163
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","19:58:15","","Table 'ncaa_football.footballgames' doesn't exist
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3255):3255
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1293):1293
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:867):867
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:231):231
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at rss.gamesodds_cfm$cf.call(/var/www/ncaaFootball/rss/gamesOdds.cfm:120):120
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","19:59:03","","You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1 teamID FROM FootballTeams WHERE pinnacleTeamName = 'Georgia Tech')
+								  ' at line 10
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3255):3255
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1293):1293
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:867):867
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:231):231
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at rss.gamesodds_cfm$cf.call(/var/www/ncaaFootball/rss/gamesOdds.cfm:136):136
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","20:01:41","","FUNCTION ncaa_football.getDate does not exist
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3255):3255
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1293):1293
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:867):867
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:231):231
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at rss.gamesodds_cfm$cf.call(/var/www/ncaaFootball/rss/gamesOdds.cfm:136):136
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","20:03:33","","Data truncation: Incorrect datetime value: '09/03/2012 07:00 PM' for column 'gameDate' at row 40
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2932):2932
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3255):3255
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1293):1293
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:867):867
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:231):231
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at rss.gamesodds_cfm$cf.call(/var/www/ncaaFootball/rss/gamesOdds.cfm:136):136
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","20:04:30","","You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2012-09-03 20:04:30'}'
+								  ,teamID1 = (SELECT teamID FROM FootballTeams W' at line 9
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3255):3255
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1293):1293
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:867):867
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:231):231
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at rss.gamesodds_cfm$cf.call(/var/www/ncaaFootball/rss/gamesOdds.cfm:136):136
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","20:36:41","","Data truncation: Incorrect datetime value: '09/03/2012 07:00 PM' for column 'gameDate' at row 40
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2932):2932
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3255):3255
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1293):1293
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:867):867
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:231):231
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at rss.gamesodds_cfm$cf.call(/var/www/ncaaFootball/rss/gamesOdds.cfm:136):136
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","20:39:41","","Data truncation: Incorrect datetime value: '09/03/2012 07:00 PM' for column 'gameDate' at row 40
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2932):2932
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3255):3255
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1293):1293
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:867):867
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:231):231
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at rss.gamesodds_cfm$cf.call(/var/www/ncaaFootball/rss/gamesOdds.cfm:136):136
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","20:40:07","","Data truncation: Incorrect datetime value: '09/03/2012 19:00:00' for column 'gameDate' at row 40
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2932):2932
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3255):3255
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1293):1293
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:867):867
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:231):231
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at rss.gamesodds_cfm$cf.call(/var/www/ncaaFootball/rss/gamesOdds.cfm:136):136
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","20:41:53","","Page /rss/gamesScores.cfm [/var/www/ncaaFootball/rss/gamesScores.cfm] not found
+	at railo.runtime.PageSourceImpl.loadPage(PageSourceImpl.java:846):846
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:795):795
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","20:42:08","","You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IF NOT EXISTS (SELECT * FROM FootballTeams WHERE espnTeamName = 'South Carolina ' at line 1
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3249):3249
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3178):3178
+	at com.mysql.jdbc.Statement.execute(Statement.java:711):711
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:222):222
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at rss.gamescores_cfm$cf.call(/var/www/ncaaFootball/rss/gameScores.cfm:247):247
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","20:48:20","","Start and End Tag has not the same Name [cfif-cfloop]
+	at railo.transformer.cfml.tag.CFMLTransformer.tag(CFMLTransformer.java:685):685
+	at railo.transformer.cfml.tag.CFMLTransformer.body(CFMLTransformer.java:337):337
+	at railo.transformer.cfml.tag.CFMLTransformer.body(CFMLTransformer.java:345):345
+	at railo.transformer.cfml.tag.CFMLTransformer.body(CFMLTransformer.java:345):345
+	at railo.transformer.cfml.tag.CFMLTransformer.body(CFMLTransformer.java:345):345
+	at railo.transformer.cfml.tag.CFMLTransformer.body(CFMLTransformer.java:345):345
+	at railo.transformer.cfml.tag.CFMLTransformer.body(CFMLTransformer.java:345):345
+	at railo.transformer.cfml.tag.CFMLTransformer.body(CFMLTransformer.java:345):345
+	at railo.transformer.cfml.tag.CFMLTransformer.body(CFMLTransformer.java:345):345
+	at railo.transformer.cfml.tag.CFMLTransformer.body(CFMLTransformer.java:345):345
+	at railo.transformer.cfml.tag.CFMLTransformer.tag(CFMLTransformer.java:635):635
+	at railo.transformer.cfml.tag.CFMLTransformer.body(CFMLTransformer.java:337):337
+	at railo.transformer.cfml.tag.CFMLTransformer.body(CFMLTransformer.java:345):345
+	at railo.transformer.cfml.tag.CFMLTransformer.transform(CFMLTransformer.java:280):280
+	at railo.transformer.cfml.tag.CFMLTransformer.transform(CFMLTransformer.java:154):154
+	at railo.runtime.compiler.CFMLCompilerImpl.compile(CFMLCompilerImpl.java:53):53
+	at railo.runtime.PageSourceImpl._compile(PageSourceImpl.java:285):285
+	at railo.runtime.PageSourceImpl.compile(PageSourceImpl.java:268):268
+	at railo.runtime.PageSourceImpl.loadPhysical(PageSourceImpl.java:212):212
+	at railo.runtime.PageSourceImpl.loadPage(PageSourceImpl.java:155):155
+	at railo.runtime.PageSourceImpl.loadPage(PageSourceImpl.java:843):843
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:795):795
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","20:49:06","","variable [QRYCHECKGAMESFINALSCORES] doesn't exist
+	at railo.runtime.type.scope.UndefinedImpl.getCollection(UndefinedImpl.java:400):400
+	at rss.gamescores_cfm$cf.call(/var/www/ncaaFootball/rss/gameScores.cfm:236):236
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","20:49:38","","You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM
+					FootballGames fg
+				INNER JOIN FootballTeams ft1
+					ON	ft1.pinna' at line 4
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3249):3249
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3178):3178
+	at com.mysql.jdbc.Statement.execute(Statement.java:711):711
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:222):222
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at rss.gamescores_cfm$cf.call(/var/www/ncaaFootball/rss/gameScores.cfm:299):299
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","20:59:51","","You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '] THEN 'T' ELSE 'L' END
+				WHERE (ft1.pinnacleteamname = fg.team1name OR ft1.p' at line 3
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3249):3249
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3178):3178
+	at com.mysql.jdbc.Statement.execute(Statement.java:711):711
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:222):222
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at rss.gamescores_cfm$cf.call(/var/www/ncaaFootball/rss/gameScores.cfm:304):304
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","21:14:34","","Page /ncaaFootball/login/checkLogin.cfm [/var/www/ncaaFootball/ncaaFootball/login/checkLogin.cfm] not found
+	at railo.runtime.PageSourceImpl.loadPage(PageSourceImpl.java:846):846
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:795):795
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:746):746
+	at index_cfm$cf.call(/var/www/ncaaFootball/index.cfm:7):7
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/03/2012","21:15:12","","key [MAPPATH] doesn't exist in struct (keys:APPMAP,DSN,applicationname,SETTINGS,RSSFEED)
+	at railo.runtime.type.util.StructSupport.invalidKey(StructSupport.java:30):30
+	at railo.runtime.type.StructImpl.get(StructImpl.java:78):78
+	at header_cfm$cf.call(/var/www/ncaaFootball/header.cfm:17):17
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:746):746
+	at index_cfm$cf.call(/var/www/ncaaFootball/index.cfm:17):17
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/05/2012","10:01:14","","You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1
+								weekNumber + 1 AS weekNumber
+							   FROM
+								FootballSeason' at line 10
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936):936
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:2934):2934
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1616):1616
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1708):1708
+	at com.mysql.jdbc.Connection.execSQL(Connection.java:3255):3255
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1293):1293
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:867):867
+	at railo.runtime.type.QueryImpl.<init>(QueryImpl.java:231):231
+	at railo.runtime.tag.Query.executeDatasoure(Query.java:622):622
+	at railo.runtime.tag.Query.doEndTag(Query.java:474):474
+	at cfc.footballdao_cfc$cf.udfCall(/var/www/ncaaFootball/cfc/footballDao.cfc:138):138
+	at railo.runtime.type.UDFImpl.implementation(UDFImpl.java:215):215
+	at railo.runtime.type.UDFImpl._call(UDFImpl.java:434):434
+	at railo.runtime.type.UDFImpl.callWithNamedValues(UDFImpl.java:377):377
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:616):616
+	at railo.runtime.ComponentImpl._call(ComponentImpl.java:502):502
+	at railo.runtime.ComponentImpl.callWithNamedValues(ComponentImpl.java:1830):1830
+	at railo.runtime.tag.Invoke.doComponent(Invoke.java:210):210
+	at railo.runtime.tag.Invoke.doEndTag(Invoke.java:183):183
+	at application_cfm$cf.call(/var/www/ncaaFootball/Application.cfm:42):42
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:32):32
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/05/2012","10:09:47","","Page /ncaaFootball/login/checkLogin.cfm [/var/www/ncaaFootball/ncaaFootball/login/checkLogin.cfm] not found
+	at railo.runtime.PageSourceImpl.loadPage(PageSourceImpl.java:846):846
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:795):795
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:746):746
+	at index_cfm$cf.call(/var/www/ncaaFootball/index.cfm:7):7
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"
+"ERROR","web-0","09/05/2012","10:14:19","","Page /ncaaFootball/login/checkLogin.cfm [/var/www/ncaaFootball/ncaaFootball/login/checkLogin.cfm] not found
+	at railo.runtime.PageSourceImpl.loadPage(PageSourceImpl.java:846):846
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:795):795
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:746):746
+	at index_cfm$cf.call(/var/www/ncaaFootball/index.cfm:10):10
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:799):799
+	at railo.runtime.PageContextImpl.doInclude(PageContextImpl.java:751):751
+	at railo.runtime.listener.ClassicAppListener._onRequest(ClassicAppListener.java:35):35
+	at railo.runtime.listener.MixedAppListener.onRequest(MixedAppListener.java:24):24
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2035):2035
+	at railo.runtime.PageContextImpl.execute(PageContextImpl.java:2002):2002
+	at railo.runtime.engine.CFMLEngineImpl.serviceCFML(CFMLEngineImpl.java:297):297
+	at railo.loader.servlet.CFMLServlet.service(CFMLServlet.java:32):32
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:722):722
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305):305
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210):210
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:225):225
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169):169
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472):472
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168):168
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98):98
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118):118
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407):407
+	at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200):200
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:565):565
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307):307
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source):-1
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source):-1
+	at java.lang.Thread.run(Unknown Source):-1
+"

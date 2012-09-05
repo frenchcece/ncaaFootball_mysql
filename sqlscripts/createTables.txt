@@ -1,0 +1,77 @@
+CREATE TABLE [dbo].[Football¬Games]
+(
+[game¬ID] [int] NULL,
+[game¬Date] [datetime] NULL,
+[Week¬Number] [int] NULL,
+[team1Name] [varchar] (50) NULL,
+[team¬ID1] [int] NULL,
+[team1Draw] [varchar] (10) NULL,
+[team1Spread] [numeric] (18, 2) NULL,
+[team2Name] [varchar] (50)  NULL,
+[team¬ID2] [int] NULL,
+[team2Draw] [varchar] (10)  NULL,
+[team2Spread] [numeric] (18, 2) NULL,
+[team1Final¬Score] [int] NULL,
+[team2Final¬Score] [int] NULL,
+[team1Win¬Loss] [char] (1)  NULL,
+[team2Win¬Loss] [char] (2) NULL,
+[date¬Created] [datetime] NULL,
+[date¬Updated] [datetime] NULL
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[Football¬Season]
+(
+[week¬Number] [int] NULL,
+[start¬Date] [datetime] NULL,
+[end¬Date] [datetime] NULL,
+[week¬Type] [varchar] (10) NULL
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[Football¬Teams]
+(
+[team¬ID] [int] NOT NULL IDENTITY(1, 1),
+[espn¬Team¬Name] [varchar] (50) NULL,
+[pinnacle¬Team¬Name] [varchar] (50)  NULL,
+[bet¬Online¬Team¬Name] [varchar] (50)  NULL
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[Games¬Final¬Scores]
+(
+[team1Name] [varchar] (50)  NULL,
+[team1Score] [int] NULL,
+[team2Name] [varchar] (50)  NULL,
+[team2Score] [int] NULL,
+[score¬Date] [datetime] NULL
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[mismatched¬Pinnacle¬Football¬Teams]
+(
+[team¬Name] [varchar] (50)  NULL
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[User¬Picks]
+(
+[user¬Pick¬ID] [int] NOT NULL IDENTITY(1, 1),
+[user¬ID] [int] NOT NULL,
+[game¬ID] [int] NOT NULL,
+[team¬ID] [int] NOT NULL,
+[win¬Loss] [char] (1) NULL,
+[week¬Number] [int] NOT NULL
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[User¬Picks]
+(
+[user¬Pick¬ID] [int] NOT NULL IDENTITY(1, 1),
+[user¬ID] [int] NOT NULL,
+[game¬ID] [int] NOT NULL,
+[team¬ID] [int] NOT NULL,
+[win¬Loss] [char] (1) NULL,
+[week¬Number] [int] NOT NULL
+) ON [PRIMARY]
+GO

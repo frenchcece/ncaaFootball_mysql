@@ -1,0 +1,20 @@
+body {
+	padding-top: 0px;
+	padding-bottom: 40px;
+}
+#mainContainer {
+	padding-top:60px;
+}
+
+
+/*
+.navbar-inverse .navbar-inner {
+	background-color: #006DCC;
+	background-image: -moz-linear-gradient(center top , #333333, #666666);
+	background-image: -webkit-linear-gradient(top,#333333, #666666);
+	background-image: -o-linear-gradient(top,#333333, #666666);
+	background-image: linear-gradient(to bottom,#333333, #666666);
+	background-repeat: no-repeat;
+	filter: none;
+}
+*/
