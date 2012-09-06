@@ -1,4 +1,1 @@
 ncaaFootball
-============
-
-ncaaFootball

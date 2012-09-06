@@ -6,8 +6,7 @@
 		
 		<cfquery name="qryGetUserInfo" datasource="#application.dsn#">
 			SELECT 
-<<<<<<< HEAD
-				userID
+			   userID
 		      ,userName
 		      ,userFullName
 		      ,userPassword
@@ -16,17 +15,6 @@
 		      ,isActive
 		  FROM 
 		  	Users
-=======
-				[userID]
-		      ,[userName]
-		      ,[userFullName]
-		      ,[userPassword]
-		      ,[userEmail]
-		      ,[isAdmin]
-		      ,[isActive]
-		  FROM 
-		  	[Users]
->>>>>>> 6777cf6963aae7a388d3b394f7f38528339fcd17
 		  WHERE 
 		  	isActive = 1
 		  	AND userName = <cfqueryparam value="#arguments.username#" cfsqltype="cf_sql_varchar">
@@ -41,7 +29,6 @@
 		
 		<cfquery name="qryGetUserInfo" datasource="#application.dsn#">
 			SELECT 
-<<<<<<< HEAD
 			   userID
 		      ,userName
 		      ,userFullName
@@ -51,17 +38,6 @@
 		      ,isActive
 		  FROM 
 		  	Users
-=======
-			   [userID]
-		      ,[userName]
-		      ,[userFullName]
-		      ,[userPassword]
-		      ,[userEmail]
-		      ,[isAdmin]
-		      ,[isActive]
-		  FROM 
-		  	[Users]
->>>>>>> 6777cf6963aae7a388d3b394f7f38528339fcd17
 		  WHERE 
 		  	userID = <cfqueryparam value="#arguments.userID#" cfsqltype="cf_sql_numeric" >
 		</cfquery>
