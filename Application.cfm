@@ -14,7 +14,7 @@
 
 
 <cfparam name="url.debug" default="false">
-<cfparam name="url.logout" default="false">
+<cfparam name="url.logout" default="">
 
 <cfparam name="session.isLoggedIn" default="false">
 <cfif NOT isDefined("session.user")>

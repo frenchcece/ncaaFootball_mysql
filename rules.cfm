@@ -1,14 +1,10 @@
-<cfsilent>
+<cfinclude template="header.cfm">
 
-	<cfif NOT url.debug>
-		<cfsetting showdebugoutput="false" />
-	</cfif>
+<cfif NOT url.debug>
+	<cfsetting showdebugoutput="false" />
+</cfif>
 
-	<cfinclude template="#application.appmap#/login/checkLogin.cfm">	
-
-
-</cfsilent>
-
+<cfinclude template="#application.appmap#/login/checkLogin.cfm">
 
 		
 

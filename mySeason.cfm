@@ -1,15 +1,15 @@
+<cfinclude template="#application.appmap#/login/checkLogin.cfm">	
+<cfinclude template="header.cfm">
+
 <cfif NOT url.debug>
 	<cfsetting showdebugoutput="true" />
 </cfif>
+
 
 <cfparam name="variables.currentUserID" default="#session.user.userID#">
 <cfif IsDefined("url.userID") AND url.userID GT "">
 	<cfset variables.currentUserID = url.userID>
 </cfif>
-
-<cfinclude template="#application.appmap#/login/checkLogin.cfm">	
-		
-<cfinclude template="header.cfm">
 
 
 <cfparam name="variables.activeWeek" default="#session.currentWeekNumber#">

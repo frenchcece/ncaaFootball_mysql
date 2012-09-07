@@ -1,4 +1,15 @@
 <!--- 
+First, check to see if there is a game today, if not ABORT and stop running the script --->
+<cfquery name="qryCheckGameDay" datasource="#application.dsn#">
+    SELECT * FROM ncaa_football.FootballSeason
+    WHERE current_date BETWEEN startDate AND endDate;
+</cfquery>
+<cfif qryCheckGameDay.recordCount EQ 0>
+    There are no games today! Abort process.<cfabort>
+</cfif>
+
+
+<!--- 
 
 Joel Hill
 www.WeCodeThings.com

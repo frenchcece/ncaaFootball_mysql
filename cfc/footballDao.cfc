@@ -22,6 +22,7 @@
 			  , team2FinalScore
 			  , team1WinLoss
 			  , team2WinLoss
+			  , spreadLock
 			FROM
 				FootballGames
 			WHERE
@@ -76,6 +77,19 @@
 			</cfif>				
 		</cfquery>
 
+		<!--- unlock the games if no other user has them picked --->
+		<cfquery name="qryUnlockGameIDs" datasource="#application.dsn#">
+			UPDATE FootballGames
+			SET spreadLock = 0
+			WHERE gameID NOT IN 
+				(SELECT 
+					gameID 
+				FROM UserPicks 
+				WHERE gameID IN (#arguments.picksLocked#) 
+					AND weekNumber = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.weekNumber#">)
+			AND weekNumber = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.weekNumber#">;
+		</cfquery>
+			
 		<cfreturn>
 	</cffunction>
 
@@ -97,6 +111,13 @@
 	           ,<cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.gameID#">
 	           ,<cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.teamID#">
 			   ,<cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.weekNumber#">)
+		</cfquery>
+
+		<!--- lock the game so that the odds are not updated anymore --->
+		<cfquery name="qryLockGameID" datasource="#application.dsn#">
+			UPDATE FootballGames
+				SET spreadLock = 1
+			WHERE gameID = 	<cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.gameID#">
 		</cfquery>
 
 		<cfreturn>

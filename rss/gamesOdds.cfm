@@ -142,7 +142,8 @@
 							  ,teamID1 = (SELECT teamID FROM FootballTeams WHERE pinnacleTeamName = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[1].participant_name.xmlText)#">  LIMIT 0,1)
 							  ,teamID2 = (SELECT teamID FROM FootballTeams WHERE pinnacleTeamName = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[2].participant_name.xmlText)#">  LIMIT 0,1)
 						 WHERE team1Name = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[1].participant_name.xmlText)#">
-						 		AND team2Name = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[2].participant_name.xmlText)#">;		
+						 		AND team2Name = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[2].participant_name.xmlText)#">
+						 		AND spreadLock = 0;		
 
 					</cfquery>
 				<cfelse>

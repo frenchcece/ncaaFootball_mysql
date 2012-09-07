@@ -1,21 +1,12 @@
+<cfinclude template="#application.appmap#/login/checkLogin.cfm">	
+<cfinclude template="header.cfm">
 
-<cfsilent>
-
-	<cfif NOT url.debug>
-		<cfsetting showdebugoutput="false" />
-	</cfif>
-
-	<cfinclude template="#application.appmap#/login/checkLogin.cfm">	
-
-
-</cfsilent>
-
-
-		
+<cfif NOT url.debug>
+	<cfsetting showdebugoutput="false" />
+</cfif>
 
 <body>
 
-	<cfinclude template="header.cfm">
     <div class="container" id="mainContainer">
 
       <!-- Main hero unit for a primary marketing message or call to action -->

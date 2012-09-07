@@ -1,9 +1,10 @@
+<cfinclude template="#application.appmap#/login/checkLogin.cfm">	
+<cfinclude template="header.cfm">
+
 <cfif NOT url.debug>
 	<cfsetting showdebugoutput="true" />
 </cfif>
 
-<cfinclude template="#application.appmap#/login/checkLogin.cfm">	
-<cfinclude template="header.cfm">
 
 
 <body>
@@ -178,6 +179,9 @@
 												<td>
 													<cfif variables.qryGetGamesOfTheWeek.team2Spread GT 0>+</cfif>
 													#numberFormat(variables.qryGetGamesOfTheWeek.team2Spread,"999.9")#
+													<cfif variables.qryGetGamesOfTheWeek.spreadLock EQ 1>
+													<i class="icon-ok-circle"></i>
+													</cfif>
 												</td>
 												<td align="right">
 													<cfif DateDiff('n',session.today,variables.qryGetGamesOfTheWeek.gameDate) GT 0 AND variables.qryGetGamesOfTheWeek.teamID1 GT "" AND variables.qryGetGamesOfTheWeek.teamID2 GT "">
@@ -229,6 +233,7 @@
 							<li>You can change your selection at anytime until game time.  You can also remove your selection by clicking 'clear'.</li>
 							<li>Your selected games will be marked with this icon <span class="badge badge-success">@</span> with your pick highlighted <span class="badge badge-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
 							<li>Once a game starts, it will be locked <i class="icon-lock"></i> and you won't be allowed to change your selection.</li>
+							<li>The icon <i class="icon-ok-circle"></i> next to a spread means that this spread is currently locked and will not change.</li>
 							<li>The game results will be displayed once the game ends</li>
 							<li><span class="label label-success">Win</span> or <span class="label label-important">Loss</span> will show the result of your picks.</li>
 							<br>
