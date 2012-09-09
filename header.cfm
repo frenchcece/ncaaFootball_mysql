@@ -58,7 +58,7 @@
     </div>
 	
 
-<cfif NOT session.isLoggedIn AND url.logout EQ false>
+<cfif NOT session.isLoggedIn AND url.logout NEQ true>
 	<div class="container" id="mainContainer">
 		<div class="alert alert-error">
 			<strong>Error!</strong> Your session has timed out.  Please log back in.

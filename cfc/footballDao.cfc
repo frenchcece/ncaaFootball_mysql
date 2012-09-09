@@ -37,6 +37,25 @@
 		<cfreturn qryGetGamesOfTheWeek>
 	</cffunction>
 
+	<cffunction name="selectLeaguePlayers" returntype="query">
+
+		<cfquery name="qrySelectLeaguePlayers" datasource="#application.dsn#">
+			SELECT
+				isActive,
+				isAdmin,
+				userEmail,
+				userFullName,
+				userID,
+				userName,
+				userPassword
+			FROM 
+				Users
+			ORDER BY 
+				userFullName;
+		</cfquery>
+
+		<cfreturn qrySelectLeaguePlayers>
+	</cffunction>
 
 	<cffunction name="selectUserPicksByWeekNumber" returntype="query">
 		<cfargument name="userID" type="numeric" required="true" >
@@ -93,7 +112,6 @@
 		<cfreturn>
 	</cffunction>
 
-
 	<cffunction name="insertUserPicks" returntype="void">
 		<cfargument name="userID" type="numeric" required="true" >
 		<cfargument name="gameID" type="numeric" required="true" >
@@ -122,7 +140,6 @@
 
 		<cfreturn>
 	</cffunction>
-
 
 	<cffunction name="getCurrentWeekNumber" returntype="query" >
 		<cfargument name="gameDate" type="date" required="true" />
@@ -162,7 +179,6 @@
 				 
 		<cfreturn qryGetCurrentWeek>
 	</cffunction>
-
 
 	<cffunction name="getResultsByUser" returntype="Query" >
 		<cfargument name="userID" type="numeric" default="-1">
@@ -436,6 +452,5 @@
 	
 		<cfreturn qryGetStandingsGroupByWeekNumber>
 	</cffunction>
-
 
 </cfcomponent>
