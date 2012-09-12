@@ -35,23 +35,27 @@
 								</cfquery>
 								</cfif>
 							<cfif qryCheckCurrentUserPick.recordCount>
-							<tr>
-								<td>#dateFormat(variables.qryGetGamesOfTheWeek.gameDate,"yyyy-mm-dd")#</td>
-								<td><span<cfif qryCheckCurrentUserPick.recordCount AND qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID1> class="badge badge-success"</cfif>>#variables.qryGetGamesOfTheWeek.team1Name#</span></td>
-								<td>#variables.qryGetGamesOfTheWeek.team1FinalScore#</td>
-								<td>@</td>
-								<td>#variables.qryGetGamesOfTheWeek.team2FinalScore#</td>
-								<td><span<cfif qryCheckCurrentUserPick.recordCount AND qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID2> class="badge badge-success"</cfif>>#variables.qryGetGamesOfTheWeek.team2Name#</span></td>
-								<td><cfif variables.qryGetGamesOfTheWeek.team2Spread GT 0>+</cfif>#numberFormat(variables.qryGetGamesOfTheWeek.team2Spread,"999.9")#</td>
-								<td>
-								<cfswitch expression="#trim(qryCheckCurrentUserPick.winLoss)#">
-									<cfcase value="W"><span class="label label-success">win</span></cfcase>
-									<cfcase value="L"><span class="label label-important">loss</span></cfcase>
-									<cfcase value="T"><span class="label label-inverse">tie</span></cfcase>
-									<cfcase value="P"><span class="label label-info">pending</span></cfcase>
-								</cfswitch>
-								</td>
-							</tr>
+								<cfif trim(qryCheckCurrentUserPick.winLoss) EQ "P" AND variables.currentUserID NEQ session.user.userID>	<!--- if the game is still pending and the loggedIn userID is not the userID in the looped query, then do not show the table row --->
+									<tr class="error"><td colspan="8" style="text-align: center;"><i class="icon-warning-sign"></i>This Pick is Hidden Until Game is Final</td></tr>
+								<cfelse>
+									<tr>
+										<td>#dateFormat(variables.qryGetGamesOfTheWeek.gameDate,"yyyy-mm-dd")#</td>
+										<td><span<cfif qryCheckCurrentUserPick.recordCount AND qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID1> class="badge badge-success"</cfif>>#variables.qryGetGamesOfTheWeek.team1Name#</span></td>
+										<td>#variables.qryGetGamesOfTheWeek.team1FinalScore#</td>
+										<td>@</td>
+										<td>#variables.qryGetGamesOfTheWeek.team2FinalScore#</td>
+										<td><span<cfif qryCheckCurrentUserPick.recordCount AND qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID2> class="badge badge-success"</cfif>>#variables.qryGetGamesOfTheWeek.team2Name#</span></td>
+										<td><cfif variables.qryGetGamesOfTheWeek.team2Spread GT 0>+</cfif>#numberFormat(variables.qryGetGamesOfTheWeek.team2Spread,"999.9")#</td>
+										<td>
+										<cfswitch expression="#trim(qryCheckCurrentUserPick.winLoss)#">
+											<cfcase value="W"><span class="label label-success">win</span></cfcase>
+											<cfcase value="L"><span class="label label-important">loss</span></cfcase>
+											<cfcase value="T"><span class="label label-inverse">tie</span></cfcase>
+											<cfcase value="P"><span class="label label-info">pending</span></cfcase>
+										</cfswitch>
+										</td>
+									</tr>
+								</cfif>
 							</cfif>
 						</cfloop>
 

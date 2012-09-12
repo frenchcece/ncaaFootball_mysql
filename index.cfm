@@ -29,7 +29,7 @@
 	    </div>
 	</cfif>
 		
-      <cfif session.isLoggedIn>
+      <cfif session.isLoggedIn EQ true>
 		
 		<!--- get the current week information --->  
   		<cfinvoke component="#application.appmap#.cfc.footballDao" method="getCurrentWeekNumber" returnvariable="variables.qryGetCurrentWeek">

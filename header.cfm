@@ -39,7 +39,7 @@
           </a>
 		  <a class="brand" style="color:##fff;">NCAA Football</a>
           <div class="nav-collapse collapse">
-          	<cfif session.isLoggedIn>
+          	<cfif session.isLoggedIn EQ true>
 			<ul class="nav">
               <li><a href="index.cfm">Home</a></li>
               <li><a href="myGames.cfm">Games</a></li>
@@ -58,11 +58,10 @@
     </div>
 	
 
-<cfif NOT session.isLoggedIn AND url.logout NEQ true>
+<cfif session.isLoggedIn EQ False AND url.logout NEQ true>
 	<div class="container" id="mainContainer">
 		<div class="alert alert-error">
 			<strong>Error!</strong> Your session has timed out.  Please log back in.
 		</div>
-	</div>	
-	<cfabort>
+	</div>
 </cfif>	

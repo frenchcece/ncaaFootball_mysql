@@ -16,7 +16,7 @@
 <cfparam name="url.debug" default="false">
 <cfparam name="url.logout" default="">
 
-<cfparam name="session.isLoggedIn" default="false">
+<cfparam name="session.isLoggedIn" default="">
 <cfif NOT isDefined("session.user")>
 	<cfset session.user = structNew()>
 	<cfset session.user.userID = 0>

@@ -1,4 +1,4 @@
-<cfif NOT isDefined("session.isLoggedIn") OR session.isLoggedIn EQ false>
+<cfif NOT isDefined("session.isLoggedIn") OR session.isLoggedIn NEQ true>
 	<form class="navbar-form pull-right" action="index.cfm?debug=true" method="post" name="loginForm">
 		<input class="span2" type="text" placeholder="User" name="User" id="User">
 		<input class="span2" type="password" placeholder="Password" name="Password" id="Password">

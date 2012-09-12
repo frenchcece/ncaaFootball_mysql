@@ -238,10 +238,10 @@
 			</cfquery>
  
 			<cfloop query="qryGetUserCurrentRecord">
-				<cfif qryGetUserCurrentRecord.winLoss EQ "W"><cfset variables.resultStct.recordW = qryGetUserCurrentRecord.record></cfif>
-				<cfif qryGetUserCurrentRecord.winLoss EQ "L"><cfset variables.resultStct.recordL = qryGetUserCurrentRecord.record></cfif>
-				<cfif qryGetUserCurrentRecord.winLoss EQ "T"><cfset variables.resultStct.recordT = qryGetUserCurrentRecord.record></cfif>
-				<cfif qryGetUserCurrentRecord.winLoss EQ "P"><cfset variables.resultStct.recordP = qryGetUserCurrentRecord.record></cfif>
+				<cfif qryGetUserCurrentRecord.winLoss EQ "W"><cfset variables.resultStct.recordW = variables.resultStct.recordW  + qryGetUserCurrentRecord.record></cfif>
+				<cfif qryGetUserCurrentRecord.winLoss EQ "L"><cfset variables.resultStct.recordL = variables.resultStct.recordL + qryGetUserCurrentRecord.record></cfif>
+				<cfif qryGetUserCurrentRecord.winLoss EQ "T"><cfset variables.resultStct.recordT = variables.resultStct.recordT + qryGetUserCurrentRecord.record></cfif>
+				<cfif qryGetUserCurrentRecord.winLoss EQ "P"><cfset variables.resultStct.recordP = variables.resultStct.recordP + qryGetUserCurrentRecord.record></cfif>
 			</cfloop>
 		</cfif>
 		
