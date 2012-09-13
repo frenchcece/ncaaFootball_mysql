@@ -35,8 +35,8 @@
 								</cfquery>
 								</cfif>
 							<cfif qryCheckCurrentUserPick.recordCount>
-								<cfif trim(qryCheckCurrentUserPick.winLoss) EQ "P" AND variables.currentUserID NEQ session.user.userID>	<!--- if the game is still pending and the loggedIn userID is not the userID in the looped query, then do not show the table row --->
-									<tr class="error"><td colspan="8" style="text-align: center;"><i class="icon-warning-sign"></i>This Pick is Hidden Until Game is Final</td></tr>
+								<cfif DateDiff('n',session.today,qryGetGamesOfTheWeek.gameDate) GT 0 AND variables.currentUserID NEQ session.user.userID>	<!--- if the game has not started yet and the loggedIn userID is not the userID in the looped query, then do not show the table row --->
+									<tr class="error"><td colspan="8" style="text-align: center;"><i class="icon-warning-sign"></i>This Pick is Hidden Until Game Time</td></tr>
 								<cfelse>
 									<tr>
 										<td>#dateFormat(variables.qryGetGamesOfTheWeek.gameDate,"yyyy-mm-dd")#</td>

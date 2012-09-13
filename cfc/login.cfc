@@ -44,4 +44,23 @@
 
 		<cfreturn qryGetUserInfo>		
 	</cffunction>
+	
+	<cffunction name="insertUserLog" returntype="void">
+		<cfargument name="userID" type="numeric" required="true">
+		
+		<cfquery name="qryInsertUserLog" datasource="#application.dsn#">
+		INSERT INTO UserLogs
+			(
+			loginDate,
+			userID)
+		VALUES
+			(
+			'#dateFormat(now(),"yyyy-mm-dd")# #timeFormat(now(),"HH:mm:ss")#',
+			<cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.userID#">
+			);
+		</cfquery>
+	
+		<cfreturn>
+	</cffunction>	
+
 </cfcomponent>

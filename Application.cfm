@@ -6,6 +6,7 @@
 	
 	
 <!--- application vars --->
+<cfset application.emailFrom = "frenchcece@gmail.com">	<!--- it doesn't matter.  gmail on railo seems to bypass this cfmail attribute --->
 <cfset application.appmap = "/ncaaFootball" />
 <cfset application.dsn = "ncaafootball">
 <cfset application.rssFeed.gamesOdds = "http://xml.pinnaclesports.com/pinnaclefeed.aspx?sporttype=Football&sportsubtype=NCAA"><!--- http://livelines.betonline.com/sys/LineXML/LiveLineObjXml.asp?sport=Football ---><!--- http://www.collegefootballpoll.com/wp_archives_083012.html --->

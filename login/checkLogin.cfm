@@ -19,6 +19,12 @@
       	<cfset session.user.userFullName = qryUserInfo.userFullName>
       	<cfset session.user.userEmail = qryUserInfo.userEmail>
       	<cfset session.user.isAdmin = qryUserInfo.isAdmin>
+	
+		<!--- insert user log --->
+		<cfinvoke component="#application.appmap#.cfc.login" method="insertUserLog" returnvariable="void">
+			<cfinvokeargument name="userID" value="#session.user.userID#">
+		</cfinvoke>
+		
 	<cfelse>
 		<cfset session.isLoggedIn = false>
 		<cfset variables.loginFailure = true>

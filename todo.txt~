@@ -1,5 +1,8 @@
-*  restrict the league picks based on game time	DONE
-*  create email notifications
+*  restrict the league picks based on game time	- DONE
+*  user log - DONE
+*  create email notifications - DONE
 *  apply the minimum 5 picks rule
 *  need to make sure the app will work once we get to the bowl games/playoffs.  Not sure how I can figure it out until we get to December.
+*  Backup mysql database on /media/sdb1/mysqlbackup
+
 

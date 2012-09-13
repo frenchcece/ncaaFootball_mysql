@@ -1,5 +1,20 @@
 <cfcomponent output="false" >
 
+	<cffunction name="getWeekInfoByWeekNumber" returntype="query">
+		<cfargument name="weekNumber" type="numeric" required="true">
+
+		<cfquery name="qryGetWeekInfo" datasource="#application.dsn#">
+			SELECT 
+			    startDate, endDate, weekType
+			FROM
+			    ncaa_football.FootballSeason
+			WHERE
+			    weekNumber = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.weekNumber#">;
+		</cfquery>
+
+		<cfreturn qryGetWeekInfo>	
+	</cffunction>
+
 	<cffunction name="getGamesOfTheWeek" returntype="Query">
 		<cfargument name="weekNumber" type="numeric" default="-1">
 		
@@ -50,6 +65,8 @@
 				userPassword
 			FROM 
 				Users
+			WHERE
+				isActive = 1	
 			ORDER BY 
 				userFullName;
 		</cfquery>
@@ -451,6 +468,21 @@
 		</cfquery>
 	
 		<cfreturn qryGetStandingsGroupByWeekNumber>
+	</cffunction>
+	
+	<cffunction name="sendEmail" returntype="void">
+		<cfargument name="emailTo" type="string" required="true">
+		<cfargument name="emailSubject" type="string" required="true">
+		<cfargument name="emailMsg" type="string" required="true">
+	
+		<cfmail 
+		from="#application.emailFrom#" 
+			to="#arguments.emailTo#" 
+				subject="#arguments.emailSubject#"  useTLS="true" type="html">
+			#arguments.emailMsg#
+		</cfmail>
+	
+		<cfreturn>
 	</cffunction>
 
 </cfcomponent>
