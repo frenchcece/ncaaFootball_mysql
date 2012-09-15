@@ -97,13 +97,36 @@
 
 		<cfreturn qrySelectUserPicks>
 	</cffunction>
+
+	<cffunction name="checkUserPicks" returntype="string">
+		<cfargument name="gameID" type="numeric" required="true" >
+		
+		<cfset var local.retStr = "">
+		
+		<cfquery datasource="#application.dsn#" name="qryCheckGameTime">
+			select 
+				CONCAT(team1Name,' @ ',team2Name) AS gameDesc, 
+				gameDate 
+			FROM FootballGames 
+			WHERE gameID = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.gameID#">;
+		</cfquery>
+
+		<cfif qryCheckGameTime.recordCount AND DateDiff('n',now(),qryCheckGameTime.gameDate) LTE 0>
+			<cfset local.retStr = "The game " & qryCheckGameTime.gameDesc & " has already started and is no longer elligible. Your pick was not saved.">
+		</cfif>
+		
+		<cfreturn local.retStr>
+	</cffunction>
 	
 	<cffunction name="deleteUserPicksByWeekNumber" returntype="void">
 		<cfargument name="userID" type="numeric" required="true" >
 		<cfargument name="weekNumber" type="numeric" required="true" >
 		<cfargument name="picksLocked" type="string" default="-1" >
-		
 
+		<!--- get the current list of user picks to be used when updating the spreadlock field in table footballgames --->		
+		<cfset variables.qryGetCurrentUserPicks = selectUserPicksByWeekNumber(#arguments.userID#,#arguments.weekNumber#)>
+
+		<!--- delete all the user picks --->
 		<cfquery name="qryDeleteUserPicks" datasource="#application.dsn#">
 			DELETE FROM UserPicks
 			WHERE userID = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.userID#">
@@ -113,22 +136,25 @@
 			</cfif>				
 		</cfquery>
 
-		<!--- unlock the games if no other user has them picked --->
+		<!--- unlock the games spread if no other user has them picked --->
 		<cfquery name="qryUnlockGameIDs" datasource="#application.dsn#">
 			UPDATE FootballGames
-			SET spreadLock = 0
-			WHERE gameID NOT IN 
-				(SELECT 
+				SET spreadLock = 0
+			WHERE 
+				gameID IN (#valueList(variables.qryGetCurrentUserPicks.gameID,",")#)
+				AND gameID NOT IN 
+				(
+				SELECT 
 					gameID 
 				FROM UserPicks 
-				WHERE gameID IN (#arguments.picksLocked#) 
-					AND weekNumber = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.weekNumber#">)
-			AND weekNumber = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.weekNumber#">;
+				WHERE gameID IN (#valueList(variables.qryGetCurrentUserPicks.gameID,",")#)
+					OR userPickID IN (#arguments.picksLocked#) 
+				);
 		</cfquery>
 			
 		<cfreturn>
 	</cffunction>
-
+	
 	<cffunction name="insertUserPicks" returntype="void">
 		<cfargument name="userID" type="numeric" required="true" >
 		<cfargument name="gameID" type="numeric" required="true" >

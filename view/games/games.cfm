@@ -19,21 +19,31 @@
 				</cfinvoke>
 					
 				<!--- loop through the picks and insert or reinsert the ones that user selected --->
+				<cfset variables.warningMsg = "">
 				<cfloop list="#form.fieldNames#" index="variables.fieldName">
 					<cfif left(variables.fieldName,4) EQ "TEAM">
 						<cfset variables.gameID = listGetAt(fieldName,2,"_")>
 						<cfset variables.teamID = evaluate("Form." & fieldName)>
-		
-						<cfinvoke component="#application.appmap#.cfc.footballDao" method="insertUserPicks" >
-							<cfinvokeargument name="userID" value="#session.user.userID#">
+						
+						<!--- make sure that the game picked by user has not started yet.  If so, warn user --->
+						<cfinvoke component="#application.appmap#.cfc.footballDao" method="checkUserPicks" returnvariable="variables.inactiveGameMsg" >
 							<cfinvokeargument name="gameID" value="#variables.gameID#">
-							<cfinvokeargument name="teamID" value="#variables.teamID#">
-							<cfinvokeargument name="weekNumber" value="#variables.weekNumber#">
-						</cfinvoke>
+						</cfinvoke>	
+						
+						<cfif variables.inactiveGameMsg EQ "">
+							<cfinvoke component="#application.appmap#.cfc.footballDao" method="insertUserPicks" >
+								<cfinvokeargument name="userID" value="#session.user.userID#">
+								<cfinvokeargument name="gameID" value="#variables.gameID#">
+								<cfinvokeargument name="teamID" value="#variables.teamID#">
+								<cfinvokeargument name="weekNumber" value="#variables.weekNumber#">
+							</cfinvoke>
+						<cfelse>
+							<cfset variables.warningMsg = variables.warningMsg & variables.inactiveGameMsg & '<br>'>
+						</cfif>
 					</cfif>
 				</cfloop>
 				
-				<cfcatch type="any">
+				<cfcatch type="any"><cfrethrow>
 					<!--- display error msg to user --->
 					<div class="alert alert-error offset1">
 			          <strong>Dang!</strong> Your picks for week #variables.weekNumber# have failed.  Please contact the webmaster with the list of picks you selected.  (click 'BACK' to go back to the form).
@@ -42,11 +52,17 @@
 				</cfcatch>
 			</cftry>
 
-			<!--- display success msg to user --->
-			<div class="alert alert-success span12">
-	          <strong>Success!</strong> Your picks for week #variables.weekNumber# have been saved.
-	        </div>
-
+			<cfif variables.warningMsg EQ "">
+				<!--- display success msg to user --->
+				<div class="alert alert-success span12">
+		          <strong>Success!</strong> Your picks for week #variables.weekNumber# have been saved.
+		        </div>
+			<cfelse>
+				<!--- display warning msg to user --->
+				<div class="alert alert-warning span12">
+		          <strong>Warning!</strong> #variables.warningMsg#
+		        </div>
+			</cfif>
 		</cfif><!--- end form submit --->
 	
 		<!--- current weeknumber --->
@@ -69,13 +85,18 @@
 		</cfquery>		
 	
 		<!--- display warning if user has not selected minimum 5 games for this week --->
-		<cfif variables.qryGetUserPicksOfTheWeek.recordCount LT application.settings.minimumPicksPerWeek>
+		<cfquery dbtype="query" name="variables.qryActualUserPicksOfTheWeek">
+			SELECT 	*
+			FROM	variables.qryGetUserPicksOfTheWeek
+			WHERE	gameID != -999;
+		</cfquery>
+		<cfif variables.qryActualUserPicksOfTheWeek.recordCount LT application.settings.minimumPicksPerWeek>
 			<div class="alert span12">
-	            <strong>Warning!</strong> You have picked only #variables.qryGetUserPicksOfTheWeek.recordCount# out of the minimum required #application.settings.minimumPicksPerWeek# picks for week #variables.currentWeekNumber#.
+	            <strong>Warning!</strong> You have picked only #variables.qryActualUserPicksOfTheWeek.recordCount# out of the minimum required #application.settings.minimumPicksPerWeek# picks for week #variables.currentWeekNumber#.
             </div>
         <cfelse>
    			<div class="alert alert-info span12">
-	            <strong>Good job!</strong>You have picked #variables.qryGetUserPicksOfTheWeek.recordCount# games for this week, which meets the minimum required #application.settings.minimumPicksPerWeek# picks.
+	            <strong>Good job!</strong>You have picked #variables.qryActualUserPicksOfTheWeek.recordCount# games for this week, which meets the minimum required #application.settings.minimumPicksPerWeek# picks.
             </div>
 		</cfif>
 		

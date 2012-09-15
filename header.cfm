@@ -57,11 +57,11 @@
       </div>
     </div>
 	
-
-<cfif session.isLoggedIn EQ False AND url.logout NEQ true>
+<cfif session.isLoggedIn NEQ true AND url.logout NEQ true>
 	<div class="container" id="mainContainer">
 		<div class="alert alert-error">
 			<strong>Error!</strong> Your session has timed out.  Please log back in.
 		</div>
 	</div>
+	<cfabort>
 </cfif>	

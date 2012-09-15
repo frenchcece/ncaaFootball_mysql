@@ -50,7 +50,7 @@
 		<cfinvokeargument name="userID" value="#variables.currentUserID#">
 		<cfinvokeargument name="weekNumber" value="#variables.activeWeek#">
 	</cfinvoke>
-	<!--- get the league's picks for that week --->
+	<!--- get the list of league's players --->
 	<cfinvoke component="#application.appmap#.cfc.footballDao" method="selectLeaguePlayers" returnvariable="variables.qryGetLeaguePlayers">
 	</cfinvoke>
 		
@@ -72,6 +72,7 @@
 	    	<ul class="nav nav-tabs" id="myTabs">    
 				<li class="active"><a href="##tab1" data-toggle="tab"><cfif variables.currentUserID NEQ session.user.userID> - #variables.qryGetUserInfo.userFullName#<cfelse>My</cfif> Picks</a></li>
 				<li><a href="##tab2" data-toggle="tab">League Picks</a></li>
+				<li><a href="##tab3" data-toggle="tab">All Games</a></li>
 			</ul>
 		
 			<div class="tab-content">
@@ -80,6 +81,9 @@
 				</div>
 				<div class="tab-pane " id="tab2">
 					<cfinclude template="#application.appmap#/view/season/leaguePicks.cfm">
+				</div>
+				<div class="tab-pane " id="tab3">
+					<cfinclude template="#application.appmap#/view/season/allGames.cfm">
 				</div>
 			</div>
 		</div>

@@ -1,4 +1,4 @@
-<!--- check if today is the first day of the college football schedulle week --->
+<!--- check if today is the first day of the college football schedule week --->
 <cfinvoke component="#application.appmap#.cfc.footballDao" method="getWeekInfoByWeekNumber" returnvariable="variables.qryGetWeekInfo">
 	<cfinvokeargument name="weekNumber" value="#session.currentWeekNumber#" />
 </cfinvoke>
