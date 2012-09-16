@@ -307,10 +307,10 @@
 			CREATE TEMPORARY TABLE temp2
 			(
 				userID int
-				,win char(1)
-				,loss char(1)
-				,tie char(1)
-				,pending char(1)
+				,win int
+				,loss int
+				,tie int
+				,pending int
 			);
 
 			INSERT INTO temp1
@@ -411,10 +411,10 @@
 			(
 				userID int
 				,weekNumber int
-				,win char(1)
-				,loss char(1)
-				,tie char(1)
-				,pending char(1)
+				,win int
+				,loss int
+				,tie int
+				,pending int
 			);
 
 			INSERT INTO temp1

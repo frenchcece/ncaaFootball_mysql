@@ -58,6 +58,6 @@
 		</div>
 	</div>
 	<cfelse>
-		<div class="well" style="text-align:center;"><h4>Display all the games results for the entire year would most likely crash my server.</h4><h1>NO CAN'T DO!!</h1></div>
+		<div class="well" style="text-align:center;"><h4>Displaying all the games results for the entire year would most likely crash my server.</h4><h1>NO CAN DO!!</h1></div>
 	</cfif>
 </cfoutput>

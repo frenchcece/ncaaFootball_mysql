@@ -11,7 +11,7 @@
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="alert alert-info">
-      	Welcome to the first attempt to get our little game of football picks easier on us!	
+      	Welcome to the first attempt to make our little game of football picks easier on us!	
 	  </div>
 	  
 	  <div class="hero-unit">
