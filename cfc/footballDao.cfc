@@ -137,20 +137,22 @@
 		</cfquery>
 
 		<!--- unlock the games spread if no other user has them picked --->
-		<cfquery name="qryUnlockGameIDs" datasource="#application.dsn#">
-			UPDATE FootballGames
-				SET spreadLock = 0
-			WHERE 
-				gameID IN (#valueList(variables.qryGetCurrentUserPicks.gameID,",")#)
-				AND gameID NOT IN 
-				(
-				SELECT 
-					gameID 
-				FROM UserPicks 
-				WHERE gameID IN (#valueList(variables.qryGetCurrentUserPicks.gameID,",")#)
-					OR userPickID IN (#arguments.picksLocked#) 
-				);
-		</cfquery>
+		<cfif variables.qryGetCurrentUserPicks.recordCount>
+			<cfquery name="qryUnlockGameIDs" datasource="#application.dsn#">
+				UPDATE FootballGames
+					SET spreadLock = 0
+				WHERE 
+					gameID IN (#valueList(variables.qryGetCurrentUserPicks.gameID,",")#)
+					AND gameID NOT IN 
+					(
+					SELECT 
+						gameID 
+					FROM UserPicks 
+					WHERE gameID IN (#valueList(variables.qryGetCurrentUserPicks.gameID,",")#)
+						OR userPickID IN (#arguments.picksLocked#) 
+					);
+			</cfquery>
+		</cfif>
 			
 		<cfreturn>
 	</cffunction>

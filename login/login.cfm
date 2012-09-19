@@ -7,7 +7,7 @@
 		<button type="submit" class="btn btn-small">Sign in</button>
 	</form>
 <cfelse>
-	<span class="span4 offset2" style="text-align:right;">
+	<span class="span4 offset1" style="text-align:right;">
 		<h4>Welcome, <cfoutput>#session.user.userFullName#</cfoutput></h4>
 	</span>
 	<span style="text-align:right;">

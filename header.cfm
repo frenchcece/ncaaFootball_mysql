@@ -45,9 +45,10 @@
               <li><a href="myGames.cfm">Games</a></li>
               <li><a href="mySeason.cfm">Season</a></li>
               <li><a href="myStandings.cfm">Standings</a></li>
+			  <cfif session.user.isAdmin><li><a href="admin.cfm">Admin</a></li></cfif>
             </ul>
 			<cfelse>
-			<span class="span4">&nbsp;</span>
+			<span class="span3">&nbsp;</span>
 			</cfif>
 					
 			<cfinclude template="#application.appmap#/login/login.cfm">           
