@@ -27,8 +27,8 @@
 		<script type="text/javascript" src="#application.appmap#/js/main.js"></script>
  	</head>
 </cfoutput>
-
-
+	<cfinvoke component="#application.appmap#.cfc.messageDao" method="countAllNewMessages" returnvariable="variables.countAllMessagesStr"></cfinvoke>
+	<cfoutput>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -39,13 +39,21 @@
           </a>
 		  <a class="brand" style="color:##fff;">NCAA Football</a>
           <div class="nav-collapse collapse">
-          	<cfif session.isLoggedIn EQ true>
-			<ul class="nav">
-              <li><a href="index.cfm">Home</a></li>
-              <li><a href="myGames.cfm">Games</a></li>
-              <li><a href="mySeason.cfm">Season</a></li>
-              <li><a href="myStandings.cfm">Standings</a></li>
-			  <cfif session.user.isAdmin><li><a href="admin.cfm">Admin</a></li></cfif>
+			<cfif session.isLoggedIn EQ true>
+				<ul class="nav">
+				<li><a href="index.cfm">Home</a></li>
+				<li><a href="myGames.cfm">Games</a></li>
+				<li><a href="mySeason.cfm">Season</a></li>
+				<li><a href="myStandings.cfm">Standings</a></li>
+				<li><a href="messageBoard.cfm<cfif variables.countAllMessagesStr.newDateCount GT 0>?msgID=#variables.countAllMessagesStr.msgID#</cfif>">Board<cfif variables.countAllMessagesStr.newDateCount GT 0> <span class="badge badge-important"><cfoutput>#variables.countAllMessagesStr.newDateCount#</cfoutput></span></cfif></a></li>
+				<cfif session.user.isAdmin>
+					<li class="dropdown">
+						<a href="##" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="admin.cfm">Admin</a></li>
+						</ul>
+					</li>	
+				</cfif>
             </ul>
 			<cfelse>
 			<span class="span3">&nbsp;</span>
@@ -57,6 +65,7 @@
         </div>
       </div>
     </div>
+	</cfoutput>
 	
 <cfif session.isLoggedIn NEQ true AND url.logout NEQ true>
 	<div class="container" id="mainContainer">

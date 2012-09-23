@@ -7,10 +7,10 @@
 		<button type="submit" class="btn btn-small">Sign in</button>
 	</form>
 <cfelse>
-	<span class="span4 offset1" style="text-align:right;">
-		<h4>Welcome, <cfoutput>#session.user.userFullName#</cfoutput></h4>
+	<span class="span3 offset1 inline" style="text-align:right;">
+		<h5>Welcome, <cfoutput>#session.user.userFullName#</cfoutput></h5>
 	</span>
-	<span style="text-align:right;">
+	<span class="inline" style="text-align:right;">
 	<cfif structKeyExists(session,"isLoggedIn") AND session.isLoggedIn EQ "true">&nbsp;&nbsp;&nbsp;<a class="btn btn-small" href="index.cfm?logout=true">Logout</a></li></cfif>
 	</span>	
 </cfif>

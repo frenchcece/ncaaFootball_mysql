@@ -37,18 +37,6 @@ function validateNewPostForm(passForm)
 	return true;
 }
 
-function validateReplyForm(passForm)
-{
-	if(passForm.reply.value == '')
-	{
-		alert("You must enter a message");
-		passForm.reply.focus();
-		return false;
-	}
-
-	return true;
-}
-
 function clearGameRadioBtn(btn)
 {
 	var gameID = btn.value;

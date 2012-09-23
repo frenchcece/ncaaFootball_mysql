@@ -12,6 +12,7 @@
 <cfset application.rssFeed.gamesOdds = "http://xml.pinnaclesports.com/pinnaclefeed.aspx?sporttype=Football&sportsubtype=NCAA"><!--- http://livelines.betonline.com/sys/LineXML/LiveLineObjXml.asp?sport=Football ---><!--- http://www.collegefootballpoll.com/wp_archives_083012.html --->
 <cfset application.rssFeed.gamesScores = "http://sports.espn.go.com/ncf/bottomline/scores"><!--- http://www.repole.com/sun4cast/stats/cfb2012lines.xml --->
 <cfset application.settings.minimumPicksPerWeek = 5>
+<cfset application.settings.newMessagePostTimeFlag = 2>	<!--- 2 days for the "new" flag on the message board --->
 
 
 <cfparam name="url.debug" default="false">

@@ -7,6 +7,15 @@
 <cfif DateDiff('h', variables.qryGetWeekInfo.startDate, session.today) GT 0 AND DateDiff('h', variables.qryGetWeekInfo.startDate, session.today) LT 24>
 
  
+	<!--- log the date into database --->
+	<cfquery name="qryInsertLogDate" datasource="#application.dsn#">
+		INSERT INTO
+		ncaa_football.RssFeedLog
+			(logDate, rssFeedName)
+		VALUES
+			(#now()#,'MailNotification')	
+	</cfquery>
+	
 	<!--- get all the games of the current week --->
 	<cfinvoke component="#application.appmap#.cfc.footballDao" method="getGamesOfTheWeek" returnvariable="variables.qryGetGamesOfTheWeek">
 		<cfinvokeargument name="weekNumber" value="#session.currentWeekNumber#">

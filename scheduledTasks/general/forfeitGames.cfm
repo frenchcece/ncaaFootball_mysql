@@ -12,6 +12,16 @@
 
 <!--- today is the day after! --->
 <cfif DateDiff('h', dateAdd('d',1,variables.qryGetWeekInfo.endDate), session.today) GT 0 AND DateDiff('h', dateAdd('d',1,variables.qryGetWeekInfo.endDate), session.today) LT 24>
+
+	<!--- log the date into database --->
+	<cfquery name="qryInsertLogDate" datasource="#application.dsn#">
+		INSERT INTO
+		ncaa_football.RssFeedLog
+			(logDate, rssFeedName)
+		VALUES
+			(#now()#,'ForfeitGames')	
+	</cfquery>
+
 	<!--- get the list of league's players --->
 	<cfinvoke component="#application.appmap#.cfc.footballDao" method="selectLeaguePlayers" returnvariable="variables.qryGetLeaguePlayers"></cfinvoke>
 
