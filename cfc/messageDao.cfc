@@ -49,6 +49,11 @@
 				<cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userID#">
 			);
 		</cfquery>
+		
+		<!--- send notification email to everybody in the league --->
+		<cfinvoke method="sendNotificationEmail">
+			<cfinvokeargument name="msgID" value="#arguments.msgID#">
+		</cfinvoke>
 
 		<cfreturn>
 	</cffunction>
@@ -110,6 +115,56 @@
 		</cfquery>
 
 		<cfreturn qryGetMessageDetail>
+	</cffunction>
+
+	<cffunction name="sendNotificationEmail" access="public" returntype="void">
+		<cfargument name="msgID" type="numeric" required="true">
+		
+		<!--- get the message detail info --->
+		<cfset variables.qryMsgDetail = getMessageDetail(arguments.msgID)>
+		<!--- get the last entry for this message --->
+		<cfquery dbtype="query" name="variables.qryLastMsgDetail">
+			SELECT TOP 1 * FROM variables.qryMsgDetail ORDER BY msgDetailID;
+		</cfquery>
+	
+		<!--- get the list of players email address --->
+		<cfinvoke component="#application.appmap#.cfc.footballDao" method="selectLeaguePlayers" returnvariable="variables.qryLeaguePlayers"></cfinvoke>
+
+		<!--- build the email variables --->
+		<cfset variables.emailTo = valuelist(variables.qryLeaguePlayers.userEmail)>
+		<!--- <cfset variables.emailTo = "frenchcece@yahoo.com,frenchcece@gmail.com"> --->
+		<cfset variables.emailSubject = "College Footbal Pick Game - New Message Posted">
+		<!--- build the email content --->
+		<cfsavecontent variable = "variables.emailContent">
+		<cfoutput>
+		<p>
+		New <cfif variables.qryMsgDetail.currentRow EQ 1>Post<cfelse>Reply</cfif> By:<br>
+		<strong>#variables.qryLastMsgDetail.userFullName# On #dateFormat(variables.qryLastMsgDetail.msgDetailDate,"yyyy-mm-dd")# #timeFormat(variables.qryLastMsgDetail.msgDetailDate,"hh:mm tt")#</strong>
+		</p>
+		<p>
+			<div class="alert alert-success"><strong>#variables.qryMsgDetail.msgTitle#</strong></div>
+			<cfloop query="variables.qryMsgDetail">
+				
+				<div class="well">
+					<p><cfif variables.qryMsgDetail.currentRow EQ 1>Post<cfelse><i class="icon-share-alt"></i> Reply </cfif> By #variables.qryMsgDetail.userFullName# On #dateFormat(variables.qryMsgDetail.msgDetailDate,"yyyy-mm-dd")# #timeFormat(variables.qryMsgDetail.msgDetailDate,"hh:mm tt")#</p>
+					<p class="alert alert-info">#variables.qryMsgDetail.msgDetailContent#</p>
+				</div>
+			</cfloop>		
+		</p>
+		</cfoutput>	
+		</cfsavecontent>
+		<cfset variables.emailMsg = variables.emailContent & "<p>Log on to <a href='http://www.dupuyworld.com/ncaaFootball/index.cfm'>www.dupuyworld.com/ncaaFootball/index.cfm</a> to reply to this message</p>">
+			
+		<!--- send notification email --->
+		<cfinvoke component="#application.appmap#.cfc.footballDao" method="sendEmail" returnvariable="variables.void">
+			<cfinvokeargument name="emailTo" value="#variables.emailTo#">
+			<cfinvokeargument name="emailSubject" value="#variables.emailSubject#">
+			<cfinvokeargument name="emailMsg" value="#variables.emailMsg#">
+		</cfinvoke>		
+		
+		
+	
+		<cfreturn>
 	</cffunction>
 
 	<cffunction name="countAllNewMessages" access="public" returntype="Struct">

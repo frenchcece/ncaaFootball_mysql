@@ -1,3 +1,7 @@
+/*
+http://ncaafootball.localhost/ncaaFootball/cfc/footballDao.cfc?method=getTeamStatsJsonFormat&teamID=2
+*/
+
 function validateGamePickForm(passForm)
 {
 	/*
@@ -58,5 +62,3 @@ function clearGameRadioBtn(btn)
 	rad2.checked = false;
 }
 
-
-$('[rel=tooltip]').tooltip();

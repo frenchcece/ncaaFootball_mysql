@@ -498,7 +498,111 @@
 		<cfreturn qryGetStandingsGroupByWeekNumber>
 	</cffunction>
 	
-	<cffunction name="sendEmail" returntype="void">
+	<cffunction name="getTeamStats" access="remote" returntype="Query">
+		<cfargument name="teamID" type="numeric" required="true">
+		
+		<cfquery datasource="#application.dsn#" name="qryGetTeamStats">
+			select 
+			    fg.weeknumber,
+			    'Away' AS location,
+			    ft1.teamID AS teamID,
+			    fg.team1name AS teamName,
+			    fg.team1spread AS teamSpread,
+			    fg.team1winloss AS resultAgainstSpread,
+			    CASE
+			        WHEN fg.team1finalscore > fg.team2finalscore THEN 'W'
+			        WHEN fg.team2finalscore > fg.team1finalscore THEN 'L'
+			        WHEN fg.team2finalscore = fg.team1finalscore THEN 'T'
+			        ELSE 'P'
+			    END AS resultNoSpread,
+			    fg.team1finalscore AS teamScore,
+			    fg.team2name AS oponent,
+			    fg.team2finalscore AS oponentScore
+			from
+			    FootballGames as fg
+			        inner join
+			    FootballTeams as ft1 ON fg.teamID1 = ft1.teamID
+			where
+			    ft1.teamID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.teamID#">
+			union all select 
+			    fg.weeknumber,
+			    'Home' AS location,
+			    ft2.teamID AS teamID,
+			    fg.team2name AS teamName,
+			    fg.team2spread AS teamSpread,
+			    fg.team2winloss AS resultAgainstSpread,
+			    CASE
+			        WHEN fg.team1finalscore > fg.team2finalscore THEN 'L'
+			        WHEN fg.team2finalscore > fg.team1finalscore THEN 'W'
+			        WHEN fg.team2finalscore = fg.team1finalscore THEN 'T'
+			        ELSE 'P'
+			    END AS resultNoSpread,
+			    fg.team2finalscore AS teamScore,
+			    fg.team1name AS oponent,
+			    fg.team1finalscore AS oponentScore
+			from
+			    FootballGames as fg
+			        inner join
+			    FootballTeams as ft2 ON fg.teamID2 = ft2.teamID
+			where
+			    ft2.teamID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.teamID#">
+			order by weeknumber;		
+		</cfquery>
+		
+		<cfreturn qryGetTeamStats>
+	</cffunction>
+
+	<cffunction name="getTeamStatsJsonFormat" access="remote" returntype="string">
+		<cfargument name="teamID" type="numeric" required="true">
+		
+		<cfset variables.qryTeamStats = getTeamStats(arguments.teamID)>
+		
+		<cfreturn SerializeJSON(variables.qryTeamStats,false)>
+	</cffunction>
+
+	<cffunction name="getTeamStatsHtmlTable" access="remote" returntype="String" output="true">
+		<cfargument name="teamID" type="numeric" required="true">
+		
+		<cfset variables.qryTeamStats = getTeamStats(arguments.teamID)>
+	
+		<cfsavecontent variable="local.htmlTable">
+			<cfoutput>
+			<table class='table table-striped table-hover table-condensed'>
+				<thead><tr><th>Week</th><th>Location</th><th>Team</th><th>Score</th><th>Opponent</th><th>Score</th><th>Team<br>Spread</th><th>Against<br>Spread</th><th>No<br>Spread</th></tr></thead>
+				<tbody>
+				<cfloop query="variables.qryTeamStats">
+				<tr>
+					<td>#variables.qryTeamStats.weekNumber#</td>
+					<td>#variables.qryTeamStats.location#</td>
+					<td nowrap="nowrap"><strong>#variables.qryTeamStats.teamName#</strong></td>
+					<td>#variables.qryTeamStats.teamScore#</td>
+					<td nowrap="nowrap">#variables.qryTeamStats.oponent#</td>
+					<td>#variables.qryTeamStats.oponentScore#</td>
+					<td>#variables.qryTeamStats.teamSpread#</td>
+					<cfswitch expression="#variables.qryTeamStats.resultAgainstSpread#">
+						<cfcase value="W"><td><span class='label label-success'>win</span></td></cfcase>
+						<cfcase value="L"><td><span class='label label-important'>loss</span></td></cfcase>
+						<cfcase value="T"><td><span class='label label-inverse'>tie</span></td></cfcase>
+						<cfcase value="P"><td><span class='label label-info'>pending</span></td></cfcase>
+					</cfswitch>	
+					<cfswitch expression="#variables.qryTeamStats.resultNoSpread#">
+						<cfcase value="W"><td><span class='label label-success'>win</span></td></cfcase>
+						<cfcase value="L"><td><span class='label label-important'>loss</span></td></cfcase>
+						<cfcase value="T"><td><span class='label label-inverse'>tie</span></td></cfcase>
+						<cfcase value="P"><td><span class='label label-info'>pending</span></td></cfcase>
+					</cfswitch>
+				</tr>
+				</cfloop>	
+			</table>
+			</cfoutput>				
+		</cfsavecontent>
+	
+		<cfreturn local.htmlTable>
+	</cffunction>
+
+
+
+	<cffunction name="sendEmail" access="public" returntype="void">
 		<cfargument name="emailTo" type="string" required="true">
 		<cfargument name="emailSubject" type="string" required="true">
 		<cfargument name="emailMsg" type="string" required="true">

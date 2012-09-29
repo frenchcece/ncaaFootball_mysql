@@ -11,5 +11,41 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
     <script type="text/javascript" src="#application.appmap#/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="#application.appmap#/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script type="text/javascript" src="#application.appmap#/bootstrap/js/bootstrap-popover.js"></script>
+	
+	<cfset variables.popoverTemplate = '<div class="popover custom-popover-class span7"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'>
+	<script>
+
+	$(document).ready(function () 
+	{  
+    	$("[rel=tooltip]").tooltip({'placement':'top'});  
+										
+		$("[rel=popover]").popover({
+									'placement':'top',
+									'trigger':'hover',
+									'template':'#variables.popoverTemplate#',
+									'html':'true'
+									}).hover(get_data_for_popover_and_display).mouseleave(function(e){
+									    var ref = $(this);
+										ref.popover('hide');});
+ 	});
+ 	
+ 	get_data_for_popover_and_display = function() {
+ 		var el = $(this);
+	    var _data = el.attr('teamid');
+	    $.ajax({
+	         type: 'GET',
+	         url: '#application.appmap#/cfc/footballDao.cfc?method=getTeamStatsHtmlTable&teamID='+_data,
+	         dataType: 'html',
+	         success: function(data) {
+	         	var decoded = $('<div/>').html(data).text();
+	             el.attr('data-content', decoded);
+	             el.popover('show');
+	         }
+    });
+}
+ 	
+	</script>
 
 </cfoutput>

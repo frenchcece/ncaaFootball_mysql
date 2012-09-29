@@ -14,11 +14,15 @@
 		</div>
 		<p style="margin-top:0;">
 			<small>
-			<cfif DateDiff("d",variables.qryGetAllMessages.msgDate,now()) LTE 2><span class="label label-important">new!</span></cfif>	
 			By #variables.qryGetAllMessages.userFullName# On #dateFormat(variables.qryGetAllMessages.msgDate,"yyyy-mm-dd")# #timeFormat(variables.qryGetAllMessages.msgDate,"hh:mm tt")#
 			<span class="label label-warning pull-right">#variables.qryGetAllMessages.numberOfReplies#
 				 repl<cfif variables.qryGetAllMessages.numberOfReplies NEQ 1>ies<cfelse>y</cfif>
 			</span>
+			<cfif DateDiff("d",variables.qryGetAllMessages.msgDate,now()) LTE application.settings.newMessagePostTimeFlag>
+				<span class="label label-important pull-right" style="margin-right:5px;">new!</span>
+			<cfelseif DateDiff("d",variables.qryGetAllMessages.maxDetailDate,now()) LTE application.settings.newMessagePostTimeFlag>	
+				<span class="label label-info pull-right" style="margin-right:5px;">reply!</span>
+			</cfif>	
 			</small>
 		</p>	
 	</cfloop>	

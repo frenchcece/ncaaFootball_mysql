@@ -142,11 +142,17 @@
 										<tr <cfif variables.qryGetGamesOfTheWeek.team2Spread EQ 0 OR variables.qryGetGamesOfTheWeek.teamID1 EQ "" OR variables.qryGetGamesOfTheWeek.teamID2 EQ "">class="error"</cfif>>
 											<td>#timeFormat(variables.qryGetGamesOfTheWeek.gameDate,"hh:mm tt")# (CT)</td>
 											<cfif variables.qryGetGamesOfTheWeek.team2Spread EQ 0>
-												<td>#variables.qryGetGamesOfTheWeek.team1Name#</td>
+												<td>
+													<a id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID1#" data-original-title="<strong>#variables.qryGetGamesOfTheWeek.team1Name#</strong>"><i class="icon-info-sign"></i></a>
+													#variables.qryGetGamesOfTheWeek.team1Name#
+												</td>
 												<td></td>
 												<td>@</td>
 												<td></td>
-												<td>#variables.qryGetGamesOfTheWeek.team2Name#</td>
+												<td>
+													<a id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID2#" data-original-title="<strong>#variables.qryGetGamesOfTheWeek.team2Name#</strong>"><i class="icon-info-sign"></i></a>
+													#variables.qryGetGamesOfTheWeek.team2Name#
+												</td>
 												<td>OFF</td>
 												<td></td>
 											<cfelse>
@@ -161,7 +167,10 @@
 														gameID = #variables.qryGetGamesOfTheWeek.gameID#
 												</cfquery>
 											
-												<td><span<cfif qryCheckCurrentUserPick.recordCount AND qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID1> class="badge badge-success"</cfif>>#variables.qryGetGamesOfTheWeek.team1Name#</span></td>
+												<td>
+													<a id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID1#" data-original-title="<strong>#variables.qryGetGamesOfTheWeek.team1Name#</strong>"><i class="icon-info-sign"></i></a>
+													<span<cfif qryCheckCurrentUserPick.recordCount AND qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID1> class="badge badge-success"</cfif>>#variables.qryGetGamesOfTheWeek.team1Name#</span>
+												</td>
 												<td>
 													<cfif variables.qryGetGamesOfTheWeek.team1FinalScore GTE 0>
 														<span class="label">#variables.qryGetGamesOfTheWeek.team1FinalScore#</span>
@@ -173,7 +182,9 @@
 														<label class="radio"><input type="radio" name="team_#variables.qryGetGamesOfTheWeek.gameID#" id="team1_#variables.qryGetGamesOfTheWeek.gameID#" value="#variables.qryGetGamesOfTheWeek.teamID1#"<cfif qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID1> checked</cfif>></label>
 													</cfif>	
 												</td>
-												<td><span<cfif qryCheckCurrentUserPick.recordCount> class="badge badge-success"</cfif>>@</span></td>
+												<td>
+													<span<cfif qryCheckCurrentUserPick.recordCount> class="badge badge-success"</cfif>>@</span>
+												</td>
 												<td>
 													<cfif variables.qryGetGamesOfTheWeek.team2FinalScore GTE 0>
 														<span class="label">#variables.qryGetGamesOfTheWeek.team2FinalScore#</span>
@@ -185,7 +196,10 @@
 														<label class="radio"><input type="radio" name="team_#variables.qryGetGamesOfTheWeek.gameID#" id="team2_#variables.qryGetGamesOfTheWeek.gameID#" value="#variables.qryGetGamesOfTheWeek.teamID2#"<cfif qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID2> checked</cfif>></label>
 													</cfif>	
 												</td>
-												<td><span<cfif qryCheckCurrentUserPick.recordCount AND qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID2> class="badge badge-success"</cfif>>#variables.qryGetGamesOfTheWeek.team2Name#</span></td>
+												<td>
+													<a id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID2#" data-original-title="<strong>#variables.qryGetGamesOfTheWeek.team2Name#</strong>"><i class="icon-info-sign"></i></a>
+													<span<cfif qryCheckCurrentUserPick.recordCount AND qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID2> class="badge badge-success"</cfif>>#variables.qryGetGamesOfTheWeek.team2Name#</span>
+												</td>
 												<td>
 													<cfif variables.qryGetGamesOfTheWeek.team2Spread GT 0>+</cfif>
 													#numberFormat(variables.qryGetGamesOfTheWeek.team2Spread,"999.9")#

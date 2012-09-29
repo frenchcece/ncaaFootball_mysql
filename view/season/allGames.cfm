@@ -26,7 +26,10 @@
 				<cfloop query="variables.qryGetGamesOfTheWeek">
 					<tr>
 						<td>#dateFormat(variables.qryGetGamesOfTheWeek.gameDate,"yyyy-mm-dd")#</td>
-						<td>#variables.qryGetGamesOfTheWeek.team1Name#</td>
+						<td>
+							<a id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID1#" data-original-title="<strong>#variables.qryGetGamesOfTheWeek.team1Name#</strong>"><i class="icon-info-sign"></i></a>
+							#variables.qryGetGamesOfTheWeek.team1Name#
+						</td>
 						<td>#variables.qryGetGamesOfTheWeek.team1FinalScore#</td>
 						<td>
 						<cfswitch expression="#trim(variables.qryGetGamesOfTheWeek.team1WinLoss)#">
@@ -38,7 +41,10 @@
 						</td>
 						<td>@</td>
 						<td>#variables.qryGetGamesOfTheWeek.team2FinalScore#</td>
-						<td>#variables.qryGetGamesOfTheWeek.team2Name#</td>
+						<td>
+							<a id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID2#" data-original-title="<strong>#variables.qryGetGamesOfTheWeek.team2Name#</strong>"><i class="icon-info-sign"></i></a>
+							#variables.qryGetGamesOfTheWeek.team2Name#
+						</td>
 						<td><cfif variables.qryGetGamesOfTheWeek.team2Spread GT 0>+</cfif>#numberFormat(variables.qryGetGamesOfTheWeek.team2Spread,"999.9")#</td>
 						<td>
 						<cfswitch expression="#trim(variables.qryGetGamesOfTheWeek.team2WinLoss)#">
