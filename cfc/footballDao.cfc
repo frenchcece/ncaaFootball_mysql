@@ -498,6 +498,41 @@
 		<cfreturn qryGetStandingsGroupByWeekNumber>
 	</cffunction>
 	
+	<cffunction name="calculateWinPct" returntype="Numeric">
+		<cfargument name="winLossQuery" type="query" required="true">
+		
+		<cfset var local.win = 0>
+		<cfset var local.loss = 0>
+		<cfset var local.tie = 0>
+		<cfset var local.pending = 0>
+		<cfset var local.winPct = 0>
+	
+		<cfloop query="arguments.winLossQuery">
+			<cfswitch expression="#trim(arguments.winLossQuery.winLoss)#">
+				<cfcase value="W">
+					<cfset local.win = arguments.winLossQuery.record>
+				</cfcase>
+				<cfcase value="L">
+					<cfset local.loss = arguments.winLossQuery.record>
+				</cfcase>
+				<cfcase value="T">
+					<cfset local.tie = arguments.winLossQuery.record>
+				</cfcase>
+				<cfcase value="P">
+					<cfset local.pending = arguments.winLossQuery.record>
+				</cfcase>
+			</cfswitch>	
+		</cfloop>
+
+		<cfset local.winPct = local.win>
+		<cfif local.tie GT 0>
+			<cfset local.winPct = local.winPct + (local.tie / 2.00)>
+		</cfif>
+		<cfset local.winPct = local.winPct / (local.win + local.loss + local.tie) * 100>
+
+		<cfreturn numberFormat(local.winPct,"999.99")>
+	</cffunction>
+	
 	<cffunction name="getTeamStats" access="remote" returntype="Query">
 		<cfargument name="teamID" type="numeric" required="true">
 		

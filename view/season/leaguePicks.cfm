@@ -115,6 +115,10 @@
 											<cfcase value="P"><span class="label label-info">#qryGetUserPickWeekOverallRecord.record# pending</span></cfcase>
 										</cfswitch>	
 									</cfloop>
+									<cfinvoke component="#application.appmap#.cfc.footballDao" method="calculateWinPct" returnvariable="variables.calculatedWinPct">
+										<cfinvokeargument name="winLossQuery" value="#qryGetUserPickWeekOverallRecord#">
+									</cfinvoke>				
+									<span class="label label-warning">#variables.calculatedWinPct# %</span>
 									</th>
 								</tr>
 							</thead>
