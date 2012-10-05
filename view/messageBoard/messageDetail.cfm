@@ -22,7 +22,7 @@
 			
 			<div class="well">
 				<p><cfif variables.qryMsgDetail.currentRow EQ 1>Post<cfelse><i class="icon-share-alt"></i> Reply </cfif> By #variables.qryMsgDetail.userFullName# On #dateFormat(variables.qryMsgDetail.msgDetailDate,"yyyy-mm-dd")# #timeFormat(variables.qryMsgDetail.msgDetailDate,"hh:mm tt")#</p>
-				<p class="alert alert-info">#variables.qryMsgDetail.msgDetailContent#</p>
+				<p class="alert alert-info">#Replace(variables.qryMsgDetail.msgDetailContent,chr(13)&chr(10),"<br>","ALL")#</p>
 			</div>
 		</cfloop>		
 		

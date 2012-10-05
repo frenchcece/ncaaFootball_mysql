@@ -528,8 +528,11 @@
 		<cfif local.tie GT 0>
 			<cfset local.winPct = local.winPct + (local.tie / 2.00)>
 		</cfif>
-		<cfset local.winPct = local.winPct / (local.win + local.loss + local.tie) * 100>
-
+		<cfif (local.win + local.loss + local.tie) GT 0>
+			<cfset local.winPct = local.winPct / (local.win + local.loss + local.tie) * 100>
+		<cfelse>
+			<cfreturn 0>
+		</cfif>
 		<cfreturn numberFormat(local.winPct,"999.99")>
 	</cffunction>
 	
@@ -548,7 +551,6 @@
 			        WHEN fg.team1finalscore > fg.team2finalscore THEN 'W'
 			        WHEN fg.team2finalscore > fg.team1finalscore THEN 'L'
 			        WHEN fg.team2finalscore = fg.team1finalscore THEN 'T'
-			        ELSE 'P'
 			    END AS resultNoSpread,
 			    fg.team1finalscore AS teamScore,
 			    fg.team2name AS oponent,
@@ -559,6 +561,7 @@
 			    FootballTeams as ft1 ON fg.teamID1 = ft1.teamID
 			where
 			    ft1.teamID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.teamID#">
+			    AND fg.team1finalscore IS NOT NULL AND fg.team2finalscore IS NOT NULL
 			union all select 
 			    fg.weeknumber,
 			    'Home' AS location,
@@ -570,7 +573,6 @@
 			        WHEN fg.team1finalscore > fg.team2finalscore THEN 'L'
 			        WHEN fg.team2finalscore > fg.team1finalscore THEN 'W'
 			        WHEN fg.team2finalscore = fg.team1finalscore THEN 'T'
-			        ELSE 'P'
 			    END AS resultNoSpread,
 			    fg.team2finalscore AS teamScore,
 			    fg.team1name AS oponent,
@@ -581,6 +583,7 @@
 			    FootballTeams as ft2 ON fg.teamID2 = ft2.teamID
 			where
 			    ft2.teamID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.teamID#">
+			    AND fg.team1finalscore IS NOT NULL AND fg.team2finalscore IS NOT NULL
 			order by weeknumber;		
 		</cfquery>
 		
