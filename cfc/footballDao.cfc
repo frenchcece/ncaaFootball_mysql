@@ -371,12 +371,13 @@
 			  , SUM(tie) AS tie
 			  , SUM(pending) AS pending
 			  , SUM(win) + SUM(loss) + SUM(tie) AS totalGames
-			  , CONVERT((SUM(win) + CASE WHEN SUM(tie) > 0
+			  , CONVERT((SUM(win)) / ( SUM(win) + SUM(loss)) * 100, decimal(18,2)) AS winPct
+			  <!--- , CONVERT((SUM(win) + CASE WHEN SUM(tie) > 0
 														  THEN SUM(tie) / 2.00
 														  ELSE 0.00
 													 END ) / ( SUM(win) + SUM(loss)
 															   + SUM(tie) ) * 100, decimal(18,2))
-			AS winPct
+				AS winPct --->
 			FROM
 				temp2 AS t
 			LEFT OUTER JOIN Users
@@ -474,11 +475,12 @@
 			  , SUM(tie) AS tie
 			  , SUM(pending) AS pending
 			  , SUM(win) + SUM(loss) + SUM(tie) AS totalGames
-			  , CONVERT(( SUM(win) + CASE WHEN SUM(tie) > 0
+			  , CONVERT(( SUM(win)) / ( SUM(win) + SUM(loss)) * 100, decimal(18,2)) AS winPct
+			  <!--- , CONVERT(( SUM(win) + CASE WHEN SUM(tie) > 0
 														  THEN SUM(tie) / 2.00
 														  ELSE 0.00
 													 END ) / ( SUM(win) + SUM(loss)
-															   + SUM(tie) ) * 100, decimal(18,2)) AS winPct
+															   + SUM(tie) ) * 100, decimal(18,2)) AS winPct --->
 			FROM
 				temp2 AS t
 			LEFT OUTER JOIN Users
@@ -515,9 +517,9 @@
 				<cfcase value="L">
 					<cfset local.loss = arguments.winLossQuery.record>
 				</cfcase>
-				<cfcase value="T">
+				<!--- <cfcase value="T">
 					<cfset local.tie = arguments.winLossQuery.record>
-				</cfcase>
+				</cfcase> --->
 				<cfcase value="P">
 					<cfset local.pending = arguments.winLossQuery.record>
 				</cfcase>
@@ -525,9 +527,9 @@
 		</cfloop>
 
 		<cfset local.winPct = local.win>
-		<cfif local.tie GT 0>
+		<!--- <cfif local.tie GT 0>
 			<cfset local.winPct = local.winPct + (local.tie / 2.00)>
-		</cfif>
+		</cfif> --->
 		<cfif (local.win + local.loss + local.tie) GT 0>
 			<cfset local.winPct = local.winPct / (local.win + local.loss + local.tie) * 100>
 		<cfelse>

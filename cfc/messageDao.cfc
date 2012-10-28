@@ -124,7 +124,7 @@
 		<cfset variables.qryMsgDetail = getMessageDetail(arguments.msgID)>
 		<!--- get the last entry for this message --->
 		<cfquery dbtype="query" name="variables.qryLastMsgDetail">
-			SELECT TOP 1 * FROM variables.qryMsgDetail ORDER BY msgDetailID;
+			SELECT TOP 1 * FROM variables.qryMsgDetail ORDER BY msgDetailID DESC;
 		</cfquery>
 	
 		<!--- get the list of players email address --->
@@ -145,7 +145,7 @@
 		</p>
 		<p><hr width="100%" style="color: ##000; background-color: ##000; height: 2px;"></p>
 		<p>
-			<div><strong>Thread: #variables.qryMsgDetail.msgTitle#</strong></div>
+			<div><strong>This comment has been added to this discussion:<br> #variables.qryMsgDetail.msgTitle#</strong></div>
 			<cfloop query="variables.qryMsgDetail">
 				
 				<div>
