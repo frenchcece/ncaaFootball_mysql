@@ -6,8 +6,7 @@
 		<meta charset="utf-8" />
 		
 		<title>NCAA Football</title>
-		
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<meta name="description" content="" />
 		<meta name="author" content="" />
 		<meta http-equiv="Pragma" content="no-cache" />
@@ -17,8 +16,9 @@
 		
     	<link rel="stylesheet" href="#application.appmap#/bootstrap/css/bootstrap.min.css"  type="text/css"/>
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/blitzer/jquery-ui.css" />
-		<link rel="stylesheet" href="#application.appmap#/bootstrap/css/bootstrap-responsive.min.css"  type="text/css"/>
+		<link rel="stylesheet" href="#application.appmap#/bootstrap/css/bootstrap-responsive.min.css"  type="text/css" rel="stylesheet"/>
 		<link rel="stylesheet" href="#application.appmap#/css/main.css"  type="text/css"/><!--- this css is used to overwrite some of bootstrap css attributes --->
+
 	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	    <!--[if lt IE 9]>
 	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

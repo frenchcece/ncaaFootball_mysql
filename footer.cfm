@@ -14,21 +14,21 @@
     <script type="text/javascript" src="#application.appmap#/bootstrap/js/bootstrap-tooltip.js"></script>
     <script type="text/javascript" src="#application.appmap#/bootstrap/js/bootstrap-popover.js"></script>
 	
-	<cfset variables.popoverTemplate = '<div class="popover custom-popover-class span7"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'>
+	<cfset variables.popoverTemplate = '<div class="popover custom-popover-class span6"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'>
 	<script>
 
 	$(document).ready(function () 
 	{  
     	$("[rel=tooltip]").tooltip({'placement':'top'});  
-										
+    	
 		$("[rel=popover]").popover({
 									'placement':'top',
-									'trigger':'hover',
+									'trigger':'click',
 									'template':'#variables.popoverTemplate#',
 									'html':'true'
-									}).hover(get_data_for_popover_and_display).mouseleave(function(e){
+									}).click(get_data_for_popover_and_display).mouseleave(function(e){
 									    var ref = $(this);
-										ref.popover('hide');});
+										ref.popover('destroy');});
  	});
  	
  	get_data_for_popover_and_display = function() {

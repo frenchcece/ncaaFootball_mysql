@@ -6,9 +6,6 @@ body {
 	padding-top:60px;
 }
 
-.popover {
-    width:auto;
-}
 
 /*
 .navbar-inverse .navbar-inner {
