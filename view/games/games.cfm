@@ -90,15 +90,48 @@
 			FROM	variables.qryGetUserPicksOfTheWeek
 			WHERE	gameID != -999;
 		</cfquery>
-		<cfif variables.qryActualUserPicksOfTheWeek.recordCount LT application.settings.minimumPicksPerWeek>
-			<div class="alert span12">
-	            <strong>Warning!</strong> You have picked only #variables.qryActualUserPicksOfTheWeek.recordCount# out of the minimum required #application.settings.minimumPicksPerWeek# picks for week #variables.currentWeekNumber#.
-            </div>
-        <cfelse>
-   			<div class="alert alert-info span12">
-	            <strong>Good job!</strong>You have picked #variables.qryActualUserPicksOfTheWeek.recordCount# games for this week, which meets the minimum required #application.settings.minimumPicksPerWeek# picks.
-            </div>
+		
+		<cfif variables.qryGetGamesOfTheWeek.recordCount EQ 0>
+			<div class="alert alert-error span12">
+		    	<strong>No games have been found yet.</strong> If you think it's an error, please contact the webmaster.
+		    </div>
+		    <cfabort>
+		<cfelseif variables.qryGetGamesOfTheWeek.weekType EQ "regular">
+			<cfif variables.qryActualUserPicksOfTheWeek.recordCount LT application.settings.minimumPicksPerWeek>
+				<div class="alert span12">
+		            <strong>Warning!</strong>  You have picked only #variables.qryActualUserPicksOfTheWeek.recordCount# out of the minimum required #application.settings.minimumPicksPerWeek# picks for week #variables.currentWeekNumber#.
+	            </div>
+	        <cfelse>
+	   			<div class="alert alert-info span12">
+		            <strong>Good job!</strong>  You have picked #variables.qryActualUserPicksOfTheWeek.recordCount# games for this week, which meets the minimum required #application.settings.minimumPicksPerWeek# picks.
+	            </div>
+			</cfif>
+		
+		<cfelseif variables.qryGetGamesOfTheWeek.weekType EQ "bowl">
+			<cfinvoke component="#application.appmap#.cfc.footballDao" method="calculateMininumNumberBowlsToPick" returnvariable="variables.qryMininumNumberBowlsToPick">
+				<cfinvokeargument name="weekNumber" value="#variables.currentWeekNumber#">
+			</cfinvoke>
+			
+			<cfif variables.qryMininumNumberBowlsToPick.recordCount>
+				<cfif variables.qryActualUserPicksOfTheWeek.recordCount LT variables.qryMininumNumberBowlsToPick.mininumBowlsToPick>
+					<div class="alert span12">
+			            <strong>Warning!</strong>  You have picked only #variables.qryGetUserPicksOfTheWeek.recordCount# out of the minimum #application.settings.minimumPercentForBowls#% of the bowl games.
+							<br>You need to pick at least #variables.qryMininumNumberBowlsToPick.mininumBowlsToPick# out of #variables.qryMininumNumberBowlsToPick.totalNumberBowlGames# games.
+					</div>		
+				<cfelse>
+					<div class="alert alert-info span12">
+			            <strong>Good job!</strong>  You have picked #variables.qryGetUserPicksOfTheWeek.recordCount# bowl games.
+							<br>The minimum is #variables.qryMininumNumberBowlsToPick.mininumBowlsToPick# out of #variables.qryMininumNumberBowlsToPick.totalNumberBowlGames# games.
+					</div>		
+				</cfif>	
+			<cfelse>
+				<div class="alert span12">
+			    	<strong>Warning!</strong>  No bowl games have been found yet.
+			    </div>        
+			</cfif>
 		</cfif>
+
+		
 		
 		<!--- display form --->	
     	<div class="row">
@@ -113,7 +146,7 @@
 						    		<tr>
 										<th colspan="4">Games Of The Week</th>
 										<th colspan="4" align="right">
-											<cfif DateDiff('n',session.today,qryGetLastGameDate.lastGameDate) GT 0>
+											<cfif DateDiff('n',now(),qryGetLastGameDate.lastGameDate) GT 0>
 												<button type="submit" class="btn btn-primary pull-right span2" name="submitBtn" id="submitBtn">Submit Pick</button>
 											</cfif>
 										</th>										
@@ -174,7 +207,7 @@
 												<td>
 													<cfif variables.qryGetGamesOfTheWeek.team1FinalScore GTE 0>
 														<span class="label">#variables.qryGetGamesOfTheWeek.team1FinalScore#</span>
-													<cfelseif DateDiff('n',session.today,variables.qryGetGamesOfTheWeek.gameDate) LTE 0>
+													<cfelseif DateDiff('n',now(),variables.qryGetGamesOfTheWeek.gameDate) LTE 0>
 														<span class="label badge-info">&nbsp;0&nbsp;</span>	
 													<cfelseif variables.qryGetGamesOfTheWeek.teamID1 EQ "" OR variables.qryGetGamesOfTheWeek.teamID2 EQ "">
 														<span class="label badge-error">ERROR</span>
@@ -188,7 +221,7 @@
 												<td>
 													<cfif variables.qryGetGamesOfTheWeek.team2FinalScore GTE 0>
 														<span class="label">#variables.qryGetGamesOfTheWeek.team2FinalScore#</span>
-													<cfelseif DateDiff('n',session.today,variables.qryGetGamesOfTheWeek.gameDate) LTE 0>
+													<cfelseif DateDiff('n',now(),variables.qryGetGamesOfTheWeek.gameDate) LTE 0>
 														<span class="label badge-info">&nbsp;0&nbsp;</span>
 													<cfelseif variables.qryGetGamesOfTheWeek.teamID1 EQ "" OR variables.qryGetGamesOfTheWeek.teamID2 EQ "">
 														<span class="label badge-error">ERROR</span>
@@ -208,7 +241,7 @@
 													</cfif>
 												</td>
 												<td align="right">
-													<cfif DateDiff('n',session.today,variables.qryGetGamesOfTheWeek.gameDate) GT 0 AND variables.qryGetGamesOfTheWeek.teamID1 GT "" AND variables.qryGetGamesOfTheWeek.teamID2 GT "">
+													<cfif DateDiff('n',now(),variables.qryGetGamesOfTheWeek.gameDate) GT 0 AND variables.qryGetGamesOfTheWeek.teamID1 GT "" AND variables.qryGetGamesOfTheWeek.teamID2 GT "">
 														<button class="btn btn-small" type="button" name="delete" id="delete" value="#variables.qryGetGamesOfTheWeek.gameID#" onclick="clearGameRadioBtn(this);">Clear</button>
 													<cfelseif variables.qryGetGamesOfTheWeek.teamID1 EQ "" OR variables.qryGetGamesOfTheWeek.teamID2 EQ "">
 														<cfif variables.qryGetGamesOfTheWeek.teamID1 EQ "">team1 NULL<cfelseif variables.qryGetGamesOfTheWeek.teamID2 EQ "">team2 NULL</cfif><i class="icon-exclamation-sign"></i>
@@ -236,7 +269,7 @@
 						</table>
 					</div>
 					
-					<cfif DateDiff('n',session.today,qryGetLastGameDate.lastGameDate) GT 0>
+					<cfif DateDiff('n',now(),qryGetLastGameDate.lastGameDate) GT 0>
 					<div class="control-group">
 						<div class="controls">
 							<button type="submit" class="btn btn-primary offset4 span2" name="submitBtn" id="submitBtn">Submit Pick</button>
@@ -250,7 +283,7 @@
 			<div class="span3">
 				<div class="well">
 					<h4>Instructions</h4>
-					<p>You must at least pick 5 games each week.  
+					<p>You must at least pick #application.settings.minimumPicksPerWeek# games each week.  During the bowl season, you must pick at least #application.settings.minimumPercentForBowls#% of the bowl games.
 						<ul>
 							<li>Note: The spread is always the home spread</li>
 							<li>Click on the radio button <input type="radio"/> next to the team you select.</li>

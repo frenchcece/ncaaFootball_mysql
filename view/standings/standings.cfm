@@ -65,7 +65,7 @@
 				<tbody>
 					<cfloop query="variables.standingsGroupByWeekNumber">
 						<tr>
-							<td><a href="mySeason.cfm?week=#variables.standingsGroupByWeekNumber.weekNumber#&userid=#variables.standingsGroupByWeekNumber.userID#">#variables.standingsGroupByWeekNumber.weekNumber#</a></td>
+							<td><a href="mySeason.cfm?week=#variables.standingsGroupByWeekNumber.weekNumber#&userid=#variables.standingsGroupByWeekNumber.userID#">#variables.standingsGroupByWeekNumber.weekName#</a></td>
 							<td>#variables.standingsGroupByWeekNumber.win#</td>
 							<td>#variables.standingsGroupByWeekNumber.loss#</td>
 							<td>#variables.standingsGroupByWeekNumber.tie#</td>

@@ -11,7 +11,7 @@
 			    	<table class="table table-striped table-hover">
 			    	<thead>
 			    		<tr class="info">
-							<th colspan="8">#variables.qryGetLeaguePlayers.userFullName# Picks<cfif variables.activeWeek NEQ -1> For Week #variables.activeWeek#</cfif></th>
+							<th colspan="8">#variables.qryGetLeaguePlayers.userFullName# Picks<cfif variables.activeWeek NEQ -1> For <cfif variables.qryGetWeekInfoByWeekNumber.weekType EQ "regular">Week #variables.qryGetWeekInfoByWeekNumber.weekName#<cfelse>#variables.qryGetWeekInfoByWeekNumber.weekName# Season</cfif></cfif></th>
 						</tr>
 					</thead>
 			    	<thead>
@@ -42,7 +42,7 @@
 								</cfquery>
 								</cfif>
 								<cfif qryCheckCurrentUserPick.recordCount>
-									<cfif qryGetGamesOfTheWeek.gameDate GT "" AND DateDiff('n',session.today,qryGetGamesOfTheWeek.gameDate) GT 0 AND variables.qryGetLeaguePlayers.userID NEQ session.user.userID>	<!--- if the game has not started yet and the loggedIn userID is not the userID in the looped query, then do not show the table row --->
+									<cfif qryGetGamesOfTheWeek.gameDate GT "" AND DateDiff('n',now(),qryGetGamesOfTheWeek.gameDate) GT 0 AND variables.qryGetLeaguePlayers.userID NEQ session.user.userID>	<!--- if the game has not started yet and the loggedIn userID is not the userID in the looped query, then do not show the table row --->
 										<tr class="error"><td colspan="8" style="text-align: center;"><i class="icon-warning-sign"></i>This Pick is Hidden Until Game Time</td></tr>
 									<cfelse>
 										<tr>

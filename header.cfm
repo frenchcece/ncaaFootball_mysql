@@ -46,14 +46,17 @@
 				<li><a href="mySeason.cfm">Season</a></li>
 				<li><a href="myStandings.cfm">Standings</a></li>
 				<li><a href="messageBoard.cfm<cfif variables.countAllMessagesStr.newDateCount GT 0>?msgID=#variables.countAllMessagesStr.msgID#</cfif>">Board<cfif variables.countAllMessagesStr.newDateCount GT 0> <span class="badge badge-important"><cfoutput>#variables.countAllMessagesStr.newDateCount#</cfoutput></span></cfif></a></li>
-				<cfif session.user.isAdmin>
-					<li class="dropdown">
-						<a href="##" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="admin.cfm">Admin</a></li>
-						</ul>
-					</li>	
-				</cfif>
+				<li class="dropdown">
+					<a href="##" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+                        <li><a href="index.cfm?seasonYear=2012">Season 2012</a></li>
+                        <li><a href="index.cfm?seasonYear=2013">Season 2013</a></li>
+						<li class="divider"></li>
+						<cfif session.user.isAdmin>
+						<li><a href="admin.cfm">Admin</a></li>
+						</cfif>
+					</ul>
+				</li>	
             </ul>
 			<cfelse>
 			<span class="span3">&nbsp;</span>
@@ -67,11 +70,18 @@
     </div>
 	</cfoutput>
 	
-<cfif session.isLoggedIn NEQ true AND url.logout NEQ true>
+	<cfif session.currentSeasonYear NEQ application.seasonYear>
+		<div class="container" id="mainContainer">
+			<div class="alert alert-error">
+				<strong>Attention!</strong> You have selected the season <strong><cfoutput>#session.currentSeasonYear#</cfoutput></strong>
+			</div>
+		</div>
+	</cfif>
+	
+<cfif session.isLoggedIn NEQ true AND url.logout NEQ true AND session.user.userID GT 0>
 	<div class="container" id="mainContainer">
 		<div class="alert alert-error">
 			<strong>Error!</strong> Your session has timed out.  Please log back in.
 		</div>
 	</div>
-	<cfabort>
 </cfif>	

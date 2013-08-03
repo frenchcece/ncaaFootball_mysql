@@ -77,6 +77,7 @@
 			    messageBoardDetail AS mbd ON mb.msgID = mbd.msgID
 			WHERE
 			    mb.active = 1
+			    AND mbd.msgDetailDate > <cfqueryparam cfsqltype="cf_sql_date" value="#dateAdd('m',-6,session.today)#">
 			GROUP BY
 			    mb.msgID,
 			    mb.msgDate,
@@ -188,6 +189,7 @@
 			    messageBoardDetail AS mbd
 			WHERE
 			    mbd.active = 1
+			    AND mbd.msgDetailDate > <cfqueryparam cfsqltype="cf_sql_date" value="#dateAdd('m',-6,now())#">
 			GROUP BY
 			    mbd.msgID
 			ORDER BY max(mbd.msgDetailDate) DESC;

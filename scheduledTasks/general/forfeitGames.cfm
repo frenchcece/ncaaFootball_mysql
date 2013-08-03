@@ -1,6 +1,6 @@
 <!--- check if today is the day after the college football schedule week --->
 <cfinvoke component="#application.appmap#.cfc.footballDao" method="getCurrentWeekNumber" returnvariable="variables.qryGetCurrentWeek">
-	<cfinvokeargument name="gameDate" value="#dateAdd('d',-1,session.today)#">
+	<cfinvokeargument name="gameDate" value="#dateAdd('d',-1,now())#">
 </cfinvoke>
 <cfinvoke component="#application.appmap#.cfc.footballDao" method="getWeekInfoByWeekNumber" returnvariable="variables.qryGetWeekInfo">
 	<cfinvokeargument name="weekNumber" value="#variables.qryGetCurrentWeek.weekNumber#" />
@@ -11,7 +11,7 @@
 </cfif>
 
 <!--- today is the day after! --->
-<cfif DateDiff('h', dateAdd('d',1,variables.qryGetWeekInfo.endDate), session.today) GT 0 AND DateDiff('h', dateAdd('d',1,variables.qryGetWeekInfo.endDate), session.today) LT 24>
+<cfif DateDiff('h', dateAdd('d',1,variables.qryGetWeekInfo.endDate), now()) GT 0 AND DateDiff('h', dateAdd('d',1,variables.qryGetWeekInfo.endDate), now()) LT 24>
 
 	<!--- log the date into database --->
 	<cfquery name="qryInsertLogDate" datasource="#application.dsn#">
@@ -33,8 +33,20 @@
 		</cfinvoke>
 	
 		<!--- if the user has not met the minimum required picks, then we need to add some forfeit games to his week --->
-		<cfif variables.qryGetUserPicks.recordCount LT application.settings.minimumPicksPerWeek>
+		<cfset variables.iteration = 0>
+		
+		<cfif variables.qryGetCurrentWeek.weekType EQ "regular" AND variables.qryGetUserPicks.recordCount LT application.settings.minimumPicksPerWeek>
 			<cfset variables.iteration = application.settings.minimumPicksPerWeek - variables.qryGetUserPicks.recordCount>
+		<cfelseif variables.qryGetCurrentWeek.weekType EQ "bowl">
+			<cfinvoke component="#application.appmap#.cfc.footballDao" method="calculateMininumNumberBowlsToPick" returnvariable="variables.qryMininumNumberBowlsToPick">
+				<cfinvokeargument name="weekNumber" value="#variables.qryGetCurrentWeek.weekNumber#">
+			</cfinvoke>
+			<cfif variables.qryMininumNumberBowlsToPick.recordCount AND variables.qryGetUserPicks.recordCount LT variables.qryMininumNumberBowlsToPick.mininumBowlsToPick>
+				<cfset variables.iteration = variables.qryMininumNumberBowlsToPick.mininumBowlsToPick - variables.qryGetUserPicks.recordCount>
+			</cfif>	
+		</cfif>
+		
+		<cfif variables.iteration GT 0>	
 			<cfloop from="1" to="#variables.iteration#" index="i">
 				<cfquery datasource="#application.dsn#" name="qryInsertForfeitGame">
 					INSERT INTO UserPicks

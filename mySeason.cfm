@@ -24,15 +24,16 @@
 <cfquery name="qryGetWeekNumberList" datasource="#application.dsn#">
 	SELECT DISTINCT
 		weekNumber
+	  , weekName	
 	  , startDate
 	  , endDate
 	  , weekType
 	FROM
 		FootballSeason
+	WHERE season = <cfqueryparam cfsqltype="cf_sql_integer" value="#session.currentSeasonYear#">	
 	ORDER BY
 		weekNumber	
 </cfquery>
-<cfset variables.weekNumberList = valueList(qryGetWeekNumberList.weekNumber)>
 
 <body>
 	<cfoutput>
@@ -40,7 +41,10 @@
 	<cfinvoke component="#application.appmap#.cfc.login" method="getUserInfo" returnvariable="variables.qryGetUserInfo">
 		<cfinvokeargument name="userID" value="#variables.currentUserID#">
 	</cfinvoke>	
-	
+	<!--- get weekNumber info --->
+	<cfinvoke component="#application.appmap#.cfc.footballDao" method="getWeekInfoByWeekNumber" returnvariable="variables.qryGetWeekInfoByWeekNumber">
+		<cfinvokeargument name="weekNumber" value="#variables.activeWeek#">
+	</cfinvoke>
 	<!--- get all the games of the current week --->
 	<cfinvoke component="#application.appmap#.cfc.footballDao" method="getGamesOfTheWeek" returnvariable="variables.qryGetGamesOfTheWeek">
 		<cfinvokeargument name="weekNumber" value="#variables.activeWeek#">
@@ -61,8 +65,8 @@
 	    <div class="pagination pagination-centered">
 			<ul>
 				<li class="disabled"><a href="##">Week</a></li>
-		    	<cfloop list="#variables.weekNumberList#" index="i">
-			    <li<cfif variables.activeWeek EQ i> class="active"</cfif>><a href="?week=#i#&userid=#variables.currentUserID#">#i#</a></li>
+		    	<cfloop query="qryGetWeekNumberList">
+			    <li<cfif variables.activeWeek EQ qryGetWeekNumberList.weekNumber> class="active"</cfif>><a href="?week=#qryGetWeekNumberList.weekNumber#&userid=#variables.currentUserID#">#qryGetWeekNumberList.weekName#</a></li>
 				</cfloop>
 				<li class="disabled"><a href="?week=all&userid=#variables.currentUserID#">Overall</a></li>
 		    </ul>

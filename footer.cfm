@@ -1,6 +1,6 @@
 <cfoutput>
       <footer class="offset5" style="padding-top:80px;">
-        <p><span class="span4">&copy; Cedric Dupuy #year(session.today)#</span></p>
+        <p><span class="span4">&copy; Cedric Dupuy #year(now())#</span></p>
       </footer>
 	  
 </html>

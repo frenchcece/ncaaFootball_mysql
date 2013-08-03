@@ -12,8 +12,9 @@
 <cfset application.rssFeed.gamesOdds = "http://xml.pinnaclesports.com/pinnaclefeed.aspx?sporttype=Football&sportsubtype=NCAA"><!--- http://livelines.betonline.com/sys/LineXML/LiveLineObjXml.asp?sport=Football ---><!--- http://www.collegefootballpoll.com/wp_archives_083012.html --->
 <cfset application.rssFeed.gamesScores = "http://sports.espn.go.com/ncf/bottomline/scores"><!--- http://www.repole.com/sun4cast/stats/cfb2012lines.xml --->
 <cfset application.settings.minimumPicksPerWeek = 5>
+<cfset application.settings.minimumPercentForBowls = 75>
 <cfset application.settings.newMessagePostTimeFlag = 2>	<!--- 2 days for the "new" flag on the message board --->
-
+<cfset application.seasonYear = year(now()) />
 
 <cfparam name="url.debug" default="false">
 <cfparam name="url.logout" default="">
@@ -31,17 +32,22 @@
 
 
 <cfif url.logout EQ "true">
-	<cfset structClear(session.user)>
+	<cfset structClear(session)>
 	<cfset session.isLoggedIn = false>
 </cfif>
 
 <cfparam name="session.today" default="#now()#">
 <cfparam name="session.currentWeekNumber" default="0">
+<cfparam name="session.currentSeasonYear" default="#application.seasonYear#">
+<cfif IsDefined("url.seasonYear") AND url.seasonYear GT "">
+	<cfset session.currentSeasonYear = url.seasonYear>
+	<cfset session.today = dateFormat(now(),"mm/dd") & "/" & url.seasonYear>
+</cfif>
 
 <!--- get the current weeknumber --->
 <cfif session.currentWeekNumber EQ 0>
 	<cfinvoke component="#application.appmap#.cfc.footballDao" method="getCurrentWeekNumber" returnvariable="variables.qryGetCurrentWeek">
-		<cfinvokeargument name="gameDate" value="#session.today#">
+		<cfinvokeargument name="gameDate" value="#now()#">
 	</cfinvoke>
 	<cfset session.currentWeekNumber = variables.qryGetCurrentWeek.weekNumber>
 </cfif>	

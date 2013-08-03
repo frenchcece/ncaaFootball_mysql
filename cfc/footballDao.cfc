@@ -5,11 +5,12 @@
 
 		<cfquery name="qryGetWeekInfo" datasource="#application.dsn#">
 			SELECT 
-			    startDate, endDate, weekType
+			    startDate, endDate, weekType, weekNumber, weekName
 			FROM
-			    ncaa_football.FootballSeason
+			    FootballSeason
 			WHERE
-			    weekNumber = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.weekNumber#">;
+			    weekNumber = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.weekNumber#">
+			    AND season = <cfqueryparam cfsqltype="cf_sql_integer" value="#session.currentSeasonYear#">;
 		</cfquery>
 
 		<cfreturn qryGetWeekInfo>	
@@ -20,33 +21,38 @@
 		
 		<cfquery datasource="#application.dsn#" name="qryGetGamesOfTheWeek">
 			SELECT
-				gameID
-			  , gameDate
-			  , datecreated
-			  , dateupdated
-			  , WeekNumber
-			  , team1Name
-			  , teamID1
-			  , team1Draw
-			  , team1Spread
-			  , team2Name
-			  , teamID2
-			  , team2Draw
-			  , team2Spread
-			  , team1FinalScore
-			  , team2FinalScore
-			  , team1WinLoss
-			  , team2WinLoss
-			  , spreadLock
+				fg.gameID
+			  , fg.gameDate
+			  , fg.datecreated
+			  , fg.dateupdated
+			  , fg.WeekNumber
+			  , fg.team1Name
+			  , fg.teamID1
+			  , fg.team1Draw
+			  , fg.team1Spread
+			  , fg.team2Name
+			  , fg.teamID2
+			  , fg.team2Draw
+			  , fg.team2Spread
+			  , fg.team1FinalScore
+			  , fg.team2FinalScore
+			  , fg.team1WinLoss
+			  , fg.team2WinLoss
+			  , fg.spreadLock
+			  , fs.weekType
+			  , fs.weekName
 			FROM
-				FootballGames
+				FootballGames AS fg
+			INNER JOIN 	
+				FootballSeason AS fs
+				ON fs.weekNumber = fg.weekNumber
 			WHERE
-				1 = 1	
+				fs.season = <cfqueryparam cfsqltype="cf_sql_integer" value="#session.currentSeasonYear#">	
 			<cfif arguments.weekNumber GT 0>
-				AND weekNumber = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.weekNumber#">
+				AND fg.weekNumber = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.weekNumber#">
 			</cfif>
 			ORDER BY
-				gameDate ASC
+				fg.gameDate ASC
 		</cfquery>
 		
 		<cfreturn qryGetGamesOfTheWeek>
@@ -80,18 +86,20 @@
 
 		<cfquery name="qrySelectUserPicks" datasource="#application.dsn#">
 			SELECT
-				userPickID
-			  , userID
-			  , gameID
-			  , teamID
-			  , coalesce(winLoss,'P') AS winLoss
-			  , weekNumber
+				up.userPickID
+			  , up.userID
+			  , up.gameID
+			  , up.teamID
+			  , coalesce(up.winLoss,'P') AS winLoss
+			  , up.weekNumber
 			FROM
-				UserPicks
+				UserPicks AS up
+				INNER JOIN FootballSeason AS fs ON up.weekNumber = fs.weekNumber
 			WHERE 
-				userID = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.userID#">
+				fs.season = <cfqueryparam cfsqltype="cf_sql_numeric" value="#session.currentSeasonYear#">
+				AND up.userID = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.userID#">
 				<cfif arguments.weekNumber NEQ -1>
-				AND weekNumber = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.weekNumber#">
+				AND up.weekNumber = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.weekNumber#">
 				</cfif>		
 		</cfquery>
 
@@ -192,6 +200,7 @@
 		<cfquery name="qryGetCurrentWeek" datasource="#application.dsn#">
 			SELECT
 				weekNumber
+			  , weekName	
 			  , startDate
 			  , endDate
 			  , weekType
@@ -199,6 +208,7 @@
 				FootballSeason
 			WHERE
 				<cfqueryparam cfsqltype="cf_sql_date" value="#arguments.gameDate#"> BETWEEN startdate AND enddate
+				AND season = <cfqueryparam cfsqltype="cf_sql_integer" value="#session.currentSeasonYear#">;
 		</cfquery>
 		
 		<!--- if the input date is not in the date range, then pick the next week --->
@@ -218,11 +228,49 @@
 								FootballSeason
 							   WHERE
 								<cfqueryparam cfsqltype="cf_sql_date" value="#arguments.gameDate#"> > endDate
-							 )			 		
+							 )	
+					AND season = <cfqueryparam cfsqltype="cf_sql_integer" value="#session.currentSeasonYear#">;
 			</cfquery>
 		</cfif>
+
+		<!--- if nothing is found then return the first week of the season --->
+		<cfif qryGetCurrentWeek.recordCount EQ 0>
+			<cfquery name="qryGetCurrentWeek" datasource="#application.dsn#">
+				SELECT
+					weekNumber
+				  , startDate
+				  , endDate
+				  , weekType
+				FROM
+				FootballSeason AS fs
+				WHERE
+				weekName = '1'
+					AND season = <cfqueryparam cfsqltype="cf_sql_integer" value="#session.currentSeasonYear#">;
+			</cfquery>
+		</cfif>
+
 				 
 		<cfreturn qryGetCurrentWeek>
+	</cffunction>
+
+	<cffunction name="calculateMininumNumberBowlsToPick" returntype="query">
+		<cfargument name="weekNumber" type="numeric" required="true">
+		
+		<cfquery name="qryCalculateMininumNumberBowlsToPick" datasource="#application.dsn#">
+			SELECT 
+			    count(*) as totalNumberBowlGames,
+				round(count(*) * <cfqueryparam cfsqltype="cf_sql_numeric" value="#application.settings.minimumPercentForBowls#"> / 100) as mininumBowlsToPick
+			FROM
+			    ncaa_football.FootballGames
+			WHERE
+			    weeknumber = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.weekNumber#"> 
+			    AND team1Spread <> 0 
+			    AND team2Spread <> 0
+				AND teamID1 > 0
+				AND teamID2 > 0;
+		</cfquery>
+		
+		<cfreturn qryCalculateMininumNumberBowlsToPick>
 	</cffunction>
 
 	<cffunction name="getResultsByUser" returntype="Query" >
@@ -231,25 +279,27 @@
 		<cfquery name="qryGetResults" datasource="#application.dsn#">
 			SELECT
 				COUNT(*) AS record
-			  , coalesce(winLoss,'P') AS winLoss
-			  , userID
-			  , weeknumber
+			  , coalesce(up.winLoss,'P') AS winLoss
+			  , up.userID
+			  , up.weeknumber
 			FROM
-				UserPicks
+				UserPicks AS up
+				INNER JOIN FootballSeason AS fs ON up.weekNumber = fs.weekNumber
 			WHERE
-				1 = 1
+				fs.season = <cfqueryparam cfsqltype="cf_sql_integer" value="#session.currentSeasonYear#">
 				<cfif arguments.userID NEQ -1>
-				AND userID = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.userID#">
+				AND up.userID = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.userID#">
 				</cfif>
 			GROUP BY
-				winLoss
-			  , weeknumber
-			  , userID
+				up.winLoss
+			  , up.weeknumber
+			  , up.userID
 			ORDER BY
-				userID
-				, winLoss DESC	
+				up.userID
+			  	, up.weeknumber
+				, up.winLoss DESC	
 		</cfquery>
-		
+
 		<cfreturn qryGetResults>
 	</cffunction>
 	
@@ -318,23 +368,24 @@
 			INSERT INTO temp1
 			SELECT
 				COUNT(*) AS record
-			  , coalesce(winLoss, 'P') AS winLoss
-			  , userID
-			  , weeknumber
+			  , coalesce(up.winLoss, 'P') AS winLoss
+			  , up.userID
+			  , up.weeknumber
 			FROM
-				UserPicks
+				UserPicks AS up
+				INNER JOIN FootballSeason AS fs ON up.weekNumber = fs.weekNumber
 			WHERE
-				1 = 1
+				fs.season = #session.currentSeasonYear#
 				<cfif arguments.userID NEQ -1>
-				AND userid = #arguments.userID#
+				AND up.userid = #arguments.userID#
 				</cfif>
 				<cfif arguments.weekNumber NEQ -1>
-				AND weekNumber = #arguments.weekNumber#
+				AND up.weekNumber = #arguments.weekNumber#
 				</cfif>
 			GROUP BY
-				winLoss
-			  , weeknumber
-			  , userID;
+				up.winLoss
+			  , up.weeknumber
+			  , up.userID;
 						
 						
 			INSERT INTO temp2
@@ -423,20 +474,21 @@
 			INSERT INTO temp1
 			SELECT
 				COUNT(*) AS record
-			  , coalesce(winLoss, 'P') AS winLoss
-			  , userID
-			  , weeknumber
+			  , coalesce(up.winLoss, 'P') AS winLoss
+			  , up.userID
+			  , up.weeknumber
 			FROM
-				UserPicks
+				UserPicks AS up
+				INNER JOIN FootballSeason AS fs ON up.weekNumber = fs.weekNumber
 			WHERE
-				1 = 1
+				fs.season = #session.currentSeasonYear#
 				<cfif arguments.userID NEQ -1>
-				AND userid = #arguments.userID#
+				AND up.userid = #arguments.userID#
 				</cfif>
 			GROUP BY
-				winLoss
-			  , weeknumber
-			  , userID;
+				up.winLoss
+			  , up.weeknumber
+			  , up.userID;
 			
 			INSERT INTO temp2
 			SELECT
@@ -470,6 +522,7 @@
 				Users.userFullName
 			  , t.userID
 			  , t.weekNumber
+			  , fs.weekName
 			  , SUM(win) AS win
 			  , SUM(loss) AS loss
 			  , SUM(tie) AS tie
@@ -484,13 +537,17 @@
 			FROM
 				temp2 AS t
 			LEFT OUTER JOIN Users
-			ON	Users.userID = t.userID
+				ON	Users.userID = t.userID
+			LEFT OUTER JOIN FootballSeason AS fs
+				ON fs.weekNumber = t.weekNumber
+			WHERE
+				fs.season = #session.currentSeasonYear#	
 			GROUP BY
 				Users.userFullName
 			  , t.userID
 			  , t.weekNumber
 			ORDER BY
-				weekNumber;
+				t.weekNumber;
 			  
 			  
 			DROP TABLE temp1;
@@ -559,10 +616,13 @@
 			    fg.team2finalscore AS oponentScore
 			from
 			    FootballGames as fg
-			        inner join
+			        INNER JOIN
 			    FootballTeams as ft1 ON fg.teamID1 = ft1.teamID
+			    	INNER JOIN
+			    FootballSeason as fs ON fs.weekNumber = fg.weekNumber
 			where
-			    ft1.teamID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.teamID#">
+				fs.season = #session.currentSeasonYear#	
+			    AND ft1.teamID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.teamID#">
 			    AND fg.team1finalscore IS NOT NULL AND fg.team2finalscore IS NOT NULL
 			union all select 
 			    fg.weeknumber,
@@ -618,7 +678,7 @@
 					<td>#variables.qryTeamStats.teamScore#</td>
 					<td nowrap="nowrap">#variables.qryTeamStats.oponent#</td>
 					<td>#variables.qryTeamStats.oponentScore#</td>
-					<td>#variables.qryTeamStats.teamSpread#</td>
+					<td><cfif variables.qryTeamStats.teamSpread GT 0>+</cfif>#variables.qryTeamStats.teamSpread#</td>
 					<cfswitch expression="#variables.qryTeamStats.resultAgainstSpread#">
 						<cfcase value="W"><td><span class='label label-success'>win</span></td></cfcase>
 						<cfcase value="L"><td><span class='label label-important'>loss</span></td></cfcase>

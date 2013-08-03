@@ -4,7 +4,7 @@
 </cfinvoke>
 
 <!--- today is the first day! --->
-<cfif DateDiff('h', variables.qryGetWeekInfo.startDate, session.today) GT 0 AND DateDiff('h', variables.qryGetWeekInfo.startDate, session.today) LT 24>
+<cfif DateDiff('h', variables.qryGetWeekInfo.startDate, now()) GT 0 AND DateDiff('h', variables.qryGetWeekInfo.startDate, now()) LT 24>
 
  
 	<!--- log the date into database --->

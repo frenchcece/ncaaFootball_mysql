@@ -5,7 +5,7 @@
 	    	<table class="table table-striped table-hover">
 	    	<thead>
 	    		<tr>
-					<th colspan="9">All Games For Week #variables.activeWeek#</th>
+					<th colspan="9">All Games For  For <cfif variables.qryGetWeekInfoByWeekNumber.weekType EQ "regular">Week #variables.qryGetWeekInfoByWeekNumber.weekName#<cfelse>#variables.qryGetWeekInfoByWeekNumber.weekName# Season</cfif></th>
 				</tr>
 			</thead>
 	    	<thead>

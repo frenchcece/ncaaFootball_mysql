@@ -5,21 +5,51 @@
 	<cfsetting showdebugoutput="false" />
 </cfif>
 
+<script>
+.hero-unit
+{
+padding: 10px;
+}
+</script>
+
 <body>
 
     <div class="container" id="mainContainer">
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="alert alert-info">
-      	Welcome to the first attempt to make our little game of football picks easier on us!	
+      	Welcome to my lousy attempt to make our little game of football picks easier on us!	
 	  </div>
 	  
 	  <div class="hero-unit">
-        <h1>College Football Picking Game</h1>
-        <p>This site is a beta version of the college football picking game. Let's use it as a starting point to create something more unique.
-		I am open to suggestions and ideas.  Guaranteed or your money back!
-		</p>
-        <p><a class="btn btn-primary btn-large" href="rules.cfm">Learn more &raquo;</a></p>
+				<div class="span10" style="margin-bottom:10px;">
+					<h1>College Football Picking Game</h1>
+				</div>	
+				<div class="row">
+					<div class="<cfif session.isLoggedIn>span7<cfelse>span10</cfif>">
+				        <p>This site is a beta version of the college football picking game. Let's use it as a starting point to create something more unique.
+						I am very open to suggestions and ideas.  If you have ideas for new pages, reports, improvements on the existing pages, 
+						please don't hesitate.  I won't be offended.  Guaranteed or your money back!
+						</p>
+				        <p><a class="btn btn-primary btn-large" href="rules.cfm">Learn more &raquo;</a></p>
+					</div>
+					<cfif session.isLoggedIn>
+					<div class="span3" style="padding: 0px; margin:0px;">
+						<div class="well" style=" background-color:#468847; color:white;">
+							<div><strong>Season 2012 Results:</strong></div>
+							<div>
+								<ol>
+									<li>Cedric Dupuy - Champion</li>
+									<li>Bobby Slotkin</li>
+									<li>Steve Campbell</li>
+									<li>Rebecca Dupuy</li>
+									<li>Lea Ann Slotkin</li>
+								</ol>
+							</div>
+						</div>						
+					</div>
+					</cfif>
+				</div>
       </div>
 
 	<cfif IsDefined("variables.loginFailure") AND variables.loginFailure EQ "true">
@@ -59,10 +89,29 @@
 				</cfif>
 			   </p>
 			  <p>
-			  	<cfif variables.qryGetUserPicksOfTheWeek.recordCount LT application.settings.minimumPicksPerWeek>
-				I have picked only #variables.qryGetUserPicksOfTheWeek.recordCount# out of the minimum #application.settings.minimumPicksPerWeek# games for this week.
-				<cfelse>
-				I have picked #variables.qryGetUserPicksOfTheWeek.recordCount# games for this week.
+				<cfif variables.qryGetCurrentWeek.weekType EQ "regular">
+				  	<cfif variables.qryGetUserPicksOfTheWeek.recordCount LT application.settings.minimumPicksPerWeek>
+					I have picked only #variables.qryGetUserPicksOfTheWeek.recordCount# out of the minimum #application.settings.minimumPicksPerWeek# games for this week.
+					<cfelse>
+					I have picked #variables.qryGetUserPicksOfTheWeek.recordCount# games for this week.
+					</cfif>
+
+				<cfelseif variables.qryGetCurrentWeek.weekType EQ "bowl">
+					<cfinvoke component="#application.appmap#.cfc.footballDao" method="calculateMininumNumberBowlsToPick" returnvariable="variables.qryMininumNumberBowlsToPick">
+						<cfinvokeargument name="weekNumber" value="#session.currentWeekNumber#">
+					</cfinvoke>
+					
+					<cfif variables.qryMininumNumberBowlsToPick.recordCount>
+						<cfif variables.qryGetUserPicksOfTheWeek.recordCount LT variables.qryMininumNumberBowlsToPick.mininumBowlsToPick>
+						I have picked only #variables.qryGetUserPicksOfTheWeek.recordCount# out of the minimum #application.settings.minimumPercentForBowls#% of the bowl games.
+						<br>I need to pick at least #variables.qryMininumNumberBowlsToPick.mininumBowlsToPick# out of #variables.qryMininumNumberBowlsToPick.totalNumberBowlGames# games.
+						<cfelse>
+						I have picked #variables.qryGetUserPicksOfTheWeek.recordCount# bowl games.
+						<br>The minimum is #variables.qryMininumNumberBowlsToPick.mininumBowlsToPick# out of #variables.qryMininumNumberBowlsToPick.totalNumberBowlGames# games.
+						</cfif>	
+					<cfelse>
+					No bowl games have been found yet.
+					</cfif>
 				</cfif>
 			  </p>
 	          <p><a class="btn btn-primary" href="myGames.cfm">View details &raquo;</a></p>
@@ -125,7 +174,11 @@
 				</cfinvoke>
 				<p>
 				<span class="span1">Last week:</span>
-				<span class="label label-warning">#variables.standingsLastWeek.winPct# %</span>
+				<cfif variables.standingsLastWeek.winPct EQ "">
+					<span class="label label-info">pending</span>
+				<cfelse>
+					<span class="label label-warning">#variables.standingsLastWeek.winPct# %</span>
+				</cfif>
 				</p>
 				</cfif>
 				<p>
@@ -135,7 +188,11 @@
 					<cfinvokeargument name="userID" value="#session.user.userID#">
 					<cfinvokeargument name="weekNumber" value="-1">
 				</cfinvoke>
-				<span class="label label-warning">#variables.standingsOverall.winPct# %</span>
+				<cfif variables.standingsOverall.winPct EQ "">
+					<span class="label label-info">pending</span>
+				<cfelse>
+					<span class="label label-warning">#variables.standingsOverall.winPct# %</span>
+				</cfif>
 				</p>
 	          <p><a class="btn btn-primary" href="myStandings.cfm">View details &raquo;</a></p>
 	        </div>
