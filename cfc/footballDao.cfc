@@ -624,7 +624,8 @@
 				fs.season = #session.currentSeasonYear#	
 			    AND ft1.teamID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.teamID#">
 			    AND fg.team1finalscore IS NOT NULL AND fg.team2finalscore IS NOT NULL
-			union all select 
+			union all 
+			select 
 			    fg.weeknumber,
 			    'Home' AS location,
 			    ft2.teamID AS teamID,
@@ -641,10 +642,13 @@
 			    fg.team1finalscore AS oponentScore
 			from
 			    FootballGames as fg
-			        inner join
+			        INNER JOIN
 			    FootballTeams as ft2 ON fg.teamID2 = ft2.teamID
+				    INNER JOIN
+			    FootballSeason as fs ON fs.weekNumber = fg.weekNumber
 			where
-			    ft2.teamID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.teamID#">
+			    fs.season = #session.currentSeasonYear#	
+			    AND ft2.teamID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.teamID#">
 			    AND fg.team1finalscore IS NOT NULL AND fg.team2finalscore IS NOT NULL
 			order by weeknumber;		
 		</cfquery>

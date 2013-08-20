@@ -49,6 +49,8 @@
 				<li class="dropdown">
 					<a href="##" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
 					<ul class="dropdown-menu">
+                        <li><a href="rules.cfm">Rules</a></li>
+						<li class="divider"></li>
                         <li><a href="index.cfm?seasonYear=2012">Season 2012</a></li>
                         <li><a href="index.cfm?seasonYear=2013">Season 2013</a></li>
 						<li class="divider"></li>

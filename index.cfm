@@ -26,14 +26,14 @@ padding: 10px;
 					<h1>College Football Picking Game</h1>
 				</div>	
 				<div class="row">
-					<div class="<cfif session.isLoggedIn>span7<cfelse>span10</cfif>">
+					<div class="<cfif isBoolean(session.isLoggedIn) AND session.isLoggedIn>span7<cfelse>span10</cfif>">
 				        <p>This site is a beta version of the college football picking game. Let's use it as a starting point to create something more unique.
 						I am very open to suggestions and ideas.  If you have ideas for new pages, reports, improvements on the existing pages, 
 						please don't hesitate.  I won't be offended.  Guaranteed or your money back!
 						</p>
 				        <p><a class="btn btn-primary btn-large" href="rules.cfm">Learn more &raquo;</a></p>
 					</div>
-					<cfif session.isLoggedIn>
+					<cfif isBoolean(session.isLoggedIn) AND session.isLoggedIn>
 					<div class="span3" style="padding: 0px; margin:0px;">
 						<div class="well" style=" background-color:#468847; color:white;">
 							<div><strong>Season 2012 Results:</strong></div>
@@ -59,7 +59,7 @@ padding: 10px;
 	    </div>
 	</cfif>
 		
-      <cfif session.isLoggedIn EQ true>
+      <cfif isBoolean(session.isLoggedIn) AND session.isLoggedIn EQ true>
 		
 		<!--- get the current week information --->  
   		<cfinvoke component="#application.appmap#.cfc.footballDao" method="getCurrentWeekNumber" returnvariable="variables.qryGetCurrentWeek">

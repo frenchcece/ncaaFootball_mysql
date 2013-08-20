@@ -132,8 +132,27 @@
 		<cfinvoke component="#application.appmap#.cfc.footballDao" method="selectLeaguePlayers" returnvariable="variables.qryLeaguePlayers"></cfinvoke>
 
 		<!--- build the email variables --->
-		<cfset variables.emailTo = valuelist(variables.qryLeaguePlayers.userEmail)>
+		<cfif variables.qryMsgDetail.recordCount EQ 1>
+			<!--- if there is only 1 entry, email it to everybody in the league --->
+			<cfset variables.emailTo = valuelist(variables.qryLeaguePlayers.userEmail)>
+		<cfelse>
+			<!--- only get the list of email addresses for those involved in the message thread. --->
+			<cfquery dbtype="query" name="variables.qryMsgUsers">
+				SELECT DISTINCT userID FROM variables.qryMsgDetail ORDER BY msgDetailID DESC;
+			</cfquery>
+			<cfset variables.emailMsgUsers = valueList(variables.qryMsgUsers.userID)>
+			<cfquery dbtype="query" name="variables.qryMsgUsers">
+				SELECT DISTINCT userEmail FROM variables.qryLeaguePlayers WHERE userID IN (#variables.emailMsgUsers#)
+			</cfquery>
+			<cfset variables.emailTo = valuelist(variables.qryMsgUsers.userEmail)>
+		</cfif>
+
+		<!--- below is the line of code to include all league email addresses for all the messages --->
+		<!--- <cfset variables.emailTo = valuelist(variables.qryLeaguePlayers.userEmail)> --->
+
+		<!--- testing only --->
 		<!--- <cfset variables.emailTo = "frenchcece@yahoo.com,frenchcece@gmail.com"> --->
+
 		<cfset variables.emailSubject = "College Footbal Pick Game - New Message Posted">
 		<!--- build the email content --->
 		<cfsavecontent variable = "variables.emailContent">
