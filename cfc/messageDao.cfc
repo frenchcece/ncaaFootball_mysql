@@ -138,7 +138,7 @@
 		<cfelse>
 			<!--- only get the list of email addresses for those involved in the message thread. --->
 			<cfquery dbtype="query" name="variables.qryMsgUsers">
-				SELECT DISTINCT userID FROM variables.qryMsgDetail ORDER BY msgDetailID DESC;
+				SELECT DISTINCT userID, msgDetailID FROM variables.qryMsgDetail ORDER BY msgDetailID DESC;
 			</cfquery>
 			<cfset variables.emailMsgUsers = valueList(variables.qryMsgUsers.userID)>
 			<cfquery dbtype="query" name="variables.qryMsgUsers">

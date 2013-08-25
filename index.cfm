@@ -18,7 +18,7 @@ padding: 10px;
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="alert alert-info">
-      	Welcome to my lousy attempt to make our little game of football picks easier on us!	
+      	Welcome to my attempt of making our little game of football picks easier on us!	
 	  </div>
 	  
 	  <div class="hero-unit">

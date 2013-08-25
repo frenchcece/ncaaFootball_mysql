@@ -27,7 +27,7 @@
 	<div class="control-group">
 		<label class="control-label" for="message">Message</label>
 		<div class="controls">
-			<textarea name="message" id="message" rows="10" cols="20" placeholder="Message" class="input-xlarge"></textarea>
+			<textarea name="message" id="message" rows="15" cols="35" placeholder="Message" class="input-xlarge"></textarea>
 		</div>
 	</div>
 	<div class="control-group">

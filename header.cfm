@@ -13,6 +13,9 @@
 		<meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
 		<meta http-equiv="EXPIRES" content="0" />
 		<meta name="ROBOTS" content="NONE" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0;" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		
     	<link rel="stylesheet" href="#application.appmap#/bootstrap/css/bootstrap.min.css"  type="text/css"/>
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/blitzer/jquery-ui.css" />
@@ -45,12 +48,11 @@
 				<li><a href="myGames.cfm">Games</a></li>
 				<li><a href="mySeason.cfm">Season</a></li>
 				<li><a href="myStandings.cfm">Standings</a></li>
+                <li><a href="rules.cfm">Rules</a></li>
 				<li><a href="messageBoard.cfm<cfif variables.countAllMessagesStr.newDateCount GT 0>?msgID=#variables.countAllMessagesStr.msgID#</cfif>">Board<cfif variables.countAllMessagesStr.newDateCount GT 0> <span class="badge badge-important"><cfoutput>#variables.countAllMessagesStr.newDateCount#</cfoutput></span></cfif></a></li>
 				<li class="dropdown">
 					<a href="##" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-                        <li><a href="rules.cfm">Rules</a></li>
-						<li class="divider"></li>
                         <li><a href="index.cfm?seasonYear=2012">Season 2012</a></li>
                         <li><a href="index.cfm?seasonYear=2013">Season 2013</a></li>
 						<li class="divider"></li>
