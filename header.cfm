@@ -73,7 +73,13 @@
       </div>
     </div>
 	</cfoutput>
+
+
+<body>
+    <div class="container" id="mainContainer">
+	<cfinclude template="#application.appmap#/modal/forgotPasswordModal.cfm">
 	
+		
 	<cfif session.currentSeasonYear NEQ application.seasonYear>
 		<div class="container" id="mainContainer">
 			<div class="alert alert-error">
@@ -82,10 +88,15 @@
 		</div>
 	</cfif>
 	
-<cfif session.isLoggedIn NEQ true AND url.logout NEQ true AND session.user.userID GT 0>
+<!--- <cfdump var="#url#">	
+<cfdump var="#session#">	 --->
+<cfif (session.isLoggedIn NEQ true OR session.cfid EQ "")  AND url.logout NEQ true>
 	<div class="container" id="mainContainer">
 		<div class="alert alert-error">
 			<strong>Error!</strong> Your session has timed out.  Please log back in.
 		</div>
 	</div>
+	<cfinclude template="footer.cfm">
+	<cfabort>
 </cfif>	
+

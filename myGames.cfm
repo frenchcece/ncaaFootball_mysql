@@ -6,14 +6,9 @@
 </cfif>
 
 
-<body>
-    <div class="container" id="mainContainer">
-
 	<cfinclude template="#application.appmap#/view/games/games.cfm">
 
 	<cfinclude template="footer.cfm">
 
-    </div> <!-- /container -->
-</body>
 
 	    

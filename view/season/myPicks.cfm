@@ -4,7 +4,8 @@
 			    	<table class="table table-striped table-hover table-condensed">
 			    	<thead>
 			    		<tr>
-							<th colspan="9">Picks<cfif variables.activeWeek NEQ -1> For <cfif variables.qryGetWeekInfoByWeekNumber.weekType EQ "regular">Week #variables.qryGetWeekInfoByWeekNumber.weekName#<cfelse>#variables.qryGetWeekInfoByWeekNumber.weekName# Season</cfif></cfif></th>
+							<th colspan="3">Picks<cfif variables.activeWeek NEQ -1> For <cfif variables.qryGetWeekInfoByWeekNumber.weekType EQ "regular">Week #variables.qryGetWeekInfoByWeekNumber.weekName#<cfelse>#variables.qryGetWeekInfoByWeekNumber.weekName# Season</cfif></cfif></th>
+							<th colspan="6">From #dateFormat(variables.qryGetWeekInfoByWeekNumber.startDate,"mm-dd-yyyy")# to #dateFormat(variables.qryGetWeekInfoByWeekNumber.endDate,"mm-dd-yyyy")#</th>
 						</tr>
 					</thead>
 			    	<thead>

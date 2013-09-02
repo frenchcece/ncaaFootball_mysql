@@ -35,7 +35,6 @@
 		weekNumber	
 </cfquery>
 
-<body>
 	<cfoutput>
 	<!--- get user information --->
 	<cfinvoke component="#application.appmap#.cfc.login" method="getUserInfo" returnvariable="variables.qryGetUserInfo">
@@ -59,7 +58,6 @@
 	</cfinvoke>
 		
 		
-    <div class="container" id="mainContainer">
 		<h3 class="offset1">My Season<cfif variables.currentUserID NEQ session.user.userID> - #variables.qryGetUserInfo.userFullName#</cfif></h3>
 		
 	    <div class="pagination pagination-centered">
@@ -95,9 +93,5 @@
 	</cfoutput>
 		
 	<cfinclude template="footer.cfm">
-    </div> <!-- /container -->
 
-
-
-  </body>
     

@@ -22,11 +22,7 @@
 <cfinvoke component="#application.appmap#.cfc.footballDao" method="getStandingsGroupByWeekNumber" returnvariable="variables.standingsGroupByWeekNumber">
 	<cfinvokeargument name="userID" value="#variables.currentUserID#">
 </cfinvoke>
-<body>
-    <div class="container" id="mainContainer">
-		<cfinclude template="#application.appmap#/view/standings/standings.cfm">
 
-	  	<cfinclude template="footer.cfm">
-	
-    </div> <!-- /container -->
-</body>
+<cfinclude template="#application.appmap#/view/standings/standings.cfm">
+
+<cfinclude template="footer.cfm">

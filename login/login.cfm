@@ -1,4 +1,7 @@
 <cfif NOT isDefined("session.isLoggedIn") OR session.isLoggedIn NEQ true>
+	<span class="span3 inline" style="text-align:right;padding-top:15px;">	<!---  offset1 --->
+		<a data-toggle="modal" href="#forgotPasswordModal">Forgot Password?</a>
+	</span>
 	<form class="navbar-form pull-right" action="index.cfm?debug=true" method="post" name="loginForm">
 		<input class="span2" type="text" placeholder="User" name="User" id="User">
 		<input class="span2" type="password" placeholder="Password" name="Password" id="Password">

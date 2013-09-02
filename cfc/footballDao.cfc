@@ -372,7 +372,8 @@
 			  , up.userID
 			  , up.weeknumber
 			FROM
-				UserPicks AS up
+				Users AS u
+				INNER JOIN UserPicks AS up ON u.userID = up.UserID
 				INNER JOIN FootballSeason AS fs ON up.weekNumber = fs.weekNumber
 			WHERE
 				fs.season = #session.currentSeasonYear#
@@ -422,13 +423,14 @@
 			  , SUM(tie) AS tie
 			  , SUM(pending) AS pending
 			  , SUM(win) + SUM(loss) + SUM(tie) AS totalGames
+			  , SUM(win) + SUM(loss) + SUM(tie) + SUM(pending) AS totalPickedGames
 			  , CONVERT((SUM(win)) / ( SUM(win) + SUM(loss)) * 100, decimal(18,2)) AS winPct
-			  <!--- , CONVERT((SUM(win) + CASE WHEN SUM(tie) > 0
+			  /* , CONVERT((SUM(win) + CASE WHEN SUM(tie) > 0
 														  THEN SUM(tie) / 2.00
 														  ELSE 0.00
 													 END ) / ( SUM(win) + SUM(loss)
 															   + SUM(tie) ) * 100, decimal(18,2))
-				AS winPct --->
+				AS winPct */
 			FROM
 				temp2 AS t
 			LEFT OUTER JOIN Users
@@ -437,9 +439,9 @@
 				Users.userFullName
 			  , t.userID
 			ORDER BY
-				8 DESC
+				9 DESC
 			  , 3 DESC
-			  , 7 ASC;
+			  , 8 DESC;
 			
 			DROP TABLE temp1;
 			DROP TABLE temp2;	
@@ -478,7 +480,8 @@
 			  , up.userID
 			  , up.weeknumber
 			FROM
-				UserPicks AS up
+				Users AS u
+				INNER JOIN UserPicks AS up ON u.userID = up.UserID
 				INNER JOIN FootballSeason AS fs ON up.weekNumber = fs.weekNumber
 			WHERE
 				fs.season = #session.currentSeasonYear#
@@ -528,6 +531,7 @@
 			  , SUM(tie) AS tie
 			  , SUM(pending) AS pending
 			  , SUM(win) + SUM(loss) + SUM(tie) AS totalGames
+			  , SUM(win) + SUM(loss) + SUM(tie) + SUM(pending) AS totalPickedGames
 			  , CONVERT(( SUM(win)) / ( SUM(win) + SUM(loss)) * 100, decimal(18,2)) AS winPct
 			  <!--- , CONVERT(( SUM(win) + CASE WHEN SUM(tie) > 0
 														  THEN SUM(tie) / 2.00

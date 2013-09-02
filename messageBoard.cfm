@@ -6,9 +6,6 @@
 </cfif>
 
 <cfparam name="url.msgID" default="">
-
-<body>
-    <div class="container" id="mainContainer">
 		
 	<h3>Message Board</h3>
 	
@@ -32,5 +29,3 @@
 
 	<cfinclude template="footer.cfm">
 
-    </div> <!-- /container -->
-</body>

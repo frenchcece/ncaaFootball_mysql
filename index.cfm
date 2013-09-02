@@ -12,9 +12,6 @@ padding: 10px;
 }
 </script>
 
-<body>
-
-    <div class="container" id="mainContainer">
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="alert alert-info">
@@ -206,10 +203,6 @@ padding: 10px;
 	  <cfinclude template="footer.cfm">
 
 
-    </div> <!-- /container -->
-
-
-  </body>
 	
 		
 		
