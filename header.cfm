@@ -58,6 +58,9 @@
 						<li class="divider"></li>
 						<cfif session.user.isAdmin>
 						<li><a href="admin.cfm">Admin</a></li>
+						<li><a href="#application.appmap#/scheduledTasks/rss/gameScores.cfm">Refresh Scores</a></li>
+						<li><a href="#application.appmap#/scheduledTasks/rss/gamesOdds.cfm">Refresh Odds</a></li>
+						<li class="divider"></li>
 						</cfif>
 					</ul>
 				</li>	

@@ -99,11 +99,11 @@
 		<cfelseif variables.qryGetGamesOfTheWeek.weekType EQ "regular">
 			<cfif variables.qryActualUserPicksOfTheWeek.recordCount LT application.settings.minimumPicksPerWeek>
 				<div class="alert span12">
-		            <strong>Warning!</strong>  You have picked only #variables.qryActualUserPicksOfTheWeek.recordCount# out of the minimum required #application.settings.minimumPicksPerWeek# picks for week #variables.currentWeekNumber#.
+		            <strong>Warning!</strong>  You have picked only #variables.qryActualUserPicksOfTheWeek.recordCount# out of the minimum required #application.settings.minimumPicksPerWeek# picks for week #session.currentWeekName#.
 	            </div>
 	        <cfelse>
 	   			<div class="alert alert-info span12">
-		            <strong>Good job!</strong>  You have picked #variables.qryActualUserPicksOfTheWeek.recordCount# games for this week, which meets the minimum required #application.settings.minimumPicksPerWeek# picks.
+		            <strong>Good job!</strong>  You have picked #variables.qryActualUserPicksOfTheWeek.recordCount# games for this week, which meets the minimum required #session.currentWeekName# picks.
 	            </div>
 			</cfif>
 		

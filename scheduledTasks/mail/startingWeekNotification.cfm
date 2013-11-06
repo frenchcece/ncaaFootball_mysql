@@ -35,7 +35,7 @@
 		   	<table>
 		   	<thead>
 		   		<tr>
-					<th colspan="7">All Games For Week #session.currentWeekNumber#</th>
+					<th colspan="7">All Games For Week #variables.qryGetWeekInfo.weekName#</th>
 				</tr>
 			</thead>
 		   	<thead>

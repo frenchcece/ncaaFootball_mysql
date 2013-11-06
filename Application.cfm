@@ -38,6 +38,7 @@
 
 <cfparam name="session.today" default="#now()#">
 <cfparam name="session.currentWeekNumber" default="0">
+<cfparam name="session.currentWeekName" default="0">
 <cfparam name="session.currentSeasonYear" default="#application.seasonYear#">
 <cfif IsDefined("url.seasonYear") AND url.seasonYear GT "">
 	<cfset session.currentSeasonYear = url.seasonYear>
@@ -50,4 +51,5 @@
 		<cfinvokeargument name="gameDate" value="#now()#">
 	</cfinvoke>
 	<cfset session.currentWeekNumber = variables.qryGetCurrentWeek.weekNumber>
+	<cfset session.currentWeekName = variables.qryGetCurrentWeek.weekName>
 </cfif>	
