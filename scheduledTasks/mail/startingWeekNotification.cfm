@@ -90,7 +90,7 @@
 	<!--- build the email variables --->
 	<cfset variables.emailTo = valuelist(variables.qryLeaguePlayers.userEmail)>
 	<!--- <cfset variables.emailTo = "frenchcece@yahoo.com,frenchcece@gmail.com"> --->
-	<cfset variables.emailSubject = "College Footbal Pick Game Week " & session.currentWeekNumber & " starts today">
+	<cfset variables.emailSubject = "College Footbal Pick Game Week " & variables.qryGetWeekInfo.weekName & " starts today">
 	<cfset variables.emailMsg = "<p>Make your picks!</p><p>Log on to <a href='http://www.dupuyworld.com/ncaaFootball/index.cfm'>www.dupuyworld.com/ncaaFootball/index.cfm</a>.</p><p>The lines for this week are subject to change:<br>" & variables.emailContent & "</p><br><p>Good luck!</p>">
 		
 	<!--- send notification email --->

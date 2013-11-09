@@ -46,7 +46,7 @@
 				<cfcatch type="any"><cfrethrow>
 					<!--- display error msg to user --->
 					<div class="alert alert-error offset1">
-			          <strong>Dang!</strong> Your picks for week #variables.weekNumber# have failed.  Please contact the webmaster with the list of picks you selected.  (click 'BACK' to go back to the form).
+			          <strong>Dang!</strong> Your picks for week #session.currentWeekName# have failed.  Please contact the webmaster with the list of picks you selected.  (click 'BACK' to go back to the form).
 			        </div>
 					<cfabort>
 				</cfcatch>
@@ -55,7 +55,7 @@
 			<cfif variables.warningMsg EQ "">
 				<!--- display success msg to user --->
 				<div class="alert alert-success span12">
-		          <strong>Success!</strong> Your picks for week #variables.weekNumber# have been saved.
+		          <strong>Success!</strong> Your picks for week #session.currentWeekName# have been saved.
 		        </div>
 			<cfelse>
 				<!--- display warning msg to user --->
@@ -103,7 +103,7 @@
 	            </div>
 	        <cfelse>
 	   			<div class="alert alert-info span12">
-		            <strong>Good job!</strong>  You have picked #variables.qryActualUserPicksOfTheWeek.recordCount# games for this week, which meets the minimum required #session.currentWeekName# picks.
+		            <strong>Good job!</strong>  You have picked #variables.qryActualUserPicksOfTheWeek.recordCount# games for this week, which meets the minimum required #application.settings.minimumPicksPerWeek# picks.
 	            </div>
 			</cfif>
 		
