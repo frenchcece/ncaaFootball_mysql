@@ -1,5 +1,32 @@
 <cfcomponent output="false" >
 
+	<cffunction name="validateSeasonYear" returntype="numeric">
+		<cfargument name="seasonYear" required="true" type="numeric">
+		
+		<cfset var returnYear = arguments.seasonYear>
+		
+		<cfquery name="qryCheckSeasonYear" datasource="#application.dsn#">
+			SELECT
+				weekNumber
+			  , weekName	
+			  , startDate
+			  , endDate
+			  , weekType
+			  , season
+			FROM
+				FootballSeason
+			WHERE
+				season = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.seasonYear#">;
+		</cfquery>
+		
+		<!--- if nothing is found, then get the year before --->
+		<cfif NOT qryCheckSeasonYear.recordCount>
+			<cfset returnYear = arguments.seasonYear - 1>
+		</cfif>
+		
+		<cfreturn returnYear>
+	</cffunction>
+
 	<cffunction name="getWeekInfoByWeekNumber" returntype="query">
 		<cfargument name="weekNumber" type="numeric" required="true">
 
@@ -68,7 +95,8 @@
 				userFullName,
 				userID,
 				userName,
-				userPassword
+				userPassword,
+				sendAccountInfoEmail
 			FROM 
 				Users
 			WHERE
@@ -204,6 +232,7 @@
 			  , startDate
 			  , endDate
 			  , weekType
+			  , season
 			FROM
 				FootballSeason
 			WHERE
@@ -216,9 +245,11 @@
 			<cfquery name="qryGetCurrentWeek" datasource="#application.dsn#">
 				SELECT
 					weekNumber
+				  , weekName	
 				  , startDate
 				  , endDate
 				  , weekType
+				  , season
 				FROM
 				FootballSeason AS fs
 				WHERE
@@ -238,16 +269,20 @@
 			<cfquery name="qryGetCurrentWeek" datasource="#application.dsn#">
 				SELECT
 					weekNumber
+				  , weekName	
 				  , startDate
 				  , endDate
 				  , weekType
+				  , season
 				FROM
-				FootballSeason AS fs
+					FootballSeason AS fs
 				WHERE
-				weekName = '1'
+					weekName = '1'
 					AND season = <cfqueryparam cfsqltype="cf_sql_integer" value="#session.currentSeasonYear#">;
 			</cfquery>
 		</cfif>
+		
+		<!--- if nothing is still found, then get the last week entered in table FootballSeason --->
 
 				 
 		<cfreturn qryGetCurrentWeek>
@@ -708,7 +743,109 @@
 		<cfreturn local.htmlTable>
 	</cffunction>
 
+	<cffunction name="getFinalRankingByYear" returntype="query" output="false">
+	
+		<cfquery name="qryGetFinalRankingByYear" datasource="#application.dsn#">
+			CREATE TEMPORARY TABLE temp1
+			(
+				record int
+				,winLoss char(1)
+				,userID int
+				,weekNumber int
+				,season int
+			);
 
+			CREATE TEMPORARY TABLE temp2
+			(
+				userID int
+				,season int
+				,win int
+				,loss int
+				,tie int
+				,pending int
+			);
+
+			INSERT INTO temp1
+			SELECT
+				COUNT(*) AS record
+			  , coalesce(up.winLoss, 'P') AS winLoss
+			  , up.userID
+			  , up.weeknumber
+			  , fs.season
+			FROM
+				Users AS u
+				INNER JOIN UserPicks AS up ON u.userID = up.UserID
+				INNER JOIN FootballSeason AS fs ON up.weekNumber = fs.weekNumber
+			WHERE 
+				fs.season IN (SELECT season FROM ncaa_football.FootballSeason WHERE weekName = 'Bowl' AND endDate < '#dateFormat(now(),"yyyy-mm-dd")#')
+			GROUP BY
+				fs.season
+			  ,	up.winLoss
+			  , up.weeknumber
+			  , up.userID;
+						
+						
+			INSERT INTO temp2
+			SELECT
+				userID
+			  , season
+			  , CASE WHEN winloss = 'W' THEN SUM(record)
+					 ELSE 0
+				END AS win
+			  , CASE WHEN winloss = 'L' THEN SUM(record)
+					 ELSE 0
+				END AS loss
+			  , CASE WHEN winloss = 'T' THEN SUM(record)
+					 ELSE 0
+				END AS tie
+			  , CASE WHEN winloss = 'P' THEN SUM(record)
+					 ELSE 0
+				END AS pending
+			FROM
+				temp1
+			GROUP BY
+			    userID
+			  , season
+			  , winloss
+			ORDER BY
+				userID
+			  , season
+			  , winLoss DESC;
+				
+				
+				
+			SELECT
+				Users.userFullName
+			  , t.userID
+			  , t.season
+			  , SUM(win) AS win
+			  , SUM(loss) AS loss
+			  , SUM(tie) AS tie
+			  , SUM(pending) AS pending
+			  , SUM(win) + SUM(loss) + SUM(tie) AS totalGames
+			  , SUM(win) + SUM(loss) + SUM(tie) + SUM(pending) AS totalPickedGames
+			  , CONVERT((SUM(win)) / ( SUM(win) + SUM(loss)) * 100, decimal(18,2)) AS winPct
+			  , Users.isActive
+			FROM
+				temp2 AS t
+			LEFT OUTER JOIN Users
+			ON	Users.userID = t.userID
+			GROUP BY
+				Users.userFullName
+			  , t.userID
+			  , t.season
+			ORDER BY
+			    3 ASC
+			  , 10 DESC
+			  , 4 DESC
+			  , 9 DESC;
+			
+			DROP TABLE temp1;
+			DROP TABLE temp2;	
+		</cfquery>
+		
+		<cfreturn qryGetFinalRankingByYear>	
+	</cffunction>
 
 	<cffunction name="sendEmail" access="public" returntype="void">
 		<cfargument name="emailTo" type="string" required="true">

@@ -6,8 +6,10 @@
 </cfif>
 
 <cfparam name="url.msgID" default="">
-		
-	<h3>Message Board</h3>
+
+	<div class="alert alert-success" style="">
+		<h3>Message Board</h3>
+	</div>		
 	
 	<div class="container-fluid">
 	    <div class="row-fluid">

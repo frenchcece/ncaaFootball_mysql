@@ -6,15 +6,13 @@
 
 <cfinclude template="#application.appmap#/login/checkLogin.cfm">
 
-		
-
 <body>
-
 	<cfinclude template="header.cfm">
-    <div class="container" id="mainContainer">
-    	<h3>Rules</h3>
-		<P STYLE="margin-top: 0.08in"><BR><BR>
-		</P>
+
+		<div class="alert alert-success" style="">
+			<h3>Rules</h3>
+		</div>
+
 <OL>
 	<LI><P STYLE="margin-top: 0.08in"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><U>Number
 	of Games To Be Picked</U></FONT></FONT></P>
@@ -252,7 +250,6 @@
 	</OL>
 </OL>
     
-    </div>
 	
 	<cfinclude template="footer.cfm">
 

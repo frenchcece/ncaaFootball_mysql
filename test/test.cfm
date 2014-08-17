@@ -1,3 +1,14 @@
+	<cfinvoke component="#application.appmap#.cfc.footballDao" method="getCurrentWeekNumber" returnvariable="variables.qryGetCurrentWeek">
+		<cfinvokeargument name="gameDate" value="#now()#">
+	</cfinvoke>
+	
+<cfdump var="#variables.qryGetCurrentWeek#">	
+
+<cfdump var="#session#">	
+	<cfabort>
+
+
+
 <cfoutput>
     	<link rel="stylesheet" href="#application.appmap#/bootstrap/css/bootstrap.min.css"  type="text/css"/>
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/blitzer/jquery-ui.css" />

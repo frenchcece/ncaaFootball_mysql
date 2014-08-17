@@ -1,6 +1,7 @@
 <cfoutput>
-
-	<h3>My Games This Week</h3>
+		<div class="alert alert-success">
+			<h3>My Games This Week</h3>
+		</div>		
 	
 		<!--- form submitted --->
 		<cfif structKeyExists(form,"submitBtn")>
@@ -45,7 +46,7 @@
 				
 				<cfcatch type="any"><cfrethrow>
 					<!--- display error msg to user --->
-					<div class="alert alert-error offset1">
+					<div class="alert alert-error span11">
 			          <strong>Dang!</strong> Your picks for week #session.currentWeekName# have failed.  Please contact the webmaster with the list of picks you selected.  (click 'BACK' to go back to the form).
 			        </div>
 					<cfabort>
@@ -54,12 +55,12 @@
 
 			<cfif variables.warningMsg EQ "">
 				<!--- display success msg to user --->
-				<div class="alert alert-success span12">
+				<div class="alert alert-success span11">
 		          <strong>Success!</strong> Your picks for week #session.currentWeekName# have been saved.
 		        </div>
 			<cfelse>
 				<!--- display warning msg to user --->
-				<div class="alert alert-warning span12">
+				<div class="alert alert-warning span11">
 		          <strong>Warning!</strong> #variables.warningMsg#
 		        </div>
 			</cfif>
@@ -92,17 +93,17 @@
 		</cfquery>
 		
 		<cfif variables.qryGetGamesOfTheWeek.recordCount EQ 0>
-			<div class="alert alert-error span12">
+			<div class="alert alert-error span11">
 		    	<strong>No games have been found yet.</strong> If you think it's an error, please contact the webmaster.
 		    </div>
 		    <cfabort>
 		<cfelseif variables.qryGetGamesOfTheWeek.weekType EQ "regular">
 			<cfif variables.qryActualUserPicksOfTheWeek.recordCount LT application.settings.minimumPicksPerWeek>
-				<div class="alert span12">
+				<div class="alert span11">
 		            <strong>Warning!</strong>  You have picked only #variables.qryActualUserPicksOfTheWeek.recordCount# out of the minimum required #application.settings.minimumPicksPerWeek# picks for week #session.currentWeekName#.
 	            </div>
 	        <cfelse>
-	   			<div class="alert alert-info span12">
+	   			<div class="alert alert-info span11">
 		            <strong>Good job!</strong>  You have picked #variables.qryActualUserPicksOfTheWeek.recordCount# games for this week, which meets the minimum required #application.settings.minimumPicksPerWeek# picks.
 	            </div>
 			</cfif>
@@ -114,18 +115,18 @@
 			
 			<cfif variables.qryMininumNumberBowlsToPick.recordCount>
 				<cfif variables.qryActualUserPicksOfTheWeek.recordCount LT variables.qryMininumNumberBowlsToPick.mininumBowlsToPick>
-					<div class="alert span12">
+					<div class="alert span11">
 			            <strong>Warning!</strong>  You have picked only #variables.qryGetUserPicksOfTheWeek.recordCount# out of the minimum #application.settings.minimumPercentForBowls#% of the bowl games.
 							<br>You need to pick at least #variables.qryMininumNumberBowlsToPick.mininumBowlsToPick# out of #variables.qryMininumNumberBowlsToPick.totalNumberBowlGames# games.
 					</div>		
 				<cfelse>
-					<div class="alert alert-info span12">
+					<div class="alert alert-info span11">
 			            <strong>Good job!</strong>  You have picked #variables.qryGetUserPicksOfTheWeek.recordCount# bowl games.
 							<br>The minimum is #variables.qryMininumNumberBowlsToPick.mininumBowlsToPick# out of #variables.qryMininumNumberBowlsToPick.totalNumberBowlGames# games.
 					</div>		
 				</cfif>	
 			<cfelse>
-				<div class="alert span12">
+				<div class="alert span11">
 			    	<strong>Warning!</strong>  No bowl games have been found yet.
 			    </div>        
 			</cfif>

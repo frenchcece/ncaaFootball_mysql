@@ -12,10 +12,9 @@ padding: 10px;
 }
 </script>
 
-
       <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="alert alert-info">
-      	Welcome to my attempt of making our little game of football picks easier on us!	
+      <div class="alert alert-success">
+      	Welcome to my attempt of making our little game of football picks easier on us (especially Steve)!  This game is completely free and you can only win bragging rights so have fun!
 	  </div>
 	  
 	  <div class="hero-unit">
@@ -24,16 +23,16 @@ padding: 10px;
 				</div>	
 				<div class="row">
 					<div class="<cfif isBoolean(session.isLoggedIn) AND session.isLoggedIn>span7<cfelse>span10</cfif>">
-				        <p>This site is a beta version of the college football picking game. Let's use it as a starting point to create something more unique.
+				        <p>This site has started over a few years ago as a simple idea for our college football picking game. It started out of the desire to create something unique, fun and easy for our players to use.
 						I am very open to suggestions and ideas.  If you have ideas for new pages, reports, improvements on the existing pages, 
-						please don't hesitate.  I won't be offended.  Guaranteed or your money back!
+						please don't hesitate.  Post your ideas/comments on the message board. I won't be offended.  Guaranteed or your money back!
 						</p>
 				        <p><a class="btn btn-primary btn-large" href="rules.cfm">Learn more &raquo;</a></p>
 					</div>
 					<cfif isBoolean(session.isLoggedIn) AND session.isLoggedIn>
 					<div class="span3" style="padding: 0px; margin:0px;">
 						<div class="well" style=" background-color:#468847; color:white;">
-							<div><strong>Season 2012 Results:</strong></div>
+							<!--- <div><strong>Season 2012 Results:</strong></div>
 							<div>
 								<ol>
 									<li>Cedric Dupuy - Champion</li>
@@ -41,6 +40,16 @@ padding: 10px;
 									<li>Steve Campbell</li>
 									<li>Rebecca Dupuy</li>
 									<li>Lea Ann Slotkin</li>
+								</ol>
+							</div> --->
+							<div><strong>Season 2013 Results:</strong></div>
+							<div>
+								<ol>
+									<li><strong>Todd Shapiro 56.90 % - Champion</strong></li>
+									<li>Eric Farney 56.36 %</li>
+									<li>Steve Campbell 55.56 %</li>
+									<li>Jeff Fecht 55.21 %</li>
+									<li>Cedric Dupuy 54.26 %</li>
 								</ol>
 							</div>
 						</div>						
@@ -160,7 +169,7 @@ padding: 10px;
 				<cfif variables.standingsThisWeek.winPct EQ "">
 					<span class="label label-info">pending</span>
 				<cfelse>
-					<span class="label label-warning">#variables.standingsThisWeek.winPct# %</span>
+					<span class="label label-warning">#numberFormat(variables.standingsThisWeek.winPct,"99.99")# %</span>
 				</cfif>
 			  	</p>
 				<cfif (session.currentWeekNumber-1) GT 0>
@@ -174,7 +183,7 @@ padding: 10px;
 				<cfif variables.standingsLastWeek.winPct EQ "">
 					<span class="label label-info">pending</span>
 				<cfelse>
-					<span class="label label-warning">#variables.standingsLastWeek.winPct# %</span>
+					<span class="label label-warning">#numberFormat(variables.standingsLastWeek.winPct,"99.99")# %</span>
 				</cfif>
 				</p>
 				</cfif>
@@ -188,7 +197,7 @@ padding: 10px;
 				<cfif variables.standingsOverall.winPct EQ "">
 					<span class="label label-info">pending</span>
 				<cfelse>
-					<span class="label label-warning">#variables.standingsOverall.winPct# %</span>
+					<span class="label label-warning">#numberFormat(variables.standingsOverall.winPct,"99.99")# %</span>
 				</cfif>
 				</p>
 	          <p><a class="btn btn-primary" href="myStandings.cfm">View details &raquo;</a></p>

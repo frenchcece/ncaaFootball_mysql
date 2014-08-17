@@ -1,14 +1,13 @@
+
 <cfoutput>
    	<cfif variables.activeWeek NEQ -1>
+	<div class="alert alert-success">
+	<strong>All Games For  For <cfif variables.qryGetWeekInfoByWeekNumber.weekType EQ "regular">Week #variables.qryGetWeekInfoByWeekNumber.weekName#<cfelse>#variables.qryGetWeekInfoByWeekNumber.weekName# Season</cfif> [From #dateFormat(variables.qryGetWeekInfoByWeekNumber.startDate,"mm-dd-yyyy")# to #dateFormat(variables.qryGetWeekInfoByWeekNumber.endDate,"mm-dd-yyyy")#]</strong>
+	</div>
+
 	<div class="row">
    		<div class="span8">
 	    	<table class="table table-striped table-hover">
-	    	<thead>
-	    		<tr>
-					<th colspan="3">All Games For  For <cfif variables.qryGetWeekInfoByWeekNumber.weekType EQ "regular">Week #variables.qryGetWeekInfoByWeekNumber.weekName#<cfelse>#variables.qryGetWeekInfoByWeekNumber.weekName# Season</cfif></th>
-					<th colspan="6">From #dateFormat(variables.qryGetWeekInfoByWeekNumber.startDate,"mm-dd-yyyy")# to #dateFormat(variables.qryGetWeekInfoByWeekNumber.endDate,"mm-dd-yyyy")#</th>
-				</tr>
-			</thead>
 	    	<thead>
 	    		<tr>
 					<th>Game Date</th>

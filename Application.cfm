@@ -14,7 +14,12 @@
 <cfset application.settings.minimumPicksPerWeek = 5>
 <cfset application.settings.minimumPercentForBowls = 75>
 <cfset application.settings.newMessagePostTimeFlag = 2>	<!--- 2 days for the "new" flag on the message board --->
-<cfset application.seasonYear = year(now()) />
+
+<cfinvoke component="#application.appmap#.cfc.footballDao" method="validateSeasonYear" returnvariable="variables.seasonYear">
+	<cfinvokeargument name="seasonYear" value="#year(now())#">
+</cfinvoke>
+<cfset application.seasonYear =  variables.seasonYear/>
+
 
 <cfparam name="url.debug" default="false">
 <cfparam name="url.logout" default="">

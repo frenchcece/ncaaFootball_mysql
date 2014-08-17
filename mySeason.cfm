@@ -57,8 +57,9 @@
 	<cfinvoke component="#application.appmap#.cfc.footballDao" method="selectLeaguePlayers" returnvariable="variables.qryGetLeaguePlayers">
 	</cfinvoke>
 		
-		
-		<h3 class="offset1">My Season<cfif variables.currentUserID NEQ session.user.userID> - #variables.qryGetUserInfo.userFullName#</cfif></h3>
+		<div class="alert alert-success">
+			<h3>My Season<cfif variables.currentUserID NEQ session.user.userID> - #variables.qryGetUserInfo.userFullName#</cfif></h3>
+		</div>			
 		
 	    <div class="pagination pagination-centered">
 			<ul>
@@ -78,13 +79,13 @@
 			</ul>
 		
 			<div class="tab-content">
-				<div class="tab-pane active " id="tab1">
+				<div class="tab-pane active" id="tab1">
 					<cfinclude template="#application.appmap#/view/season/myPicks.cfm">
 				</div>
-				<div class="tab-pane " id="tab2">
+				<div class="tab-pane" id="tab2">
 					<cfinclude template="#application.appmap#/view/season/leaguePicks.cfm">
 				</div>
-				<div class="tab-pane " id="tab3">
+				<div class="tab-pane" id="tab3">
 					<cfinclude template="#application.appmap#/view/season/allGames.cfm">
 				</div>
 			</div>

@@ -18,11 +18,6 @@
 	<cfinvokeargument name="weekNumber" value="-1">
 </cfinvoke>		
 
-<!--- get the results for the user group by week --->
-<cfinvoke component="#application.appmap#.cfc.footballDao" method="getStandingsGroupByWeekNumber" returnvariable="variables.standingsGroupByWeekNumber">
-	<cfinvokeargument name="userID" value="#variables.currentUserID#">
-</cfinvoke>
-
 <cfinclude template="#application.appmap#/view/standings/standings.cfm">
 
 <cfinclude template="footer.cfm">

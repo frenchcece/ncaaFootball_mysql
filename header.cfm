@@ -22,6 +22,8 @@
 		<link rel="stylesheet" href="#application.appmap#/bootstrap/css/bootstrap-responsive.min.css"  type="text/css" rel="stylesheet"/>
 		<link rel="stylesheet" href="#application.appmap#/css/main.css"  type="text/css"/><!--- this css is used to overwrite some of bootstrap css attributes --->
 
+		<link rel="shortcut icon" href="#application.appmap#/images/football.ico">
+		
 	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	    <!--[if lt IE 9]>
 	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -53,10 +55,17 @@
 				<li class="dropdown">
 					<a href="##" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-                        <li><a href="index.cfm?seasonYear=2012">Season 2012</a></li>
-                        <li><a href="index.cfm?seasonYear=2013">Season 2013</a></li>
-						<li class="divider"></li>
+						<li><a href="myRankings.cfm">League Rankings</a></li>
+						<li class="dropdown-submenu">
+						<a tabindex="-1" href="##">Seasons</a>
+    						<ul class="dropdown-menu">
+		                        <li><a href="index.cfm?seasonYear=2012">Season 2012</a></li>
+		                        <li><a href="index.cfm?seasonYear=2013">Season 2013</a></li>
+		                        <li><a href="index.cfm?seasonYear=2014">Season 2014</a></li>
+							</ul>
+					    </li>
 						<cfif session.user.isAdmin>
+						<li class="divider"></li>
 						<li><a href="admin.cfm">Admin</a></li>
 						<li><a href="#application.appmap#/scheduledTasks/rss/gameScores.cfm">Refresh Scores</a></li>
 						<li><a href="#application.appmap#/scheduledTasks/rss/gamesOdds.cfm">Refresh Odds</a></li>
