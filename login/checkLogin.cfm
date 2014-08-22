@@ -26,7 +26,7 @@
 		</cfinvoke>
 		
 	<cfelse>
-		<cfset session.isLoggedIn = false>
+		<cfset session.isLoggedIn = "">
 		<cfset variables.loginFailure = true>
 	</cfif>
 </cfif>

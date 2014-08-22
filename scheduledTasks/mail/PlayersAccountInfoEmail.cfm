@@ -1,12 +1,15 @@
+<!--- this page sends an email to all the players where the field sendAccountInfoEmail in table Users is set to 1.
+(It will set it back to 0 at the end of the page) --->
+
 <!--- get the list of active players email address --->
 <cfinvoke component="#application.appmap#.cfc.footballDao" method="selectLeaguePlayers" returnvariable="variables.qryLeaguePlayers" />
-<cfset test = 0>
+<!--- <cfset flag = 0> --->
 <cfloop query="variables.qryLeaguePlayers">
-	<cfif variables.qryLeaguePlayers.sendAccountInfoEmail and test eq 0>
-		<cfset test =1>
+	<cfif variables.qryLeaguePlayers.sendAccountInfoEmail EQ 1>	<!---  AND flag EQ 0 --->
+		<!--- <cfset flag = 1> --->
 		<cfset variables.emailTo = variables.qryLeaguePlayers.userEmail>
 		<!--- testing only --->
-		<cfset variables.emailTo = "frenchcece@gmail.com">	
+		<!--- <cfset variables.emailTo = "frenchcece@gmail.com">	 --->
 	
 		<cfset variables.emailSubject = "College Footbal Pick Game - Your Account">
 		<!--- build the email content --->
@@ -29,7 +32,8 @@
 		</p>
 		<p>
 			If you have any questions, you can contact me at frenchcece@gmail.com.<br>
-			The season starts on August 28th.  Good luck to all!
+			The season starts on August 28th.  You will receive a weekly email as a reminder to make your picks.<br><br>
+			Good luck to all!<br>
 			Cedric
 		</p>
 		</cfoutput>	
@@ -43,6 +47,16 @@
 			<cfinvokeargument name="emailMsg" value="#variables.emailMsg#">
 		</cfinvoke>	
 		
-		<cfoutput>Email sent to #variables.emailTo# @ #now()#<br></cfoutput>
+		<cfquery datasource="#application.dsn#" name="qryUpdateEmailStatus">
+			UPDATE
+				ncaa_football.Users 
+			SET 
+				sendaccountinfoemail = 0
+			WHERE 
+				isActive = 1 
+				AND userid = #variables.qryLeaguePlayers.userID#
+		</cfquery>
+		
+		<cfoutput>Email sent to #variables.qryLeaguePlayers.userFullName# #variables.emailTo# @ #now()#<br></cfoutput>
 	</cfif>
 </cfloop>				

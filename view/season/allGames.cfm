@@ -26,9 +26,10 @@
 				<cfloop query="variables.qryGetGamesOfTheWeek">
 					<tr>
 						<td>#dateFormat(variables.qryGetGamesOfTheWeek.gameDate,"yyyy-mm-dd")#</td>
-						<td>
-							<a id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID1#" data-original-title="<strong>#variables.qryGetGamesOfTheWeek.team1Name#</strong>"><i class="icon-info-sign"></i></a>
-							#variables.qryGetGamesOfTheWeek.team1Name#
+						<td nowrap="nowrap">
+							<a style="float:left; margin-right:3px;" id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID1#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID1)#'></div><strong>#variables.qryGetGamesOfTheWeek.team1Name# #variables.qryGetGamesOfTheWeek.teamNickname1#</strong>"><i class="icon-info-sign"></i></a>
+							<div class="logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID1)#"></div>
+							#variables.qryGetGamesOfTheWeek.team1Name# <cfif variables.qryGetGamesOfTheWeek.team1Rank GT 0>(#variables.qryGetGamesOfTheWeek.team1Rank#)</cfif>
 						</td>
 						<td>#variables.qryGetGamesOfTheWeek.team1FinalScore#</td>
 						<td>
@@ -41,9 +42,10 @@
 						</td>
 						<td>@</td>
 						<td>#variables.qryGetGamesOfTheWeek.team2FinalScore#</td>
-						<td>
-							<a id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID2#" data-original-title="<strong>#variables.qryGetGamesOfTheWeek.team2Name#</strong>"><i class="icon-info-sign"></i></a>
-							#variables.qryGetGamesOfTheWeek.team2Name#
+						<td nowrap="nowrap">
+							<a style="float:left; margin-right:3px;" id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID2#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#'></div><strong>#variables.qryGetGamesOfTheWeek.team2Name# #variables.qryGetGamesOfTheWeek.teamNickname2#</strong>"><i class="icon-info-sign"></i></a>
+							<div class="logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#"></div>
+							#variables.qryGetGamesOfTheWeek.team2Name# <cfif variables.qryGetGamesOfTheWeek.team2Rank GT 0>(#variables.qryGetGamesOfTheWeek.team2Rank#)</cfif>
 						</td>
 						<td><cfif variables.qryGetGamesOfTheWeek.team2Spread GT 0>+</cfif>#numberFormat(variables.qryGetGamesOfTheWeek.team2Spread,"999.9")#</td>
 						<td>

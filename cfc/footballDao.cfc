@@ -54,10 +54,18 @@
 			  , fg.dateupdated
 			  , fg.WeekNumber
 			  , fg.team1Name
+			  , ft1.espnTeamID AS logoID1
+			  , ft1.espnTeamNickName AS teamNickname1
+			  , at1.rank AS team1Rank
+			  , at1.prevRank AS team1PrevRank
 			  , fg.teamID1
 			  , fg.team1Draw
 			  , fg.team1Spread
 			  , fg.team2Name
+			  , ft2.espnTeamID AS logoID2
+			  , ft2.espnTeamNickName AS teamNickname2
+			  , at2.rank AS team2Rank
+			  , at2.prevRank AS team2PrevRank
 			  , fg.teamID2
 			  , fg.team2Draw
 			  , fg.team2Spread
@@ -73,6 +81,22 @@
 			INNER JOIN 	
 				FootballSeason AS fs
 				ON fs.weekNumber = fg.weekNumber
+			INNER JOIN
+				FootballTeams AS ft1
+				ON ft1.teamID = fg.teamID1
+			INNER JOIN
+				FootballTeams AS ft2
+				ON ft2.teamID = fg.teamID2
+			LEFT OUTER JOIN
+				ApTop25Ranking AS at1
+				ON at1.weekName = fs.weekName
+				AND at1.season = fs.season
+				AND at1.espnTeamID = ft1.espnTeamID	
+			LEFT OUTER JOIN
+				ApTop25Ranking AS at2
+				ON at2.weekName = fs.weekName
+				AND at2.season = fs.season
+				AND at2.espnTeamID = ft2.espnTeamID	
 			WHERE
 				fs.season = <cfqueryparam cfsqltype="cf_sql_integer" value="#session.currentSeasonYear#">	
 			<cfif arguments.weekNumber GT 0>
@@ -452,7 +476,7 @@
 				
 			SELECT
 				Users.userFullName
-			  , t.userID
+			  , Users.userID
 			  , SUM(win) AS win
 			  , SUM(loss) AS loss
 			  , SUM(tie) AS tie
@@ -467,17 +491,20 @@
 															   + SUM(tie) ) * 100, decimal(18,2))
 				AS winPct */
 			FROM
-				temp2 AS t
-			LEFT OUTER JOIN Users
-			ON	Users.userID = t.userID
+				Users
+			LEFT OUTER JOIN temp2 AS t
+				ON	Users.userID = t.userID
+			WHERE
+				Users.isActive = 1			
 			GROUP BY
 				Users.userFullName
-			  , t.userID
+			  , Users.userID
 			ORDER BY
 				9 DESC
 			  , 3 DESC
-			  , 8 DESC;
-			
+			  , 8 DESC
+			  , 1 ASC;
+
 			DROP TABLE temp1;
 			DROP TABLE temp2;	
 		
@@ -568,19 +595,18 @@
 			  , SUM(win) + SUM(loss) + SUM(tie) AS totalGames
 			  , SUM(win) + SUM(loss) + SUM(tie) + SUM(pending) AS totalPickedGames
 			  , CONVERT(( SUM(win)) / ( SUM(win) + SUM(loss)) * 100, decimal(18,2)) AS winPct
-			  <!--- , CONVERT(( SUM(win) + CASE WHEN SUM(tie) > 0
+			  /* , CONVERT(( SUM(win) + CASE WHEN SUM(tie) > 0
 														  THEN SUM(tie) / 2.00
 														  ELSE 0.00
 													 END ) / ( SUM(win) + SUM(loss)
-															   + SUM(tie) ) * 100, decimal(18,2)) AS winPct --->
+															   + SUM(tie) ) * 100, decimal(18,2)) AS winPct */
 			FROM
-				temp2 AS t
-			LEFT OUTER JOIN Users
+				Users
+			INNER JOIN temp2 AS t
 				ON	Users.userID = t.userID
 			LEFT OUTER JOIN FootballSeason AS fs
 				ON fs.weekNumber = t.weekNumber
-			WHERE
-				fs.season = #session.currentSeasonYear#	
+				AND fs.season = #session.currentSeasonYear#	
 			GROUP BY
 				Users.userFullName
 			  , t.userID
@@ -642,6 +668,8 @@
 			    fg.weeknumber,
 			    'Away' AS location,
 			    ft1.teamID AS teamID,
+			    ft1.espnTeamID AS logoID,
+			    ft1.espnTeamNickName AS teamNickname,
 			    fg.team1name AS teamName,
 			    fg.team1spread AS teamSpread,
 			    fg.team1winloss AS resultAgainstSpread,
@@ -668,6 +696,8 @@
 			    fg.weeknumber,
 			    'Home' AS location,
 			    ft2.teamID AS teamID,
+			    ft2.espnTeamID AS logoID,
+			    ft2.espnTeamNickName AS teamNickname,
 			    fg.team2name AS teamName,
 			    fg.team2spread AS teamSpread,
 			    fg.team2winloss AS resultAgainstSpread,
@@ -741,6 +771,27 @@
 		</cfsavecontent>
 	
 		<cfreturn local.htmlTable>
+	</cffunction>
+
+	<cffunction name="getTeamApTop25Ranking" access="remote" returntype="query">
+		<cfargument name="espnTeamID" type="numeric" required="true">
+		<cfargument name="weekName" type="string" required="true">
+		<cfargument name="season" type="numeric" required="true">
+		
+		
+		<cfquery name="getTeamRanking" datasource="#application.dsn#">
+			SELECT
+				rank,
+				prevRank
+			FROM	
+				ApTop25Ranking
+			WHERE
+				espnTeamID = #arguments.espnTeamID#	
+				AND weekName = '#arguments.weekName#'
+				AND season = #arguments.season#
+		</cfquery>
+		
+		<cfreturn getTeamRanking>
 	</cffunction>
 
 	<cffunction name="getFinalRankingByYear" returntype="query" output="false">

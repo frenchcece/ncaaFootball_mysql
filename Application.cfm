@@ -38,7 +38,7 @@
 
 <cfif url.logout EQ "true">
 	<cfset structClear(session)>
-	<cfset session.isLoggedIn = false>
+	<cfset session.isLoggedIn = "">
 </cfif>
 
 <cfparam name="session.today" default="#now()#">

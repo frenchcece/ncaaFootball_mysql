@@ -14,6 +14,8 @@
 		<h5>Welcome, <cfoutput>#session.user.userFullName#</cfoutput></h5>
 	</span>
 	<span class="inline" style="text-align:right;">
-	<cfif structKeyExists(session,"isLoggedIn") AND session.isLoggedIn EQ "true">&nbsp;&nbsp;&nbsp;<a class="btn btn-small" href="index.cfm?logout=true">Logout</a></li></cfif>
+		<cfif structKeyExists(session,"isLoggedIn") AND session.isLoggedIn EQ "true">
+			&nbsp;&nbsp;&nbsp;<a class="btn btn-small" href="index.cfm?logout=true">Logout</a></li>
+		</cfif>
 	</span>	
 </cfif>

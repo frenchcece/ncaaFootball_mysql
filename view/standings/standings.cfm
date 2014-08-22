@@ -42,6 +42,7 @@
 				<strong>Results By Week</strong>
 				</div>
 				
+				<div style="font-size:12px;">Click on a player name to view more details</div>
 				<div class="accordion" id="accordion1">
 				<cfloop query="variables.standingsOverall">
 
@@ -74,7 +75,7 @@
 								<cfif qryResultForThisUserWeek.winPct GT "">
 									<span class="label label-warning">#numberFormat(qryResultForThisUserWeek.winPct,"99.99")# %</span>
 								<cfelse>
-									<span class="label label-info">pending</span>
+									<span class="label label-info">#variables.standingsOverall.pending# pending</span>
 								</cfif>
 							</div>
 							</a>
@@ -106,6 +107,7 @@
 								</tr>
 							</thead>		
 							<tbody>
+								<cfif variables.standingsGroupByWeekNumber.recordCount>
 								<cfloop query="variables.standingsGroupByWeekNumber">
 									<tr>
 										<td><a href="mySeason.cfm?week=#variables.standingsGroupByWeekNumber.weekNumber#&userid=#variables.standingsGroupByWeekNumber.userID#">#variables.standingsGroupByWeekNumber.weekName#</a></td>
@@ -122,13 +124,18 @@
 										</td>
 									</tr>	
 								</cfloop>
+								<cfelse>
+									<tr>
+										<td colspan="6">No Record Found</td>
+									</tr>
+								</cfif>
 							</tbody>
 							</table>								
 						</div>	
 					</div>
+					</div>
 				</cfloop>
 				</div>	
-				<div style="font-size:10px;">Click on a player name to view more details</div>
 			</div>
 		</div>	
 </cfoutput>

@@ -21,7 +21,8 @@
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/blitzer/jquery-ui.css" />
 		<link rel="stylesheet" href="#application.appmap#/bootstrap/css/bootstrap-responsive.min.css"  type="text/css" rel="stylesheet"/>
 		<link rel="stylesheet" href="#application.appmap#/css/main.css"  type="text/css"/><!--- this css is used to overwrite some of bootstrap css attributes --->
-
+		<link rel="stylesheet" href="#application.appmap#/css/ncaa_logo.css" type="text/css" rel="stylesheet"/>
+		
 		<link rel="shortcut icon" href="#application.appmap#/images/football.ico">
 		
 	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -102,13 +103,20 @@
 	
 <!--- <cfdump var="#url#">	
 <cfdump var="#session#">	 --->
-<cfif (session.isLoggedIn NEQ true OR session.cfid EQ "")  AND url.logout NEQ true>
-	<div class="container" id="mainContainer">
-		<div class="alert alert-error">
-			<strong>Error!</strong> Your session has timed out.  Please log back in.
+<cfif session.isLoggedIn NEQ "true">
+	<cfif cgi.script_name NEQ "/ncaaFootball/index.cfm">
+		<cfset session.isLoggedIn = "false">
+		<cflocation url="index.cfm" addtoken="true">
+	</cfif>
+
+	<cfif session.isLoggedIn EQ "false">
+		<div class="container" id="mainContainer">
+			<div class="alert alert-error">
+				<strong>Error!</strong> Your session has timed out.  Please log back in.
+			</div>
 		</div>
-	</div>
-	<cfinclude template="footer.cfm">
-	<cfabort>
+		<cfinclude template="footer.cfm">
+		<cfabort>
+	</cfif>
 </cfif>	
 

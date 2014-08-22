@@ -12,12 +12,19 @@ padding: 10px;
 }
 </script>
 
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="alert alert-success">
-      	Welcome to my attempt of making our little game of football picks easier on us (especially Steve)!  This game is completely free and you can only win bragging rights so have fun!
-	  </div>
-	  
-	  <div class="hero-unit">
+		<cfif IsDefined("variables.loginFailure") AND variables.loginFailure EQ "true">
+			<div class="alert alert-error">
+		    <h4>Error!</h4>
+		    Oh snap!  Login failed.  Try again.
+		    </div>
+		</cfif>
+	
+		<!-- Main hero unit for a primary marketing message or call to action -->
+		<div class="alert alert-success">
+			Welcome to my attempt of making our little game of football picks easier on us (especially Steve)!  This game is completely free and you can only win bragging rights so have fun!
+		</div>
+		
+		<div class="hero-unit">
 				<div class="span10" style="margin-bottom:10px;">
 					<h1>College Football Picking Game</h1>
 				</div>	
@@ -58,12 +65,6 @@ padding: 10px;
 				</div>
       </div>
 
-	<cfif IsDefined("variables.loginFailure") AND variables.loginFailure EQ "true">
-		<div class="alert alert-error">
-	    <h4>Error!</h4>
-	    Oh snap!  Login failed.  Try again.
-	    </div>
-	</cfif>
 		
       <cfif isBoolean(session.isLoggedIn) AND session.isLoggedIn EQ true>
 		

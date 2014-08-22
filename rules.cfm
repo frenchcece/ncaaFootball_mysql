@@ -7,7 +7,6 @@
 <cfinclude template="#application.appmap#/login/checkLogin.cfm">
 
 <body>
-	<cfinclude template="header.cfm">
 
 		<div class="alert alert-success" style="">
 			<h3>Rules</h3>

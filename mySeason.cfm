@@ -73,16 +73,16 @@
 
 		<div class="tabbable offset2 span8"> <!-- Only required for left/right tabs -->
 	    	<ul class="nav nav-tabs" id="myTabs">    
-				<li class="active"><a href="##tab1" data-toggle="tab"><cfif variables.currentUserID NEQ session.user.userID> - #variables.qryGetUserInfo.userFullName#<cfelse>My</cfif> Picks</a></li>
-				<li><a href="##tab2" data-toggle="tab">League Picks</a></li>
+				<li><a href="##tab1" data-toggle="tab"><cfif variables.currentUserID NEQ session.user.userID> - #variables.qryGetUserInfo.userFullName#<cfelse>My</cfif> Picks</a></li>
+				<li class="active"><a href="##tab2" data-toggle="tab">League Picks</a></li>
 				<li><a href="##tab3" data-toggle="tab">All Games</a></li>
 			</ul>
 		
 			<div class="tab-content">
-				<div class="tab-pane active" id="tab1">
+				<div class="tab-pane" id="tab1">
 					<cfinclude template="#application.appmap#/view/season/myPicks.cfm">
 				</div>
-				<div class="tab-pane" id="tab2">
+				<div class="tab-pane active" id="tab2">
 					<cfinclude template="#application.appmap#/view/season/leaguePicks.cfm">
 				</div>
 				<div class="tab-pane" id="tab3">
