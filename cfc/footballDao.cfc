@@ -480,16 +480,10 @@
 			  , SUM(win) AS win
 			  , SUM(loss) AS loss
 			  , SUM(tie) AS tie
-			  , SUM(pending) AS pending
+			  , COALESCE(SUM(pending), 0) AS pending
 			  , SUM(win) + SUM(loss) + SUM(tie) AS totalGames
 			  , SUM(win) + SUM(loss) + SUM(tie) + SUM(pending) AS totalPickedGames
-			  , CONVERT((SUM(win)) / ( SUM(win) + SUM(loss)) * 100, decimal(18,2)) AS winPct
-			  /* , CONVERT((SUM(win) + CASE WHEN SUM(tie) > 0
-														  THEN SUM(tie) / 2.00
-														  ELSE 0.00
-													 END ) / ( SUM(win) + SUM(loss)
-															   + SUM(tie) ) * 100, decimal(18,2))
-				AS winPct */
+			  , COALESCE(CONVERT((SUM(win)) / ( SUM(win) + SUM(loss)) * 100, decimal(18,2)), 0) AS winPct
 			FROM
 				Users
 			LEFT OUTER JOIN temp2 AS t
@@ -585,34 +579,30 @@
 			  
 			SELECT
 				Users.userFullName
-			  , t.userID
+			  , Users.userID
 			  , t.weekNumber
 			  , fs.weekName
 			  , SUM(win) AS win
 			  , SUM(loss) AS loss
 			  , SUM(tie) AS tie
-			  , SUM(pending) AS pending
+			  , COALESCE(SUM(pending), 0) AS pending
 			  , SUM(win) + SUM(loss) + SUM(tie) AS totalGames
 			  , SUM(win) + SUM(loss) + SUM(tie) + SUM(pending) AS totalPickedGames
-			  , CONVERT(( SUM(win)) / ( SUM(win) + SUM(loss)) * 100, decimal(18,2)) AS winPct
-			  /* , CONVERT(( SUM(win) + CASE WHEN SUM(tie) > 0
-														  THEN SUM(tie) / 2.00
-														  ELSE 0.00
-													 END ) / ( SUM(win) + SUM(loss)
-															   + SUM(tie) ) * 100, decimal(18,2)) AS winPct */
+			  , COALESCE(CONVERT(( SUM(win)) / ( SUM(win) + SUM(loss)) * 100, decimal(18,2)), 0) AS winPct
 			FROM
 				Users
-			INNER JOIN temp2 AS t
+			LEFT OUTER JOIN temp2 AS t
 				ON	Users.userID = t.userID
 			LEFT OUTER JOIN FootballSeason AS fs
 				ON fs.weekNumber = t.weekNumber
 				AND fs.season = #session.currentSeasonYear#	
 			GROUP BY
 				Users.userFullName
-			  , t.userID
+			  , Users.userID
 			  , t.weekNumber
 			ORDER BY
-				t.weekNumber;
+				Users.userID
+			  , t.weekNumber;
 			  
 			  
 			DROP TABLE temp1;
@@ -688,7 +678,7 @@
 			    	INNER JOIN
 			    FootballSeason as fs ON fs.weekNumber = fg.weekNumber
 			where
-				fs.season = #session.currentSeasonYear#	
+				fs.season = #session.currentSeasonYear#
 			    AND ft1.teamID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.teamID#">
 			    AND fg.team1finalscore IS NOT NULL AND fg.team2finalscore IS NOT NULL
 			union all 
@@ -733,44 +723,61 @@
 		<cfreturn SerializeJSON(variables.qryTeamStats,false)>
 	</cffunction>
 
-	<cffunction name="getTeamStatsHtmlTable" access="remote" returntype="String" output="true">
+	<cffunction name="getTeamStatsHtmlTable" access="remote" returntype="string" output="true">
 		<cfargument name="teamID" type="numeric" required="true">
 		
 		<cfset variables.qryTeamStats = getTeamStats(arguments.teamID)>
 	
 		<cfsavecontent variable="local.htmlTable">
+			<cfif variables.qryTeamStats.recordCount>
 			<cfoutput>
-			<table class='table table-striped table-hover table-condensed'>
-				<thead><tr><th>Week</th><th>Location</th><th>Team</th><th>Score</th><th>Opponent</th><th>Score</th><th>Team<br>Spread</th><th>Against<br>Spread</th><th>No<br>Spread</th></tr></thead>
-				<tbody>
-				<cfloop query="variables.qryTeamStats">
-				<tr>
-					<td>#variables.qryTeamStats.weekNumber#</td>
-					<td>#variables.qryTeamStats.location#</td>
-					<td nowrap="nowrap"><strong>#variables.qryTeamStats.teamName#</strong></td>
-					<td>#variables.qryTeamStats.teamScore#</td>
-					<td nowrap="nowrap">#variables.qryTeamStats.oponent#</td>
-					<td>#variables.qryTeamStats.oponentScore#</td>
-					<td><cfif variables.qryTeamStats.teamSpread GT 0>+</cfif>#variables.qryTeamStats.teamSpread#</td>
-					<cfswitch expression="#variables.qryTeamStats.resultAgainstSpread#">
-						<cfcase value="W"><td><span class='label label-success'>win</span></td></cfcase>
-						<cfcase value="L"><td><span class='label label-important'>loss</span></td></cfcase>
-						<cfcase value="T"><td><span class='label label-inverse'>tie</span></td></cfcase>
-						<cfcase value="P"><td><span class='label label-info'>pending</span></td></cfcase>
-					</cfswitch>	
-					<cfswitch expression="#variables.qryTeamStats.resultNoSpread#">
-						<cfcase value="W"><td><span class='label label-success'>win</span></td></cfcase>
-						<cfcase value="L"><td><span class='label label-important'>loss</span></td></cfcase>
-						<cfcase value="T"><td><span class='label label-inverse'>tie</span></td></cfcase>
-						<cfcase value="P"><td><span class='label label-info'>pending</span></td></cfcase>
-					</cfswitch>
-				</tr>
-				</cfloop>	
-			</table>
-			</cfoutput>				
+				<ul id='myTab' class='nav nav-tabs'>
+					<li class='active'><a href='##week' data-toggle='tab'>Week Results</a></li>
+					<li class=''><a href='##ranking' data-toggle='tab'>Rankings</a></li>
+	            </ul>
+	            <div id='myTabContent' class='tab-content'>
+					<div class='tab-pane fade active in' id='week'>
+			  			<table class='table table-striped table-hover table-condensed'>
+							<thead><tr><th>Week</th><th>Location</th><th>Team</th><th>Score</th><th>Opponent</th><th>Score</th><th>Team<br>Spread</th><th>Against<br>Spread</th><th>No<br>Spread</th></tr></thead>
+							<tbody>
+							<cfloop query='variables.qryTeamStats'>
+							<tr>
+								<td>#variables.qryTeamStats.weekNumber#</td>
+								<td>#variables.qryTeamStats.location#</td>
+								<td nowrap='nowrap'><strong>#variables.qryTeamStats.teamName#</strong></td>
+								<td>#variables.qryTeamStats.teamScore#</td>
+								<td nowrap='nowrap'>#variables.qryTeamStats.oponent#</td>
+								<td>#variables.qryTeamStats.oponentScore#</td>
+								<td><cfif variables.qryTeamStats.teamSpread GT 0>+</cfif>#variables.qryTeamStats.teamSpread#</td>
+								<cfswitch expression='#variables.qryTeamStats.resultAgainstSpread#'>
+									<cfcase value='W'><td><span class='label label-success'>win</span></td></cfcase>
+									<cfcase value='L'><td><span class='label label-important'>loss</span></td></cfcase>
+									<cfcase value='T'><td><span class='label label-inverse'>tie</span></td></cfcase>
+									<cfcase value='P'><td><span class='label label-info'>pending</span></td></cfcase>
+								</cfswitch>	
+								<cfswitch expression='#variables.qryTeamStats.resultNoSpread#'>
+									<cfcase value='W'><td><span class='label label-success'>win</span></td></cfcase>
+									<cfcase value='L'><td><span class='label label-important'>loss</span></td></cfcase>
+									<cfcase value='T'><td><span class='label label-inverse'>tie</span></td></cfcase>
+									<cfcase value='P'><td><span class='label label-info'>pending</span></td></cfcase>
+								</cfswitch>
+							</tr>
+							</cfloop>
+							</tbody>	
+						</table>
+					</div>
+					<div class='tab-pane fade' id='ranking'>
+						<p><i class='icon-wrench'></i>Under Construction</p>
+					</div>
+				</div>
+
+			</cfoutput>
+			<cfelse>
+			No Record Found.			
+			</cfif>
 		</cfsavecontent>
 	
-		<cfreturn local.htmlTable>
+		<cfreturn HTMLEditFormat(local.htmlTable)>
 	</cffunction>
 
 	<cffunction name="getTeamApTop25Ranking" access="remote" returntype="query">
@@ -782,13 +789,20 @@
 		<cfquery name="getTeamRanking" datasource="#application.dsn#">
 			SELECT
 				rank,
-				prevRank
+				prevRank,
+				weekName,
+				Season
 			FROM	
 				ApTop25Ranking
 			WHERE
-				espnTeamID = #arguments.espnTeamID#	
+				espnTeamID = #arguments.espnTeamID#
+				<cfif arguments.weekName GT "">
 				AND weekName = '#arguments.weekName#'
+				</cfif>	
 				AND season = #arguments.season#
+			ORDER BY
+				season,
+				weekName	
 		</cfquery>
 		
 		<cfreturn getTeamRanking>

@@ -1,10 +1,12 @@
-	<cfinvoke component="#application.appmap#.cfc.footballDao" method="getCurrentWeekNumber" returnvariable="variables.qryGetCurrentWeek">
-		<cfinvokeargument name="gameDate" value="#now()#">
+	<cfinvoke component="#application.appmap#.cfc.footballDao" method="getTeamStatsHtmlTable" returnvariable="variables.stat">
+		<cfinvokeargument name="teamid" value="#52#">
 	</cfinvoke>
 	
-<cfdump var="#variables.qryGetCurrentWeek#">	
+<cfoutput>
+#variables.stat#
+</cfoutput>
 
-<cfdump var="#session#">	
+
 	<cfabort>
 
 

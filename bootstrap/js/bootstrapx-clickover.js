@@ -29,7 +29,7 @@
 
       // choose random attrs instead of timestamp ones
       this.attr.me = ((Math.random() * 10) + "").replace(/\D/g, '');
-      this.attr.click_event_ns = "click." + this.attr.me;
+      this.attr.click_event_ns = "click." + this.attr.me + " touchstart." + this.attr.me;
 
       if (!options) options = {};
 
@@ -54,8 +54,8 @@
       }
 
       // set popover's dim's
-      this.options.width  && this.tip().find('.popover-inner').width(  this.options.width  );
-      this.options.height && this.tip().find('.popover-inner').height( this.options.height );
+      this.options.width  && this.tip().width(  this.options.width  );
+      this.options.height && this.tip().height( this.options.height );
 
       // set popover's tip 'id' for greater control of rendering or css rules
       this.options.tip_id     && this.tip().attr('id', this.options.tip_id );
@@ -63,8 +63,8 @@
       // add a custom class
       this.options.class_name && this.tip().addClass(this.options.class_name);
 
-	  // we could override this to provide show and hide hooks 
-      this.toggle();
+      // we could override this to provide show and hide hooks 
+      this[ this.isShown() ? 'hide' : 'show' ]();
 
       // if shown add global click closer
       if ( this.isShown() ) {
@@ -205,4 +205,5 @@
   })
 
 }( window.jQuery );
+
 

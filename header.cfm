@@ -33,6 +33,8 @@
 		<script type="text/javascript" src="#application.appmap#/js/main.js"></script>
  	</head>
 </cfoutput>
+	<cfobject component="#application.appmap#.cfc.footballDao" name="footballDaoObj" />
+
 	<cfinvoke component="#application.appmap#.cfc.messageDao" method="countAllNewMessages" returnvariable="variables.countAllMessagesStr"></cfinvoke>
 	<cfoutput>
     <div class="navbar navbar-inverse navbar-fixed-top">

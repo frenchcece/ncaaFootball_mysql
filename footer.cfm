@@ -16,26 +16,31 @@
     <script type="text/javascript" src="#application.appmap#/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="#application.appmap#/bootstrap/js/bootstrap-tooltip.js"></script>
     <script type="text/javascript" src="#application.appmap#/bootstrap/js/bootstrap-popover.js"></script>
+    <script type="text/javascript" src="#application.appmap#/bootstrap/js/bootstrapx-clickover.js"></script>
     <script type="text/javascript" src="#application.appmap#/bootstrap/js/jqBootstrapValidation.js"></script>
 
 	<cfset variables.popoverTemplate = '<div class="popover custom-popover-class span6"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'>
-	<script>
 
+	<script>
+	//$(function() { $('[rel="clickover"]').clickover({'placement':'top'}}); })
+		
 	$(document).ready(function () 
 	{  
     	$("[rel=tooltip]").tooltip({'placement':'top'});  
-    	
-		$("[rel=popover]").popover({
+
+$("[rel=clickover]").clickover({'placement':'top'});  
+
+		/*$("[rel=popover]").popover({
 									'placement':'top',
 									'trigger':'click',
 									'template':'#variables.popoverTemplate#',
 									'html':'true'
 									}).click(get_data_for_popover_and_display).mouseleave(function(e){
 									    var ref = $(this);
-										ref.popover('destroy');});
+										ref.popover('destroy');});*/
  	});
  	
- 	get_data_for_popover_and_display = function() {
+ 	/* get_data_for_popover_and_display = function() {
  		var el = $(this);
 	    var _data = el.attr('teamid');
 	    $.ajax({
@@ -44,11 +49,11 @@
 	         dataType: 'html',
 	         success: function(data) {
 	         	var decoded = $('<div/>').html(data).text();
-	             el.attr('data-content', decoded);
-	             el.popover('show');
+	            el.attr('data-content', decoded);
+	            el.popover('show');
 	         }
     	});
-	}
+	} */
 	
 	$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
  	

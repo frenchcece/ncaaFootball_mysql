@@ -5,6 +5,10 @@
 	<cfsetting showdebugoutput="true" />
 </cfif>
 
+<cfparam name="variables.tab" default="2">
+<cfif IsDefined("url.tab") AND url.tab GT "">
+	<cfset variables.tab = url.tab>
+</cfif>
 
 <cfparam name="variables.currentUserID" default="#session.user.userID#">
 <cfif IsDefined("url.userID") AND url.userID GT "">
@@ -56,12 +60,12 @@
 	<!--- get the list of league's players --->
 	<cfinvoke component="#application.appmap#.cfc.footballDao" method="selectLeaguePlayers" returnvariable="variables.qryGetLeaguePlayers">
 	</cfinvoke>
-		
+		<div class="row-fluid">
 		<div class="alert alert-success">
 			<h3>My Season<cfif variables.currentUserID NEQ session.user.userID> - #variables.qryGetUserInfo.userFullName#</cfif></h3>
 		</div>			
 		
-	    <div class="pagination pagination-centered">
+	    <div class="pagination pagination-centered pagination-small">
 			<ul>
 				<li class="disabled"><a href="##">Week</a></li>
 		    	<cfloop query="qryGetWeekNumberList">
@@ -70,22 +74,23 @@
 				<li class="disabled"><a href="?week=all&userid=#variables.currentUserID#">Overall</a></li>
 		    </ul>
 	    </div>
+	    </div>
 
 		<div class="tabbable offset2 span8"> <!-- Only required for left/right tabs -->
 	    	<ul class="nav nav-tabs" id="myTabs">    
-				<li><a href="##tab1" data-toggle="tab"><cfif variables.currentUserID NEQ session.user.userID> - #variables.qryGetUserInfo.userFullName#<cfelse>My</cfif> Picks</a></li>
-				<li class="active"><a href="##tab2" data-toggle="tab">League Picks</a></li>
-				<li><a href="##tab3" data-toggle="tab">All Games</a></li>
+				<li<cfif variables.tab EQ 1> class="active"</cfif>><a href="##tab1" data-toggle="tab"><cfif variables.currentUserID NEQ session.user.userID>#variables.qryGetUserInfo.userFullName#<cfelse>My</cfif> Picks</a></li>
+				<li<cfif variables.tab EQ 2> class="active"</cfif>><a href="##tab2" data-toggle="tab">League Picks</a></li>
+				<li<cfif variables.tab EQ 3> class="active"</cfif>><a href="##tab3" data-toggle="tab">All Games</a></li>
 			</ul>
 		
 			<div class="tab-content">
-				<div class="tab-pane" id="tab1">
+				<div class="tab-pane<cfif variables.tab EQ 1> active</cfif>" id="tab1">
 					<cfinclude template="#application.appmap#/view/season/myPicks.cfm">
 				</div>
-				<div class="tab-pane active" id="tab2">
+				<div class="tab-pane<cfif variables.tab EQ 2> active</cfif>" id="tab2">
 					<cfinclude template="#application.appmap#/view/season/leaguePicks.cfm">
 				</div>
-				<div class="tab-pane" id="tab3">
+				<div class="tab-pane<cfif variables.tab EQ 3> active</cfif>" id="tab3">
 					<cfinclude template="#application.appmap#/view/season/allGames.cfm">
 				</div>
 			</div>

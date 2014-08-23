@@ -16,7 +16,22 @@
 <cfinvoke component="#application.appmap#.cfc.footballDao" method="getStandings" returnvariable="variables.standingsOverall">
 	<cfinvokeargument name="userID" value="-1">
 	<cfinvokeargument name="weekNumber" value="-1">
-</cfinvoke>		
+</cfinvoke>
+		
+<!--- get the results for the user group by week --->
+<cfinvoke component="#application.appmap#.cfc.footballDao" method="getStandingsGroupByWeekNumber" returnvariable="variables.standingsGroupByUserByWeekNumber">
+	<cfinvokeargument name="userID" value="-1">
+</cfinvoke>
+
+<cfquery dbtype="query" name="variables.standingsGroupByWeekNumber">
+	SELECT 
+		DISTINCT userFullName, userID
+	FROM 
+		variables.standingsGroupByUserByWeekNumber
+	ORDER BY
+		userFullName, userID
+</cfquery>
+
 
 <cfinclude template="#application.appmap#/view/standings/standings.cfm">
 

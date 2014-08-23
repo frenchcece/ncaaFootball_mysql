@@ -12,13 +12,13 @@
 	    		<tr>
 					<th>Game Date</th>
 					<th>Visiting</th>
-					<th>Score</th>
 					<th>Result</th>
+					<th>Score</th>
 					<th></th>
 					<th>Score</th>
+					<th>Result</th>
 					<th>Home</th>
 					<th>Spread</th>
-					<th>Result</th>
 				</tr>
 			</thead>		
 			<tbody>
@@ -27,11 +27,11 @@
 					<tr>
 						<td>#dateFormat(variables.qryGetGamesOfTheWeek.gameDate,"yyyy-mm-dd")#</td>
 						<td nowrap="nowrap">
-							<a style="float:left; margin-right:3px;" id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID1#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID1)#'></div><strong>#variables.qryGetGamesOfTheWeek.team1Name# #variables.qryGetGamesOfTheWeek.teamNickname1#</strong>"><i class="icon-info-sign"></i></a>
+							<!--- <a style="float:left; margin-right:3px;" id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID1#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID1)#'></div><strong>#variables.qryGetGamesOfTheWeek.team1Name# #variables.qryGetGamesOfTheWeek.teamNickname1#</strong>"><i class="icon-info-sign"></i></a> --->
+							<a style="float:left; margin-right:3px;" id="teamStats" rel="clickover" data-content="#footballDaoObj.getTeamStatsHtmlTable(variables.qryGetGamesOfTheWeek.teamID1)#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID1)#'></div><strong>#variables.qryGetGamesOfTheWeek.team1Name# #variables.qryGetGamesOfTheWeek.teamNickname1#</strong><button style='float:right; margin-left:10px;' class='btn btn-danger btn-mini' data-dismiss='clickover' ><i class='icon-remove icon-white'></i></button>"><i class="icon-info-sign"></i></a>
 							<div class="logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID1)#"></div>
 							#variables.qryGetGamesOfTheWeek.team1Name# <cfif variables.qryGetGamesOfTheWeek.team1Rank GT 0>(#variables.qryGetGamesOfTheWeek.team1Rank#)</cfif>
 						</td>
-						<td>#variables.qryGetGamesOfTheWeek.team1FinalScore#</td>
 						<td>
 						<cfswitch expression="#trim(variables.qryGetGamesOfTheWeek.team1WinLoss)#">
 							<cfcase value="W"><span class="label label-success">win</span></cfcase>
@@ -39,15 +39,10 @@
 							<cfcase value="T"><span class="label label-inverse">tie</span></cfcase>
 							<cfcase value="P"><span class="label label-info">pending</span></cfcase>
 						</cfswitch>
+						<td>#variables.qryGetGamesOfTheWeek.team1FinalScore#</td>
 						</td>
 						<td>@</td>
 						<td>#variables.qryGetGamesOfTheWeek.team2FinalScore#</td>
-						<td nowrap="nowrap">
-							<a style="float:left; margin-right:3px;" id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID2#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#'></div><strong>#variables.qryGetGamesOfTheWeek.team2Name# #variables.qryGetGamesOfTheWeek.teamNickname2#</strong>"><i class="icon-info-sign"></i></a>
-							<div class="logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#"></div>
-							#variables.qryGetGamesOfTheWeek.team2Name# <cfif variables.qryGetGamesOfTheWeek.team2Rank GT 0>(#variables.qryGetGamesOfTheWeek.team2Rank#)</cfif>
-						</td>
-						<td><cfif variables.qryGetGamesOfTheWeek.team2Spread GT 0>+</cfif>#numberFormat(variables.qryGetGamesOfTheWeek.team2Spread,"999.9")#</td>
 						<td>
 						<cfswitch expression="#trim(variables.qryGetGamesOfTheWeek.team2WinLoss)#">
 							<cfcase value="W"><span class="label label-success">win</span></cfcase>
@@ -56,6 +51,13 @@
 							<cfcase value="P"><span class="label label-info">pending</span></cfcase>
 						</cfswitch>
 						</td>
+						<td nowrap="nowrap">
+					  		<!--- <a style="float:left; margin-right:3px;" id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID2#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#'></div><strong>#variables.qryGetGamesOfTheWeek.team2Name# #variables.qryGetGamesOfTheWeek.teamNickname2#</strong>"><i class="icon-info-sign"></i></a> --->
+							<a style="float:left; margin-right:3px;" id="teamStats" rel="clickover" data-content="#footballDaoObj.getTeamStatsHtmlTable(variables.qryGetGamesOfTheWeek.teamID2)#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#'></div><strong>#variables.qryGetGamesOfTheWeek.team2Name# #variables.qryGetGamesOfTheWeek.teamNickname2#</strong><button style='float:right; margin-left:10px;' class='btn btn-danger btn-mini' data-dismiss='clickover' ><i class='icon-remove icon-white'></i></button>"><i class="icon-info-sign"></i></a>
+							<div class="logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#"></div>
+							#variables.qryGetGamesOfTheWeek.team2Name# <cfif variables.qryGetGamesOfTheWeek.team2Rank GT 0>(#variables.qryGetGamesOfTheWeek.team2Rank#)</cfif>
+						</td>
+						<td><cfif variables.qryGetGamesOfTheWeek.team2Spread GT 0>+</cfif>#numberFormat(variables.qryGetGamesOfTheWeek.team2Spread,"999.9")#</td>
 					</tr>
 				</cfloop>
 				<cfelse>
