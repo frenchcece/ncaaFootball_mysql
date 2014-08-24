@@ -656,11 +656,13 @@
 		<cfquery datasource="#application.dsn#" name="qryGetTeamStats">
 			select 
 			    fg.weeknumber,
+			    fs.weekName,
 			    'Away' AS location,
 			    ft1.teamID AS teamID,
 			    ft1.espnTeamID AS logoID,
 			    ft1.espnTeamNickName AS teamNickname,
 			    fg.team1name AS teamName,
+			    at1.rank AS teamRank,
 			    fg.team1spread AS teamSpread,
 			    fg.team1winloss AS resultAgainstSpread,
 			    CASE
@@ -670,13 +672,26 @@
 			    END AS resultNoSpread,
 			    fg.team1finalscore AS teamScore,
 			    fg.team2name AS oponent,
+			    at2.rank AS oponentRank,
 			    fg.team2finalscore AS oponentScore
 			from
 			    FootballGames as fg
 			        INNER JOIN
 			    FootballTeams as ft1 ON fg.teamID1 = ft1.teamID
 			    	INNER JOIN
+			    FootballTeams as ft2 ON fg.teamID2 = ft2.teamID
+				    INNER JOIN
 			    FootballSeason as fs ON fs.weekNumber = fg.weekNumber
+					LEFT OUTER JOIN
+				ApTop25Ranking AS at1
+						ON at1.weekName = fs.weekName
+						AND at1.season = fs.season
+						AND at1.espnTeamID = ft1.espnTeamID	
+			    	LEFT OUTER JOIN
+				ApTop25Ranking AS at2
+						ON at2.weekName = fs.weekName
+						AND at2.season = fs.season
+						AND at2.espnTeamID = ft2.espnTeamID	
 			where
 				fs.season = #session.currentSeasonYear#
 			    AND ft1.teamID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.teamID#">
@@ -684,11 +699,13 @@
 			union all 
 			select 
 			    fg.weeknumber,
+			    fs.weekName,
 			    'Home' AS location,
 			    ft2.teamID AS teamID,
 			    ft2.espnTeamID AS logoID,
 			    ft2.espnTeamNickName AS teamNickname,
 			    fg.team2name AS teamName,
+			    at2.rank AS teamRank,
 			    fg.team2spread AS teamSpread,
 			    fg.team2winloss AS resultAgainstSpread,
 			    CASE
@@ -698,13 +715,26 @@
 			    END AS resultNoSpread,
 			    fg.team2finalscore AS teamScore,
 			    fg.team1name AS oponent,
+			    at1.rank AS oponentRank,
 			    fg.team1finalscore AS oponentScore
 			from
 			    FootballGames as fg
 			        INNER JOIN
+			    FootballTeams as ft1 ON fg.teamID1 = ft1.teamID
+			    	INNER JOIN
 			    FootballTeams as ft2 ON fg.teamID2 = ft2.teamID
 				    INNER JOIN
 			    FootballSeason as fs ON fs.weekNumber = fg.weekNumber
+					LEFT OUTER JOIN
+				ApTop25Ranking AS at1
+						ON at1.weekName = fs.weekName
+						AND at1.season = fs.season
+						AND at1.espnTeamID = ft1.espnTeamID	
+			    	LEFT OUTER JOIN
+				ApTop25Ranking AS at2
+						ON at2.weekName = fs.weekName
+						AND at2.season = fs.season
+						AND at2.espnTeamID = ft2.espnTeamID	
 			where
 			    fs.season = #session.currentSeasonYear#	
 			    AND ft2.teamID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.teamID#">
@@ -723,11 +753,14 @@
 		<cfreturn SerializeJSON(variables.qryTeamStats,false)>
 	</cffunction>
 
-	<cffunction name="getTeamStatsHtmlTable" access="remote" returntype="string" output="true">
+	<cffunction name="getTeamStatsHtmlTable" access="remote" returntype="string" output="false">
 		<cfargument name="teamID" type="numeric" required="true">
 		
 		<cfset variables.qryTeamStats = getTeamStats(arguments.teamID)>
-	
+		<cfif variables.qryTeamStats.recordCount>
+			<cfset variables.qryTeamRankings = getTeamApTop25Ranking(variables.qryTeamStats.logoID, session.currentWeekNumber, session.currentSeasonYear)>
+		</cfif>
+		
 		<cfsavecontent variable="local.htmlTable">
 			<cfif variables.qryTeamStats.recordCount>
 			<cfoutput>
@@ -742,11 +775,11 @@
 							<tbody>
 							<cfloop query='variables.qryTeamStats'>
 							<tr>
-								<td>#variables.qryTeamStats.weekNumber#</td>
+								<td>#variables.qryTeamStats.weekName#</td>
 								<td>#variables.qryTeamStats.location#</td>
-								<td nowrap='nowrap'><strong>#variables.qryTeamStats.teamName#</strong></td>
+								<td nowrap='nowrap'><strong>#variables.qryTeamStats.teamName#</strong><cfif variables.qryTeamStats.teamRank GT 0> (#variables.qryTeamStats.teamRank#)</cfif></td>
 								<td>#variables.qryTeamStats.teamScore#</td>
-								<td nowrap='nowrap'>#variables.qryTeamStats.oponent#</td>
+								<td nowrap='nowrap'>#variables.qryTeamStats.oponent#<cfif variables.qryTeamStats.oponentRank GT 0> (#variables.qryTeamStats.oponentRank#)</cfif></td>
 								<td>#variables.qryTeamStats.oponentScore#</td>
 								<td><cfif variables.qryTeamStats.teamSpread GT 0>+</cfif>#variables.qryTeamStats.teamSpread#</td>
 								<cfswitch expression='#variables.qryTeamStats.resultAgainstSpread#'>
@@ -767,7 +800,28 @@
 						</table>
 					</div>
 					<div class='tab-pane fade' id='ranking'>
-						<p><i class='icon-wrench'></i>Under Construction</p>
+			  			<table class='table table-striped table-hover table-condensed'>
+							<thead><tr><th>Week</th><th>Team</th><th>Rank</th><th>Prev Rank</th><th>Trending</th></tr></thead>
+							<tbody>
+							<cfloop query='variables.qryTeamRankings'>
+							<tr>
+								<td>#variables.qryTeamRankings.weekName#</td>
+								<td nowrap='nowrap'>#variables.qryTeamStats.teamName#</td>
+								<td align='center' style='color:red'><strong>#variables.qryTeamRankings.rank#</strong></td>
+								<td align='center'>#variables.qryTeamRankings.prevRank#</td>
+								<td align='center'>
+									<cfif variables.qryTeamRankings.trend GT 0>
+										<div class='rising'></div>&nbsp;#variables.qryTeamRankings.trend#
+									<cfelseif variables.qryTeamRankings.trend LT 0>	
+										<div class='falling'></div>&nbsp;#abs(variables.qryTeamRankings.trend)#
+									<cfelseif variables.qryTeamRankings.trend EQ 0>
+										<div style='margin-left: 15px;'>---</div>
+									</cfif>
+								</td>
+							</tr>
+							</cfloop>
+							</tbody>	
+						</table>
 					</div>
 				</div>
 
@@ -782,27 +836,31 @@
 
 	<cffunction name="getTeamApTop25Ranking" access="remote" returntype="query">
 		<cfargument name="espnTeamID" type="numeric" required="true">
-		<cfargument name="weekName" type="string" required="true">
+		<cfargument name="weekNumber" type="string" required="true">
 		<cfargument name="season" type="numeric" required="true">
 		
 		
 		<cfquery name="getTeamRanking" datasource="#application.dsn#">
 			SELECT
-				rank,
-				prevRank,
-				weekName,
-				Season
+				fs.weekNumber, 
+				fs.weekName,
+				CASE WHEN ar.rank > 0 THEN ar.rank ELSE 'N/R' END AS rank, 
+				CASE WHEN ar.prevRank > 0 THEN ar.prevRank ELSE 'N/R' END AS prevRank, 
+				CASE WHEN ar.prevRank > 0 THEN ar.prevRank ELSE 26 END - CASE WHEN ar.rank > 0 THEN ar.rank ELSE 26 END AS trend,
+				fs.Season
 			FROM	
-				ApTop25Ranking
+				ncaa_football.FootballSeason AS fs
+				LEFT OUTER JOIN ncaa_football.ApTop25Ranking AS ar
+					ON fs.season = ar.season and ar.weekname = fs.weekname and ar.espnteamid = #arguments.espnTeamID#
 			WHERE
-				espnTeamID = #arguments.espnTeamID#
-				<cfif arguments.weekName GT "">
-				AND weekName = '#arguments.weekName#'
+				1 = 1
+				<cfif arguments.weekNumber GT "">
+				AND fs.weekNumber <= #arguments.weekNumber#
 				</cfif>	
-				AND season = #arguments.season#
+				AND fs.season = #arguments.season#
 			ORDER BY
-				season,
-				weekName	
+				fs.season,
+				fs.weekNumber	
 		</cfquery>
 		
 		<cfreturn getTeamRanking>

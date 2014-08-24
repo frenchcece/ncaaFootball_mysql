@@ -22,3 +22,23 @@ body {
 }
 
 */
+div.rising {
+    background-image: url("../images/icon-rising-falling.png");
+    background-repeat: no-repeat;
+    height: 8px;
+    width: 8px;
+    float: left;
+    margin-top: 8px;
+    margin-left: 15px;
+}
+
+div.falling {
+    background-image: url("../images/icon-rising-falling.png");
+    background-repeat: no-repeat;
+    background-position: 0px -12px;
+    height: 8px;
+    width: 8px;
+    float: left;
+    margin-top: 8px;
+    margin-left: 15px;
+}

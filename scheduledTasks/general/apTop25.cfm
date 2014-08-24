@@ -16,6 +16,14 @@ http://www.cfdan.com/posts/Railo_3__Adding_Java_CFX_Tags.cfm
 	<cfset variables.qryGetCurrentWeek.weekName = url.weekName>
 </cfif>
 
+<cfif variables.qryGetCurrentWeek.weekName EQ "Bowl">
+	<cfset variables.qryGetCurrentWeek.weekName = 16 />
+</cfif>
+
+<cfif IsDefined("url.season") AND url.season GT "">
+	<cfset variables.qryGetCurrentWeek.season = url.season>
+</cfif>
+
 <cfset espnurl = "http://espn.go.com/college-football/rankings/_/poll/1/year/#variables.qryGetCurrentWeek.season#/week/#variables.qryGetCurrentWeek.weekName#">
 <cfhttp url="#espnurl#">
 <cfset top25html = cfhttp.filecontent>
