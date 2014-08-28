@@ -1,3 +1,21 @@
+<style type="text/css">
+	input, textarea 
+	{
+		width: 100%; !important
+	}
+	
+	.form-horizontal .controls, control-group 
+	{
+    	margin: 0px 10px;
+	}
+	.form-horizontal .control-label 
+	{
+    	text-align: left;
+    	margin-left: 10px;
+	}
+</style>
+
+
 <cfif IsDefined("Form.formSubmitted") AND Form.formSubmitted EQ "true">
 	<cfinvoke component="#application.appmap#.cfc.messageDao" method="insertMessageDetail">
 		<cfinvokeargument name="userID" value="#session.user.userID#">
@@ -33,7 +51,7 @@
 				<div class="control-group">
 					<label class="control-label" for="message">Reply</label>
 					<div class="controls">
-						<textarea name="reply" id="reply" rows="5" cols="20" placeholder="Reply" class="input-xlarge"></textarea>
+						<textarea name="reply" id="reply" rows="15" cols="50" placeholder="Reply"></textarea>
 					</div>
 				</div>
 				<div class="control-group">

@@ -118,4 +118,18 @@
 		<cfreturn>
 	</cffunction>	
 
+	<cffunction name="getUserIdFromEmail" returntype="numeric" output="false">
+		<cfargument name="userEmail" type="string" required="true" >
+		
+		<cfquery name="qryGetUserId" datasource="#application.dsn#">
+			SELECT 
+			   userID
+			FROM 
+		  		Users
+			WHERE 
+		  		userEmail = <cfqueryparam value="#arguments.userEmail#" cfsqltype="cf_sql_varchar" >
+		</cfquery>
+
+		<cfreturn qryGetUserId.userID>		
+	</cffunction>
 </cfcomponent>

@@ -60,42 +60,41 @@
 	<!--- get the list of league's players --->
 	<cfinvoke component="#application.appmap#.cfc.footballDao" method="selectLeaguePlayers" returnvariable="variables.qryGetLeaguePlayers">
 	</cfinvoke>
-		<div class="row-fluid">
-		<div class="alert alert-success">
-			<h3>My Season<cfif variables.currentUserID NEQ session.user.userID> - #variables.qryGetUserInfo.userFullName#</cfif></h3>
-		</div>			
-		
-	    <div class="pagination pagination-centered pagination-small">
-			<ul>
-				<li class="disabled"><a href="##">Week</a></li>
-		    	<cfloop query="qryGetWeekNumberList">
-			    <li<cfif variables.activeWeek EQ qryGetWeekNumberList.weekNumber> class="active"</cfif>><a href="?week=#qryGetWeekNumberList.weekNumber#&userid=#variables.currentUserID#">#qryGetWeekNumberList.weekName#</a></li>
-				</cfloop>
-				<li class="disabled"><a href="?week=all&userid=#variables.currentUserID#">Overall</a></li>
-		    </ul>
-	    </div>
+		<div class="row-fluid hidden-phone">
+			<div class="alert alert-success">
+				<h3>My Season<cfif variables.currentUserID NEQ session.user.userID> - #variables.qryGetUserInfo.userFullName#</cfif></h3>
+			</div>			
+			
+		    <div class="pagination pagination-centered pagination-small">
+				<ul>
+					<li class="disabled"><a href="##">Week</a></li>
+			    	<cfloop query="qryGetWeekNumberList">
+				    <li<cfif variables.activeWeek EQ qryGetWeekNumberList.weekNumber> class="active"</cfif>><a href="?week=#qryGetWeekNumberList.weekNumber#&userid=#variables.currentUserID#">#qryGetWeekNumberList.weekName#</a></li>
+					</cfloop>
+					<li class="disabled"><a href="?week=all&userid=#variables.currentUserID#">Overall</a></li>
+			    </ul>
+		    </div>
 	    </div>
 
-		<div class="tabbable offset2 span8"> <!-- Only required for left/right tabs -->
-	    	<ul class="nav nav-tabs" id="myTabs">    
-				<li<cfif variables.tab EQ 1> class="active"</cfif>><a href="##tab1" data-toggle="tab"><cfif variables.currentUserID NEQ session.user.userID>#variables.qryGetUserInfo.userFullName#<cfelse>My</cfif> Picks</a></li>
-				<li<cfif variables.tab EQ 2> class="active"</cfif>><a href="##tab2" data-toggle="tab">League Picks</a></li>
-				<li<cfif variables.tab EQ 3> class="active"</cfif>><a href="##tab3" data-toggle="tab">All Games</a></li>
-			</ul>
-		
-			<div class="tab-content">
-				<div class="tab-pane<cfif variables.tab EQ 1> active</cfif>" id="tab1">
-					<cfinclude template="#application.appmap#/view/season/myPicks.cfm">
-				</div>
-				<div class="tab-pane<cfif variables.tab EQ 2> active</cfif>" id="tab2">
-					<cfinclude template="#application.appmap#/view/season/leaguePicks.cfm">
-				</div>
-				<div class="tab-pane<cfif variables.tab EQ 3> active</cfif>" id="tab3">
-					<cfinclude template="#application.appmap#/view/season/allGames.cfm">
+			<div class="tabbable offset2 span8" style="margin-top:25px;"> <!-- Only required for left/right tabs -->
+		    	<ul class="nav nav-tabs" id="myTabs">    
+					<li<cfif variables.tab EQ 1> class="active"</cfif>><a href="##tab1" data-toggle="tab"><cfif variables.currentUserID NEQ session.user.userID>#variables.qryGetUserInfo.userFullName#<cfelse>My</cfif> Picks</a></li>
+					<li<cfif variables.tab EQ 2> class="active"</cfif>><a href="##tab2" data-toggle="tab">League Picks</a></li>
+					<li<cfif variables.tab EQ 3> class="active"</cfif>><a href="##tab3" data-toggle="tab">All Games</a></li>
+				</ul>
+			
+				<div class="tab-content">
+					<div class="tab-pane<cfif variables.tab EQ 1> active</cfif>" id="tab1">
+						<cfinclude template="#application.appmap#/view/season/myPicks.cfm">
+					</div>
+					<div class="tab-pane<cfif variables.tab EQ 2> active</cfif>" id="tab2">
+						<cfinclude template="#application.appmap#/view/season/leaguePicks.cfm">
+					</div>
+					<div class="tab-pane<cfif variables.tab EQ 3> active</cfif>" id="tab3">
+						<cfinclude template="#application.appmap#/view/season/allGames.cfm">
+					</div>
 				</div>
 			</div>
-		</div>
-	
 	</cfoutput>
 		
 	<cfinclude template="footer.cfm">

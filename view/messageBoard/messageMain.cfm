@@ -1,7 +1,11 @@
+<style type="text/css">
+.alert 
+{
+    padding: 8px 5px 8px 14px;
+}	
+</style>
+
 <cfinvoke component="#application.appmap#.cfc.messageDao" method="getAllMessages" returnvariable="variables.qryGetAllMessages"></cfinvoke>
-
-
-
 
 <p>
 	<a class="btn btn-primary" href="?msgID=new">Create New Post &raquo;</a>

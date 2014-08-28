@@ -30,6 +30,8 @@
 		<cfargument name="userID" type="numeric" required="true">
 		<cfargument name="msgID" type="numeric" required="true">
 		<cfargument name="content" type="string" required="true">
+		<cfargument name="date" type="any" required="false" default="#now()#">
+		<cfargument name="sendEmail" type="boolean" required="false" default="true">
 		
 		<cfquery datasource="#application.dsn#" name="qryInsertMessageMain">
 			INSERT INTO messageBoardDetail
@@ -44,17 +46,19 @@
 			(
 				1,
 				<cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.content#">,
-				'#dateFormat(now(),"yyyy-mm-dd")# #timeFormat(now(),"HH:mm:ss")#',
+				'#dateFormat(arguments.date,"yyyy-mm-dd")# #timeFormat(arguments.date,"HH:mm:ss")#',
 				<cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.msgID#">,
 				<cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userID#">
 			);
 		</cfquery>
 		
 		<!--- send notification email to everybody in the league --->
-		<cfinvoke method="sendNotificationEmail">
-			<cfinvokeargument name="msgID" value="#arguments.msgID#">
-		</cfinvoke>
-
+		<cfif sendEmail>
+			<cfinvoke method="sendNotificationEmail">
+				<cfinvokeargument name="msgID" value="#arguments.msgID#">
+			</cfinvoke>
+		</cfif>
+			
 		<cfreturn>
 	</cffunction>
 
@@ -163,21 +167,25 @@
 		#Replace(variables.qryLastMsgDetail.msgDetailContent,chr(13)&chr(10),"<br>","ALL")#
 		</strong>
 		</p>
+		<cfif variables.qryMsgDetail.recordCount GT 1>
 		<p><hr width="100%" style="color: ##000; background-color: ##000; height: 2px;"></p>
 		<p>
 			<div><strong>This comment has been added to this discussion:<br> #variables.qryMsgDetail.msgTitle#</strong></div>
 			<cfloop query="variables.qryMsgDetail">
-				
+				<cfif variables.qryLastMsgDetail.msgDetailID NEQ variables.qryMsgDetail.msgDetailID>
 				<div>
 					<p><cfif variables.qryMsgDetail.currentRow EQ 1>Post<cfelse><i class="icon-share-alt"></i> Reply </cfif> By #variables.qryMsgDetail.userFullName# On #dateFormat(variables.qryMsgDetail.msgDetailDate,"yyyy-mm-dd")# #timeFormat(variables.qryMsgDetail.msgDetailDate,"hh:mm tt")#</p>
-					<p class="alert alert-info">#Replace(variables.qryMsgDetail.msgDetailContent,chr(13)&chr(10),"<br>","ALL")#</p>
+					<p>#Replace(variables.qryMsgDetail.msgDetailContent,chr(13)&chr(10),"<br>","ALL")#</p>
 				</div>
-			</cfloop>		
+				</cfif>
+			</cfloop>
 		</p>
+		</cfif>
 		</cfoutput>	
 		</cfsavecontent>
 		<cfset variables.emailMsg = variables.emailContent & "<p>Log on to <a href='http://www.dupuyworld.com/ncaaFootball/index.cfm'>www.dupuyworld.com/ncaaFootball/index.cfm</a> to reply to this message</p>">
-			
+		<cfset variables.emailMsg = variables.emailMsg & variables.emailContent & "<br>[msgid:<cfoutput>#arguments.msgID#</cfoutput>]" />
+		
 		<!--- send notification email --->
 		<cfinvoke component="#application.appmap#.cfc.footballDao" method="sendEmail" returnvariable="variables.void">
 			<cfinvokeargument name="emailTo" value="#variables.emailTo#">
