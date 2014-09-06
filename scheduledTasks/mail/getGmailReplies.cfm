@@ -25,8 +25,9 @@
 	ORDER BY 
 		[messagenumber] DESC;
 </cfquery>	
-<!---<cfdump var="#msgs#" />--->
-<!--- <cfdump var="#getfootballEmails#"> --->
+<!--- <cfdump var="#msgs#" />
+<cfdump var="#getfootballEmails#"><cfabort> --->
+
 
 
 
@@ -141,12 +142,12 @@
 	<cfargument name="body" type="string" required="true">
 	
 	<cfset msgID = -1>
-	<cfset qryAllMessages = msgCFC.getAllMessages() />
-	<cfloop query="qryAllMessages">
-		<cfif FindNoCase(arguments.body, "[msgid:#qryAllMessages.msgID#]")>
-			<cfset msgID = qryAllMessages.msgID>
-		</cfif>
-	</cfloop>
-	
+	<cfset index = FindNoCase("[msgid:",arguments.body) />
+	<cfif index>
+		<cfset newlist = mid(arguments.body,index+7,len(arguments.body)-index-7)>
+		<cfset msgID = listGetAt(newList,1,"]") />
+	</cfif>
+
 	<cfreturn msgID />
 </cffunction>
+

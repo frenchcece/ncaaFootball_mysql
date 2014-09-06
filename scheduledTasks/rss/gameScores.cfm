@@ -95,7 +95,15 @@ ESPN Headlines: http://sports.espn.go.com/espn/bottomline/news
     <!--- Sometimes espn has a item with no teams or scores --->
     <!--- If this is the case, a try catch will keep the loop going so it doesn't crash --->
     <cftry>
-		<cfset myArray[j] = listgetat("#i#", 2, "=") />
+		<cfset myArray[j] = listgetat("#i#", 2, "=")/>
+
+		<!--- there should always be 3 elements per scores and it should always be the url.  if not, add a bogus record to array to avoid errors on following games --->
+		<cfif (j mod 3) EQ 2 AND j GT 3 AND NOT FindNoCase("http://",i)>
+			<cfset myArray[j] = "n/a" />
+			<cfset j = j + 1 />
+			<cfset myArray[j] = listgetat("#i#", 2, "=")>
+		</cfif>	
+
         <cfset j = j + 1 />
     <cfcatch>
     	<!--- Don't care what the extra garbage is --->
@@ -154,9 +162,12 @@ ESPN Headlines: http://sports.espn.go.com/espn/bottomline/news
         <cfif teamTwoScoreStringStart NEQ 0>
             <cfset teamTwoScoreStringStart = teamTwoScoreStringStart - 1>
             <cfset matchup.teamTwo = #Mid(matchup.teamTwo,1,teamTwoScoreStringStart)#>
-        </cfif> 
-     
-     	<cfset matchup.matchDate = trim(listgetat("#z#", 3, "@")) />
+        </cfif>
+		<cfif ListLen("#z#","@") EQ 3>
+	     	<cfset matchup.matchDate = trim(listgetat("#z#", 3, "@")) />
+	     <cfelse>
+	     	<cfset matchup.matchDate = "N/A" />
+	     </cfif>	
      
     <cfcatch>
     	<!--- Don't care, just make sure it doesn't crash --->
@@ -275,7 +286,7 @@ ESPN Headlines: http://sports.espn.go.com/espn/bottomline/news
 				     VALUES
 				           ('#matchInfoArray[i].teamTwo#');
 		</cfquery>
-</cfif>
+	</cfif>
 			
 	<!--- if game score is final --->
 	<cfif FindNoCase('FINAL',matchInfoArray[i].matchDate)>
@@ -285,6 +296,7 @@ ESPN Headlines: http://sports.espn.go.com/espn/bottomline/news
 			FROM GamesFinalScores 
 			WHERE team1Name = <cfqueryparam cfsqltype="cf_sql_varchar" value="#matchInfoArray[i].teamOne#">
  			AND team2Name = <cfqueryparam cfsqltype="cf_sql_varchar" value="#matchInfoArray[i].teamTwo#">
+			AND season = <cfqueryparam cfsqltype="cf_sql_integer" value="#application.seasonYear#">
 		</cfquery>
 		<cfif qryCheckGamesFinalScores.recordCount EQ 0>
 			<cfquery name="qryInsertGamesFinalScores" datasource="#application.dsn#">
@@ -293,19 +305,21 @@ ESPN Headlines: http://sports.espn.go.com/espn/bottomline/news
 			           ,team1Score
 			           ,team2Name
 			           ,team2Score
-					   ,scoreDate)
+					   ,scoreDate
+					   ,season)
 				     VALUES
 				           (<cfqueryparam cfsqltype="cf_sql_varchar" value="#matchInfoArray[i].teamOne#">
 				           ,<cfqueryparam cfsqltype="cf_sql_integer" value="#matchInfoArray[i].teamOneScore#">
 				           ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#matchInfoArray[i].teamTwo#">
 				           ,<cfqueryparam cfsqltype="cf_sql_integer" value="#matchInfoArray[i].teamTwoScore#">
-						   ,<cfqueryparam cfsqltype="cf_sql_date"  value="#now()#">);
+						   ,<cfqueryparam cfsqltype="cf_sql_date"  value="#now()#">
+						   ,<cfqueryparam cfsqltype="cf_sql_integer" value="#application.seasonYear#">);
 			</cfquery>
 		</cfif>
 		
 		<!--- update the scores for each team in table footballgames --->
 		<cfquery name="qryCheckFinalScores" datasource="#application.dsn#">
-			SELECT * FROM FootballGames WHERE team1FinalScore IS NULL OR team2FinalScore IS NULL
+			SELECT * FROM FootballGames WHERE team1FinalScore IS NULL OR team2FinalScore IS NULL AND gameDate > '#application.seasonYear#-08-01'
 		</cfquery>
 		<cfif qryCheckFinalScores.recordCount>
 		<cfquery name="qryUpdateFinalScores" datasource="#application.dsn#">

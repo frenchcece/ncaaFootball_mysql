@@ -123,10 +123,10 @@
 				</cfquery>
 				<cfif qryCheckInsertOrUpdateGamesData.recordCount>
 					<cfif variables.team1spread NEQ 0 AND variables.team2spread NEQ 0>
+						<!--- update the spread if the game is not locked --->
 						<cfquery datasource="#application.dsn#" name="qryUpdateGamesData">
 							UPDATE FootballGames
-							   SET gameDate = '#dateFormat(dateAdd('h',-5,variables.gamesArray[i].event_datetimeGMT.xmlText),"yyyy-mm-dd")# #timeFormat(dateAdd('h',-5,variables.gamesArray[i].event_datetimeGMT.xmlText),"HH:mm:ss")#'
-							      ,team1Name = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[1].participant_name.xmlText)#">
+							   SET team1Name = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[1].participant_name.xmlText)#">
 							      ,team1Draw = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[1].visiting_home_draw.xmlText)#">
 							      ,team1Spread = <cfqueryparam cfsqltype="cf_sql_numeric" value="#variables.team1spread#">
 							      ,team2Name = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[2].participant_name.xmlText)#">
@@ -135,10 +135,21 @@
 							      ,dateUpdated = '#dateFormat(now(),"yyyy-mm-dd")# #timeFormat(now(),"HH:mm:ss")#'
 								  ,teamID1 = (SELECT teamID FROM FootballTeams WHERE pinnacleTeamName = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[1].participant_name.xmlText)#">  LIMIT 0,1)
 								  ,teamID2 = (SELECT teamID FROM FootballTeams WHERE pinnacleTeamName = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[2].participant_name.xmlText)#">  LIMIT 0,1)
-							 WHERE team1Name = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[1].participant_name.xmlText)#">
+							 WHERE gameID = #qryCheckInsertOrUpdateGamesData.gameID#
+								 	AND team1Name = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[1].participant_name.xmlText)#">
 							 		AND team2Name = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[2].participant_name.xmlText)#">
 							 		AND spreadLock = 0;		
 						</cfquery>
+
+						<!--- update the game time no matter what --->
+						<cfquery datasource="#application.dsn#" name="qryUpdateGamesData">
+							UPDATE FootballGames
+							   SET gameDate = '#dateFormat(dateAdd('h',-5,variables.gamesArray[i].event_datetimeGMT.xmlText),"yyyy-mm-dd")# #timeFormat(dateAdd('h',-5,variables.gamesArray[i].event_datetimeGMT.xmlText),"HH:mm:ss")#'
+							 WHERE gameID = #qryCheckInsertOrUpdateGamesData.gameID#
+								 	AND team1Name = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[1].participant_name.xmlText)#">
+							 		AND team2Name = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[2].participant_name.xmlText)#">
+						</cfquery>
+
 					<cfelse>
 						At least one spread is 0.  Check and update the value manually<br />	
 						<cfset variables.notificationEmailMsg = variables.notificationEmailMsg & "&bull;Verify the line for week #qryCheckInsertOrUpdateGamesData.weekNumber# between teams #trim(variables.gamesArray[i].participants.xmlChildren[1].participant_name.xmlText)# and #trim(variables.gamesArray[i].participants.xmlChildren[2].participant_name.xmlText)#<br>">
@@ -190,8 +201,13 @@
 				<hr><br>
 				</cfoutput>				
 
-
 		</cfloop>
+
+		<!--- ------------------------------------------------------- --->
+		<!--- include the process to get all the game times from ESPN --->
+		<cfinclude template="espnGameTimes.cfm">
+		<!--- ------------------------------------------------------- --->
+
 
 		<!--- send notification email to the webmaster if problem were found--->
 		<cfif variables.notificationEmailMsg GT "">

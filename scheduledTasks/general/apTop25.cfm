@@ -9,7 +9,7 @@ http://www.cfdan.com/posts/Railo_3__Adding_Java_CFX_Tags.cfm
 
 <!--- check if today is the day after the college football schedule week --->
 <cfinvoke component="#application.appmap#.cfc.footballDao" method="getCurrentWeekNumber" returnvariable="variables.qryGetCurrentWeek">
-	<cfinvokeargument name="gameDate" value="#dateAdd('d',-1,now())#">
+	<cfinvokeargument name="gameDate" value="#dateAdd('d',1,now())#">
 </cfinvoke>
 
 <cfif IsDefined("url.weekName") AND url.weekName GT "">
@@ -25,6 +25,8 @@ http://www.cfdan.com/posts/Railo_3__Adding_Java_CFX_Tags.cfm
 </cfif>
 
 <cfset espnurl = "http://espn.go.com/college-football/rankings/_/poll/1/year/#variables.qryGetCurrentWeek.season#/week/#variables.qryGetCurrentWeek.weekName#">
+<cfdump var="#espnurl#">
+
 <cfhttp url="#espnurl#">
 <cfset top25html = cfhttp.filecontent>
 
@@ -49,6 +51,7 @@ prevrank = content.getElementsByClass("prev-rank");
 		weekName = '#variables.qryGetCurrentWeek.weekName#'
 		AND season = #variables.qryGetCurrentWeek.season#
 </cfquery>
+<cfdump var="#qryCheckWeekRanking#">
 
 <cfif NOT qryCheckWeekRanking.counter>
 <table>

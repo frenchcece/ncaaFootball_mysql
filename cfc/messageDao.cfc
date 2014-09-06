@@ -161,6 +161,7 @@
 		<!--- build the email content --->
 		<cfsavecontent variable = "variables.emailContent">
 		<cfoutput>
+		<p><strong>Title: #variables.qryMsgDetail.msgTitle#</strong></p>	
 		<p>
 		<strong>New <cfif variables.qryMsgDetail.currentRow EQ 1>Post<cfelse>Reply</cfif> By:<br>
 		#variables.qryLastMsgDetail.userFullName# On #dateFormat(variables.qryLastMsgDetail.msgDetailDate,"yyyy-mm-dd")# #timeFormat(variables.qryLastMsgDetail.msgDetailDate,"hh:mm tt")#<br><br>
@@ -170,9 +171,9 @@
 		<cfif variables.qryMsgDetail.recordCount GT 1>
 		<p><hr width="100%" style="color: ##000; background-color: ##000; height: 2px;"></p>
 		<p>
-			<div><strong>This comment has been added to this discussion:<br> #variables.qryMsgDetail.msgTitle#</strong></div>
+			<!--- <div><strong>This comment has been added to this discussion:<br> #variables.qryMsgDetail.msgTitle#</strong></div> --->
 			<cfloop query="variables.qryMsgDetail">
-				<cfif variables.qryLastMsgDetail.msgDetailID NEQ variables.qryMsgDetail.msgDetailID>
+				<cfif variables.qryMsgDetail.msgDetailID NEQ variables.qryLastMsgDetail.msgDetailID>
 				<div>
 					<p><cfif variables.qryMsgDetail.currentRow EQ 1>Post<cfelse><i class="icon-share-alt"></i> Reply </cfif> By #variables.qryMsgDetail.userFullName# On #dateFormat(variables.qryMsgDetail.msgDetailDate,"yyyy-mm-dd")# #timeFormat(variables.qryMsgDetail.msgDetailDate,"hh:mm tt")#</p>
 					<p>#Replace(variables.qryMsgDetail.msgDetailContent,chr(13)&chr(10),"<br>","ALL")#</p>
@@ -184,7 +185,7 @@
 		</cfoutput>	
 		</cfsavecontent>
 		<cfset variables.emailMsg = variables.emailContent & "<p>Log on to <a href='http://www.dupuyworld.com/ncaaFootball/index.cfm'>www.dupuyworld.com/ncaaFootball/index.cfm</a> to reply to this message</p>">
-		<cfset variables.emailMsg = variables.emailMsg & variables.emailContent & "<br>[msgid:<cfoutput>#arguments.msgID#</cfoutput>]" />
+		<cfset variables.emailMsg = variables.emailMsg & "<br><span style='font-size:8px;'>[msgid:<cfoutput>#arguments.msgID#</cfoutput>]</span>" />
 		
 		<!--- send notification email --->
 		<cfinvoke component="#application.appmap#.cfc.footballDao" method="sendEmail" returnvariable="variables.void">

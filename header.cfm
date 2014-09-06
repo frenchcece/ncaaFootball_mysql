@@ -49,22 +49,22 @@
           <div class="nav-collapse collapse">
 			<cfif session.isLoggedIn EQ true>
 				<ul class="nav">
-				<li><a href="index.cfm">Home</a></li>
-				<li><a href="myGames.cfm">Games</a></li>
-				<li><a href="mySeason.cfm">Season</a></li>
-				<li><a href="myStandings.cfm">Standings</a></li>
-                <li><a href="rules.cfm">Rules</a></li>
-				<li><a href="messageBoard.cfm<cfif variables.countAllMessagesStr.newDateCount GT 0>?msgID=#variables.countAllMessagesStr.msgID#</cfif>">Board<cfif variables.countAllMessagesStr.newDateCount GT 0> <span class="badge badge-important"><cfoutput>#variables.countAllMessagesStr.newDateCount#</cfoutput></span></cfif></a></li>
+				<li><a href="#application.appmap#/index.cfm">Home</a></li>
+				<li><a href="#application.appmap#/myGames.cfm">Games</a></li>
+				<li><a href="#application.appmap#/mySeason.cfm">Season</a></li>
+				<li><a href="#application.appmap#/myStandings.cfm">Standings</a></li>
+                <li><a href="#application.appmap#/rules.cfm">Rules</a></li>
+				<li><a href="#application.appmap#/messageBoard.cfm<cfif variables.countAllMessagesStr.newDateCount GT 0>?msgID=#variables.countAllMessagesStr.msgID#</cfif>">Board<cfif variables.countAllMessagesStr.newDateCount GT 0> <span class="badge badge-important"><cfoutput>#variables.countAllMessagesStr.newDateCount#</cfoutput></span></cfif></a></li>
 				<li class="dropdown">
 					<a href="##" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="myRankings.cfm">League Rankings</a></li>
+						<li><a href="#application.appmap#/myRankings.cfm">League Rankings</a></li>
 						<li class="dropdown-submenu">
 						<a tabindex="-1" href="##">Seasons</a>
     						<ul class="dropdown-menu">
-		                        <li><a href="index.cfm?seasonYear=2012">Season 2012</a></li>
-		                        <li><a href="index.cfm?seasonYear=2013">Season 2013</a></li>
-		                        <li><a href="index.cfm?seasonYear=2014">Season 2014</a></li>
+		                        <li><a href="#application.appmap#/index.cfm?seasonYear=2012">Season 2012</a></li>
+		                        <li><a href="#application.appmap#/index.cfm?seasonYear=2013">Season 2013</a></li>
+		                        <li><a href="#application.appmap#/index.cfm?seasonYear=2014">Season 2014</a></li>
 							</ul>
 					    </li>
 						<cfif session.user.isAdmin>
@@ -72,6 +72,7 @@
 						<li><a href="admin.cfm">Admin</a></li>
 						<li><a href="#application.appmap#/scheduledTasks/rss/gameScores.cfm">Refresh Scores</a></li>
 						<li><a href="#application.appmap#/scheduledTasks/rss/gamesOdds.cfm">Refresh Odds</a></li>
+						<li><a href="#application.appmap#/common/jobs/addFinalScores.cfm">Add Final Scores</a></li>
 						<li class="divider"></li>
 						</cfif>
 					</ul>

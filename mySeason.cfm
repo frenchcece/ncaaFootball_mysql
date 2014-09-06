@@ -60,6 +60,12 @@
 	<!--- get the list of league's players --->
 	<cfinvoke component="#application.appmap#.cfc.footballDao" method="selectLeaguePlayers" returnvariable="variables.qryGetLeaguePlayers">
 	</cfinvoke>
+	<!--- get all the games of the current week with all the users picks--->
+	<cfinvoke component="#application.appmap#.cfc.footballDao" method="getGamesOfTheWeekWithUsersPicks" returnvariable="variables.qryGetGamesOfTheWeekWithUsersPicks">
+		<cfinvokeargument name="weekNumber" value="#variables.activeWeek#">
+	</cfinvoke>
+
+
 		<div class="row-fluid hidden-phone">
 			<div class="alert alert-success">
 				<h3>My Season<cfif variables.currentUserID NEQ session.user.userID> - #variables.qryGetUserInfo.userFullName#</cfif></h3>

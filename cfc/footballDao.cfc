@@ -109,6 +109,82 @@
 		<cfreturn qryGetGamesOfTheWeek>
 	</cffunction>
 
+	<cffunction name="getGamesOfTheWeekWithUsersPicks" returntype="Query">
+		<cfargument name="weekNumber" type="numeric" default="-1">
+		
+		<cfquery datasource="#application.dsn#" name="qryGetGamesOfTheWeekWithUsersPicks">
+			SELECT
+				fg.gameID
+			  , fg.gameDate
+			  , fg.datecreated
+			  , fg.dateupdated
+			  , fg.WeekNumber
+			  , fg.team1Name
+			  , ft1.espnTeamID AS logoID1
+			  , ft1.espnTeamNickName AS teamNickname1
+			  , at1.rank AS team1Rank
+			  , at1.prevRank AS team1PrevRank
+			  , fg.teamID1
+			  , fg.team1Draw
+			  , fg.team1Spread
+			  , fg.team2Name
+			  , ft2.espnTeamID AS logoID2
+			  , ft2.espnTeamNickName AS teamNickname2
+			  , at2.rank AS team2Rank
+			  , at2.prevRank AS team2PrevRank
+			  , fg.teamID2
+			  , fg.team2Draw
+			  , fg.team2Spread
+			  , fg.team1FinalScore
+			  , fg.team2FinalScore
+			  , fg.team1WinLoss
+			  , fg.team2WinLoss
+			  , fg.spreadLock
+			  , fs.weekType
+			  , fs.weekName
+			  , u.userFullName
+			  , u.userID
+			  , ft3.pinnacleTeamName AS userPickedTeamName
+			  , up.winLoss
+			FROM
+				FootballGames AS fg
+			INNER JOIN 	
+				FootballSeason AS fs
+				ON fs.weekNumber = fg.weekNumber
+			INNER JOIN
+				FootballTeams AS ft1
+				ON ft1.teamID = fg.teamID1
+			INNER JOIN
+				FootballTeams AS ft2
+				ON ft2.teamID = fg.teamID2
+			LEFT OUTER JOIN
+				ApTop25Ranking AS at1
+				ON at1.weekName = fs.weekName
+				AND at1.season = fs.season
+				AND at1.espnTeamID = ft1.espnTeamID	
+			LEFT OUTER JOIN
+				ApTop25Ranking AS at2
+				ON at2.weekName = fs.weekName
+				AND at2.season = fs.season
+				AND at2.espnTeamID = ft2.espnTeamID	
+			LEFT OUTER JOIN UserPicks AS up
+				ON up.gameID = fg.gameID
+			LEFT OUTER JOIN Users AS u
+				ON u.userID = up.userID
+			LEFT OUTER JOIN FootballTeams AS ft3
+				ON ft3.teamID = up.teamID
+			WHERE
+				fs.season = <cfqueryparam cfsqltype="cf_sql_integer" value="#session.currentSeasonYear#">	
+			<cfif arguments.weekNumber GT 0>
+				AND fg.weekNumber = <cfqueryparam cfsqltype="cf_sql_numeric" value="#arguments.weekNumber#">
+			</cfif>
+			ORDER BY
+				fg.gameID ASC
+		</cfquery>
+		
+		<cfreturn qryGetGamesOfTheWeekWithUsersPicks>
+	</cffunction>
+
 	<cffunction name="selectLeaguePlayers" returntype="query">
 
 		<cfquery name="qrySelectLeaguePlayers" datasource="#application.dsn#">
@@ -307,7 +383,6 @@
 		</cfif>
 		
 		<!--- if nothing is still found, then get the last week entered in table FootballSeason --->
-
 				 
 		<cfreturn qryGetCurrentWeek>
 	</cffunction>
@@ -596,6 +671,8 @@
 			LEFT OUTER JOIN FootballSeason AS fs
 				ON fs.weekNumber = t.weekNumber
 				AND fs.season = #session.currentSeasonYear#	
+			WHERE
+				Users.isActive = 1	
 			GROUP BY
 				Users.userFullName
 			  , Users.userID
