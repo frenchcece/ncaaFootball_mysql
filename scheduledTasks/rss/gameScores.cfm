@@ -329,29 +329,35 @@ ESPN Headlines: http://sports.espn.go.com/espn/bottomline/news
 			WHERE (ft1.pinnacleteamname = fg.team1name OR ft1.pinnacleteamname = fg.team2name)
 			AND (ft2.pinnacleteamname = fg.team2name OR ft2.pinnacleteamname = fg.team1name)
 			AND ft1.espnteamname = '#matchInfoArray[i].teamOne#'
-			AND ft2.espnteamname = '#matchInfoArray[i].teamTwo#';
+			AND ft2.espnteamname = '#matchInfoArray[i].teamTwo#'
+			AND (fg.team1FinalScore IS NULL OR fg.team2FinalScore IS NULL)
+			AND fg.gameDate > '#application.seasonYear#-08-01';
 		</cfquery>
 		<!--- now update whether the teams have won or lost their game --->
 		<cfquery name="qryUpdateFinalScores" datasource="#application.dsn#">
 				UPDATE FootballGames fg, FootballTeams ft1, FootballTeams ft2
-					SET fg.team1WinLoss = CASE WHEN team1FinalScore + team1Spread > team2FinalScore THEN 'W' WHEN team1FinalScore + team1Spread = team2FinalScore THEN 'T' ELSE 'L' END
-					  , fg.team2WinLoss = CASE WHEN team2FinalScore + team2Spread > team1FinalScore THEN 'W' WHEN team2FinalScore + team2Spread = team1FinalScore THEN 'T' ELSE 'L' END
+				SET fg.team1WinLoss = CASE WHEN team1FinalScore + team1Spread > team2FinalScore THEN 'W' WHEN team1FinalScore + team1Spread = team2FinalScore THEN 'T' ELSE 'L' END
+				, fg.team2WinLoss = CASE WHEN team2FinalScore + team2Spread > team1FinalScore THEN 'W' WHEN team2FinalScore + team2Spread = team1FinalScore THEN 'T' ELSE 'L' END
 				WHERE (ft1.pinnacleteamname = fg.team1name OR ft1.pinnacleteamname = fg.team2name)
 				AND	(ft2.pinnacleteamname = fg.team2name OR ft2.pinnacleteamname = fg.team1name)
 				AND ft1.espnteamname = '#matchInfoArray[i].teamOne#'
-				AND ft2.espnteamname = '#matchInfoArray[i].teamTwo#'; 
+				AND ft2.espnteamname = '#matchInfoArray[i].teamTwo#'
+				AND (fg.team1WinLoss IS NULL OR fg.team2WinLoss IS NULL)
+				AND fg.gameDate > '#application.seasonYear#-08-01'; 
 		</cfquery>
 		</cfif>
 		<!--- update the users picks win or loss --->
 		<cfquery name="qryUpdateUsersPicks" datasource="#application.dsn#">
 			UPDATE 	UserPicks up, FootballGames fg, FootballTeams ft1, FootballTeams ft2
-			SET		up.winLoss = CASE  WHEN up.teamID = fg.teamID1 THEN fg.team1WinLoss
+			SET		up.winLoss = CASE WHEN up.teamID = fg.teamID1 THEN fg.team1WinLoss
 			      					WHEN up.teamID = fg.teamID2 THEN fg.team2WinLoss END
-			WHERE fg.gameID = up.gameID AND (up.teamID = fg.teamID1 OR up.teamID = fg.teamID2)
+			WHERE fg.gameID = up.gameID 
+			AND (up.teamID = fg.teamID1 OR up.teamID = fg.teamID2)
 			AND (ft1.pinnacleteamname = fg.team1name OR ft1.pinnacleteamname = fg.team2name)
 			AND (ft2.pinnacleteamname = fg.team2name OR ft2.pinnacleteamname = fg.team1name)
 			AND ft1.espnteamname = '#matchInfoArray[i].teamOne#'
-			AND ft2.espnteamname = '#matchInfoArray[i].teamTwo#';
+			AND ft2.espnteamname = '#matchInfoArray[i].teamTwo#'
+			AND fg.gameDate > '#application.seasonYear#-08-01';
 		</cfquery>
 		
 	</cfif>

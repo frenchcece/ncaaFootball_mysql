@@ -69,7 +69,7 @@
 					    </li>
 						<cfif session.user.isAdmin>
 						<li class="divider"></li>
-						<li><a href="admin.cfm">Admin</a></li>
+						<li><a href="admin.cfm">User Logs</a></li>
 						<li><a href="#application.appmap#/scheduledTasks/rss/gameScores.cfm">Refresh Scores</a></li>
 						<li><a href="#application.appmap#/scheduledTasks/rss/gamesOdds.cfm">Refresh Odds</a></li>
 						<li><a href="#application.appmap#/common/jobs/addFinalScores.cfm">Add Final Scores</a></li>

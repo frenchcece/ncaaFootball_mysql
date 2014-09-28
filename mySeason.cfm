@@ -65,7 +65,7 @@
 		<cfinvokeargument name="weekNumber" value="#variables.activeWeek#">
 	</cfinvoke>
 
-
+		<!--- DO NOT SHOW IF USER IS ON PHONE --->
 		<div class="row-fluid hidden-phone">
 			<div class="alert alert-success">
 				<h3>My Season<cfif variables.currentUserID NEQ session.user.userID> - #variables.qryGetUserInfo.userFullName#</cfif></h3>
@@ -81,6 +81,27 @@
 			    </ul>
 		    </div>
 	    </div>
+	    
+		<!--- SHOW IF USER IS ON PHONE --->
+		<div class="row-fluid visible-phone">
+			<div class="alert alert-success">
+				<h3>My Season<cfif variables.currentUserID NEQ session.user.userID> - #variables.qryGetUserInfo.userFullName#</cfif></h3>
+			</div>			
+			<div class="btn-group">
+		    	<a class="btn dropdown-toggle" data-toggle="dropdown" href="##">
+			    	Select Week
+				    <span class="caret"></span>
+			    </a>
+			    <ul class="dropdown-menu">
+			    	<cfloop query="qryGetWeekNumberList">
+				    <li<cfif variables.activeWeek EQ qryGetWeekNumberList.weekNumber> class="active"</cfif>><a href="?week=#qryGetWeekNumberList.weekNumber#&userid=#variables.currentUserID#">#qryGetWeekNumberList.weekName#</a></li>
+					</cfloop>
+					<li class="disabled"><a href="?week=all&userid=#variables.currentUserID#">Overall</a></li>
+			    </ul>
+		    </div>
+	    </div>
+
+
 
 			<div class="tabbable offset2 span8" style="margin-top:25px;"> <!-- Only required for left/right tabs -->
 		    	<ul class="nav nav-tabs" id="myTabs">    
