@@ -263,7 +263,7 @@ ESPN Headlines: http://sports.espn.go.com/espn/bottomline/news
 </cfquery>
 
 <cfloop from="1" to="#arraylen(matchInfoArray)#" index="i">
-	
+	<cftry>
 	<!--- update the table footballteams if needed --->
 	<cfquery datasource="#application.dsn#" name="qryCheckteamnames1">
 		SELECT * FROM FootballTeams WHERE espnTeamName = '#matchInfoArray[i].teamOne#'
@@ -403,7 +403,11 @@ ESPN Headlines: http://sports.espn.go.com/espn/bottomline/news
             </table>
 		</td>
 	</tr>
-</cfoutput>
+	</cfoutput>
+	
+	<cfcatch type="any"></cfcatch>
+</cftry>
+
 </cfloop>
 </table>
 

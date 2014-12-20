@@ -62,6 +62,7 @@
 					WHERE pinnacleTeamName = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[1].participant_name.xmlText)#">
 				</cfquery>
 				<cfif qryCheckPinnacleFootBallTeam1.recordCount EQ 0>
+					No Pinnacle TeamID for team '<cfoutput>#trim(variables.gamesArray[i].participants.xmlChildren[1].participant_name.xmlText)#</cfoutput>'<br>
 					<cfquery datasource="#application.dsn#" name="qryCheckEspnFootBallTeam1">
 						SELECT teamID
 						FROM FootballTeams
@@ -90,6 +91,7 @@
 					WHERE pinnacleTeamName = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(variables.gamesArray[i].participants.xmlChildren[2].participant_name.xmlText)#">
 				</cfquery>
 				<cfif qryCheckPinnacleFootBallTeam2.recordCount EQ 0>
+					No Pinnacle TeamID for team '<cfoutput>#trim(variables.gamesArray[i].participants.xmlChildren[2].participant_name.xmlText)#</cfoutput>'<br>
 					<cfquery datasource="#application.dsn#" name="qryCheckEspnFootBallTeam2">
 						SELECT teamID
 						FROM FootballTeams
@@ -201,6 +203,8 @@
 				<hr><br>
 				</cfoutput>				
 
+			<cfset variables.missingTeam1ID = false>
+			<cfset variables.missingTeam2ID = false>
 		</cfloop>
 
 		<!--- ------------------------------------------------------- --->

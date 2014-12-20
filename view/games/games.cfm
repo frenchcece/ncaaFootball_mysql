@@ -142,11 +142,11 @@
 						<input type="hidden" name="weekNumber" value="#variables.qryGetGamesOfTheWeek.weekNumber#">
 			
 						<div class="control-group">		
-					    	<table class="table table-striped table-hover">
+					    	<table class="table table-striped table-hover" border="0">
 						    	<thead>
 						    		<tr>
-										<th colspan="4">Games Of The Week</th>
-										<th colspan="4" align="right">
+										<th colspan="3">Games Of The Week</th>
+										<th colspan="3" align="right">
 											<cfif DateDiff('n',now(),qryGetLastGameDate.lastGameDate) GT 0>
 												<button type="submit" class="btn btn-primary pull-right span2" name="submitBtn" id="submitBtn">Submit Pick</button>
 											</cfif>
@@ -164,87 +164,87 @@
 									    		<tr>
 													<th>Time</th>
 													<th>Visiting</th>
-													<th style="width:10px;"></th>
-													<th></th>
-													<th style="width:10px;"></th>
+													<th><cfif variables.qryGetGamesOfTheWeek.team1FinalScore GTE 0>Score</cfif></th>
 													<th>Home</th>
 													<th>Spread</th>
 													<th></th>
 												</tr>
 											</thead>
 										</cfif>
-										<tr <cfif variables.qryGetGamesOfTheWeek.team2Spread EQ 0 OR variables.qryGetGamesOfTheWeek.teamID1 EQ "" OR variables.qryGetGamesOfTheWeek.teamID2 EQ "">class="error"</cfif>>
+
+										<cfquery dbtype="query" name="qryCheckCurrentUserPick">
+											SELECT
+												  userPickID
+												 ,teamID
+												 ,winLoss
+											FROM
+												variables.qryGetUserPicksOfTheWeek
+											WHERE
+												gameID = #variables.qryGetGamesOfTheWeek.gameID#
+										</cfquery>
+									
+										<tr 
+											<cfif variables.qryGetGamesOfTheWeek.team2Spread EQ 0 OR variables.qryGetGamesOfTheWeek.teamID1 EQ "" OR variables.qryGetGamesOfTheWeek.teamID2 EQ "">class="error"</cfif>
+											<cfif qryCheckCurrentUserPick.recordCount AND (qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID1 OR qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID2)>class="success"</cfif>
+											>
 											<td>#timeFormat(variables.qryGetGamesOfTheWeek.gameDate,"hh:mm tt")# (CT)</td>
 											<cfif variables.qryGetGamesOfTheWeek.team2Spread EQ 0>
-												<td nowrap="nowrap">
+												<td>
 													<!--- <a style="float:left; margin-right:3px;" id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID1#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID1)#'></div><strong>#variables.qryGetGamesOfTheWeek.team1Name# #variables.qryGetGamesOfTheWeek.teamNickname1#</strong>"><i class="icon-info-sign"></i></a> --->
 													<a style="float:left; margin-right:3px;" id="teamStats" rel="clickover" data-content="#footballDaoObj.getTeamStatsHtmlTable(variables.qryGetGamesOfTheWeek.teamID1)#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID1)#'></div><strong>#variables.qryGetGamesOfTheWeek.team1Name# #variables.qryGetGamesOfTheWeek.teamNickname1#</strong><button style='float:right; margin-left:10px;' class='btn btn-danger btn-mini' data-dismiss='clickover' ><i class='icon-remove icon-white'></i></button>"><i class="icon-info-sign"></i></a>
-													<div class="logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID1)#"></div>
-													#variables.qryGetGamesOfTheWeek.team1Name# <cfif variables.qryGetGamesOfTheWeek.team1Rank GT 0>(#variables.qryGetGamesOfTheWeek.team1Rank#)</cfif>
+													<span class="logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID1)#"></span>
+													<span style="display: inline-block;">#variables.qryGetGamesOfTheWeek.team1Name#<cfif variables.qryGetGamesOfTheWeek.team1Rank GT 0> (#variables.qryGetGamesOfTheWeek.team1Rank#)</cfif></span>
 												</td>
-												<td></td>
-												<td class="text-center">@</td>
-												<td></td>
-												<td nowrap="nowrap">
+												<td class="text-center"></td>
+												<td>
 													<!--- <a style="float:left; margin-right:3px;" id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID2#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#'></div><strong>#variables.qryGetGamesOfTheWeek.team2Name# #variables.qryGetGamesOfTheWeek.teamNickname2#</strong>"><i class="icon-info-sign"></i></a> --->
 													<a style="float:left; margin-right:3px;" id="teamStats" rel="clickover" data-content="#footballDaoObj.getTeamStatsHtmlTable(variables.qryGetGamesOfTheWeek.teamID2)#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#'></div><strong>#variables.qryGetGamesOfTheWeek.team2Name# #variables.qryGetGamesOfTheWeek.teamNickname2#</strong><button style='float:right; margin-left:10px;' class='btn btn-danger btn-mini' data-dismiss='clickover' ><i class='icon-remove icon-white'></i></button>"><i class="icon-info-sign"></i></a>
-													<div class="logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#"></div>
-													#variables.qryGetGamesOfTheWeek.team2Name# <cfif variables.qryGetGamesOfTheWeek.team2Rank GT 0>(#variables.qryGetGamesOfTheWeek.team2Rank#)</cfif>
+													<span class="logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#"></span>
+													<span style="display: inline-block;">#variables.qryGetGamesOfTheWeek.team2Name#<cfif variables.qryGetGamesOfTheWeek.team2Rank GT 0> (#variables.qryGetGamesOfTheWeek.team2Rank#)</cfif></span>
 												</td>
 												<td>OFF</td>
 												<td></td>
 											<cfelse>
-												<cfquery dbtype="query" name="qryCheckCurrentUserPick">
-													SELECT
-														  userPickID
-														 ,teamID
-														 ,winLoss
-													FROM
-														variables.qryGetUserPicksOfTheWeek
-													WHERE
-														gameID = #variables.qryGetGamesOfTheWeek.gameID#
-												</cfquery>
-											
-												<td nowrap="nowrap">
+												<td>
 													<!--- <a style="float:left; margin-right:3px;" id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID1#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID1)#'></div><strong>#variables.qryGetGamesOfTheWeek.team1Name# #variables.qryGetGamesOfTheWeek.teamNickname1#</strong>"><i class="icon-info-sign"></i></a> --->
 													<a style="float:left; margin-right:3px;" id="teamStats" rel="clickover" data-content="#footballDaoObj.getTeamStatsHtmlTable(variables.qryGetGamesOfTheWeek.teamID1)#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID1)#'></div><strong>#variables.qryGetGamesOfTheWeek.team1Name# #variables.qryGetGamesOfTheWeek.teamNickname1#</strong><button style='float:right; margin-left:10px;' class='btn btn-danger btn-mini' data-dismiss='clickover' ><i class='icon-remove icon-white'></i></button>"><i class="icon-info-sign"></i></a>
-													<div class="logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID1)#"></div>
-													<span<cfif qryCheckCurrentUserPick.recordCount AND qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID1> class="badge badge-success"</cfif>>
-														#variables.qryGetGamesOfTheWeek.team1Name#</span> <cfif variables.qryGetGamesOfTheWeek.team1Rank GT 0>(#variables.qryGetGamesOfTheWeek.team1Rank#)</cfif>
+													<span class="logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID1)#"></span>
+													<span style="display: inline-block;"<cfif qryCheckCurrentUserPick.recordCount AND qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID1> class="badge badge-success"</cfif>>
+														#variables.qryGetGamesOfTheWeek.team1Name#<cfif variables.qryGetGamesOfTheWeek.team1Rank GT 0> (#variables.qryGetGamesOfTheWeek.team1Rank#)</cfif></span>
 												</td>
-												<td>
+												<td align="center" style="white-space:nowrap;">
 													<cfif variables.qryGetGamesOfTheWeek.team1FinalScore GTE 0>
-														<span class="label">#variables.qryGetGamesOfTheWeek.team1FinalScore#</span>
+														<span class="label"><cfif len(variables.qryGetGamesOfTheWeek.team1FinalScore) LTE 1>&nbsp;</cfif>#variables.qryGetGamesOfTheWeek.team1FinalScore#<cfif len(variables.qryGetGamesOfTheWeek.team1FinalScore) LTE 1>&nbsp;</cfif></span>
 													<cfelseif DateDiff('n',now(),variables.qryGetGamesOfTheWeek.gameDate) LTE 0>
-														<span class="label badge-info">&nbsp;0&nbsp;</span>	
+														<span class="label badge-info">&nbsp;0</span>	
 													<cfelseif variables.qryGetGamesOfTheWeek.teamID1 EQ "" OR variables.qryGetGamesOfTheWeek.teamID2 EQ "">
 														<span class="label badge-error">ERROR</span>
 													<cfelse>
-														<label class="radio"><input type="radio" name="team_#variables.qryGetGamesOfTheWeek.gameID#" id="team1_#variables.qryGetGamesOfTheWeek.gameID#" value="#variables.qryGetGamesOfTheWeek.teamID1#"<cfif qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID1> checked</cfif>></label>
-													</cfif>	
-												</td>
-												<td class="text-center">
-													<span<cfif qryCheckCurrentUserPick.recordCount> class="badge badge-success"</cfif>>@</span>
-												</td>
-												<td>
+														<label class="radio inline" style="padding-bottom:3px;"><input type="radio" name="team_#variables.qryGetGamesOfTheWeek.gameID#" id="team1_#variables.qryGetGamesOfTheWeek.gameID#" value="#variables.qryGetGamesOfTheWeek.teamID1#"<cfif qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID1> checked</cfif>></label>
+													</cfif>
+													<cfif variables.qryGetGamesOfTheWeek.team1FinalScore GTE 0>
+													<span style="">-</span>
+													<cfelse>
+													<span style="padding-right:5px; vertical-align:bottom;">@</span>
+													</cfif>
 													<cfif variables.qryGetGamesOfTheWeek.team2FinalScore GTE 0>
-														<span class="label">#variables.qryGetGamesOfTheWeek.team2FinalScore#</span>
+														<span class="label"><cfif len(variables.qryGetGamesOfTheWeek.team2FinalScore) LTE 1>&nbsp;</cfif>#variables.qryGetGamesOfTheWeek.team2FinalScore#<cfif len(variables.qryGetGamesOfTheWeek.team2FinalScore) LTE 1>&nbsp;</cfif></span>
 													<cfelseif DateDiff('n',now(),variables.qryGetGamesOfTheWeek.gameDate) LTE 0>
 														<span class="label badge-info">&nbsp;0&nbsp;</span>
 													<cfelseif variables.qryGetGamesOfTheWeek.teamID1 EQ "" OR variables.qryGetGamesOfTheWeek.teamID2 EQ "">
 														<span class="label badge-error">ERROR</span>
 													<cfelse>
-														<label class="radio"><input type="radio" name="team_#variables.qryGetGamesOfTheWeek.gameID#" id="team2_#variables.qryGetGamesOfTheWeek.gameID#" value="#variables.qryGetGamesOfTheWeek.teamID2#"<cfif qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID2> checked</cfif>></label>
-													</cfif>	
-												</td>
-												<td nowrap="nowrap">
-													<!--- <a style="float:left; margin-right:3px;" id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID2#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#'></div><strong>#variables.qryGetGamesOfTheWeek.team2Name# #variables.qryGetGamesOfTheWeek.teamNickname2#</strong>"><i class="icon-info-sign"></i></a> --->
-													<a style="float:left; margin-right:3px;" id="teamStats" rel="clickover" data-content="#footballDaoObj.getTeamStatsHtmlTable(variables.qryGetGamesOfTheWeek.teamID2)#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#'></div><strong>#variables.qryGetGamesOfTheWeek.team2Name# #variables.qryGetGamesOfTheWeek.teamNickname2#</strong><button style='float:right; margin-left:10px;' class='btn btn-danger btn-mini' data-dismiss='clickover' ><i class='icon-remove icon-white'></i></button>"><i class="icon-info-sign"></i></a>
-													<div class="logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#"></div>
-													<span<cfif qryCheckCurrentUserPick.recordCount AND qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID2> class="badge badge-success"</cfif>>
-														#variables.qryGetGamesOfTheWeek.team2Name#</span> <cfif variables.qryGetGamesOfTheWeek.team2Rank GT 0>(#variables.qryGetGamesOfTheWeek.team2Rank#)</cfif>
+														<label class="radio inline" style="padding-bottom:3px;"><input type="radio" name="team_#variables.qryGetGamesOfTheWeek.gameID#" id="team2_#variables.qryGetGamesOfTheWeek.gameID#" value="#variables.qryGetGamesOfTheWeek.teamID2#"<cfif qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID2> checked</cfif>></label>
+													</cfif>
 												</td>
 												<td>
+													<!--- <a style="float:left; margin-right:3px;" id="teamStats" rel="popover" teamid="#variables.qryGetGamesOfTheWeek.teamID2#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#'></div><strong>#variables.qryGetGamesOfTheWeek.team2Name# #variables.qryGetGamesOfTheWeek.teamNickname2#</strong>"><i class="icon-info-sign"></i></a> --->
+													<a style="float:left; margin-right:3px;" id="teamStats" rel="clickover" data-content="#footballDaoObj.getTeamStatsHtmlTable(variables.qryGetGamesOfTheWeek.teamID2)#" data-original-title="<div class='logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#'></div><strong>#variables.qryGetGamesOfTheWeek.team2Name# #variables.qryGetGamesOfTheWeek.teamNickname2#</strong><button style='float:right; margin-left:10px;' class='btn btn-danger btn-mini' data-dismiss='clickover' ><i class='icon-remove icon-white'></i></button>"><i class="icon-info-sign"></i></a>
+													<span class="logo logo-small logo-ncaa-small teamId-#trim(variables.qryGetGamesOfTheWeek.logoID2)#"></span>
+													<span style="display: inline-block;"<cfif qryCheckCurrentUserPick.recordCount AND qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID2> class="badge badge-success"</cfif>>
+														#variables.qryGetGamesOfTheWeek.team2Name#<cfif variables.qryGetGamesOfTheWeek.team2Rank GT 0> (#variables.qryGetGamesOfTheWeek.team2Rank#)</cfif></span>
+												</td>
+												<td nowrap="nowrap">
 													<cfif variables.qryGetGamesOfTheWeek.team2Spread GT 0>+</cfif>
 													#numberFormat(variables.qryGetGamesOfTheWeek.team2Spread,"999.9")#
 													<cfif variables.qryGetGamesOfTheWeek.spreadLock EQ 1>
@@ -257,7 +257,7 @@
 													<cfelseif variables.qryGetGamesOfTheWeek.teamID1 EQ "" OR variables.qryGetGamesOfTheWeek.teamID2 EQ "">
 														<cfif variables.qryGetGamesOfTheWeek.teamID1 EQ "">team1 NULL<cfelseif variables.qryGetGamesOfTheWeek.teamID2 EQ "">team2 NULL</cfif><i class="icon-exclamation-sign"></i>
 													<cfelse>
-														<i class="icon-lock"></i>
+														<cfif variables.qryGetGamesOfTheWeek.team1FinalScore LTE 0 AND variables.qryGetGamesOfTheWeek.team2FinalScore LTE 0><i class="icon-lock"></i></cfif>
 														<cfif qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID1 OR qryCheckCurrentUserPick.teamID EQ variables.qryGetGamesOfTheWeek.teamID2>
 															<input type="hidden" name="pick_locked" value="#qryCheckCurrentUserPick.userPickID#">
 														</cfif>
